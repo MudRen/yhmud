@@ -18,7 +18,7 @@ int perform(object me, object target)
 	if (objectp(me->query_temp("weapon")))
 		return notify_fail("你要施展拳法不能使用武器。\n");
 		
-	if ((int)me->query_skill("lingshe-quan", 1) < 120)
+	if ((int)me->query_skill("lingshe-quan", 1) < 100)
 		return notify_fail("你的灵蛇拳法不够娴熟，现在还无法使用「柔字诀」。\n");
 	                        
 	if ((int)me->query("neili") < 200)
@@ -36,7 +36,7 @@ int perform(object me, object target)
 	{
 		target->start_busy(1);
 		damage = (int)me->query_skill("force") + (int)me->query_skill("cuff");
-                damage = damage / 3;
+                damage = damage / 2;
                 damage += random(damage);
 
 		me->add("neili", -100);

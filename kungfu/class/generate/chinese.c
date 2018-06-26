@@ -20,14 +20,36 @@ private void from_wudu();
 private void from_lingxiao();
 private void from_tiezhang();
 private void from_zhenyuan();
+private void from_wudang1();
+private void from_shaolin1();
+private void from_shaolin2();
+private void from_shaolin3();
+private void from_shaolin4();
+private void from_taohua1();
+private void from_xueshan1();
+private void from_xiaoyao1();
+private void from_emei();
+private void from_xuanming();
+private void from_mingjiao();
+private void from_lingjiu();
+private void from_honghua();
+private void from_quanzhen();
+private void from_quanzhen1();
+private void from_riyue();
+private void from_song();
 
 function *init_family = ({ (: from_wudang :),   (: from_shaolin :),   (: from_huashan :),
                            (: from_ouyang :),   (: from_gaibang :),   (: from_taohua :),
                            (: from_gumu :),     (: from_xingxiu :),   (: from_xueshan :),
                            (: from_xuedao :),   (: from_xiaoyao :),   (: from_shenlong :), 
                            (: from_kunlun :),   (: from_yaowang :),   (: from_wudu :),
-                           (: from_lingxiao :), (: from_tiezhang :),  (: from_zhenyuan :), });
-
+                           (: from_lingxiao :), (: from_tiezhang :),  (: from_zhenyuan :),
+						   (: from_wudang1 :),	(: from_shaolin1 :),  (: from_shaolin2 :),
+						   (: from_shaolin3 :),	(: from_shaolin4 :),  (: from_emei :),
+						   (: from_taohua1 :),	(: from_xueshan1 :),  (: from_xiaoyao1 :),
+						   (: from_xuanming :),	(: from_mingjiao :),  (: from_lingjiu :),
+						   (: from_honghua :),	(: from_quanzhen :),  (: from_quanzhen1 :),
+						   (: from_riyue :),	(: from_song :), });
 void create()
 {
         NPC_D->generate_cn_name(this_object());
@@ -974,4 +996,760 @@ private void from_zhenyuan()
         ob = carry_object("/clone/weapon/feihuangshi");
         ob->set_amount(80);
         set_temp("handing", ob);
+}
+
+//以下为新增加
+//武当空手太极拳
+private void from_wudang1()
+{
+        set("scale", 200);
+        set("from", ({
+                "据说此人出自武当，是武当派的高手，然而修武不修德，可惜啊可惜。",
+                "听闻此人本是武当山下一农夫，耳渎目染，居然练就成非凡武功。",
+                "据说此人乃武当弃徒，当年犯了杀戒逃至东洋，不想今日返回中原！",
+        }));
+
+        set_skill("force", 1);
+        set_skill("taiji-shengong", 1);
+        set_skill("parry", 1);
+        set_skill("dodge", 1);
+        set_skill("tiyunzong", 1);
+        set_skill("sword", 1);
+        set_skill("taiji-jian", 1);
+        set_skill("hand", 1);
+        set_skill("paiyun-shou", 1);
+        set_skill("unarmed", 1);
+        set_skill("taiji-quan", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+        set_skill("taoism", 1);
+
+        map_skill("parry", "taiji-quan");
+        map_skill("force", "taiji-shengong");
+        map_skill("dodge", "tiyunzong");
+        map_skill("sword", "taiji-jian");
+        map_skill("hand", "paiyun-shou");
+        map_skill("unarmed", "taiji-quan");
+
+        prepare_skill("hand", "paiyun-shou");
+        prepare_skill("unarmed", "taiji-quan");
+
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "sword.chan" :),
+                (: perform_action, "sword.jia" :),
+                (: perform_action, "sword.sui" :),
+                (: perform_action, "sword.zhuan" :),
+                (: perform_action, "unarmed.zhen" :),
+                (: perform_action, "unarmed.zhan" :),
+                //(: perform_action, "unarmed.ji" :),
+                (: perform_action, "unarmed.yin" :),
+                (: exert_function, "powerup" :),
+                (: exert_function, "recover" :),
+        }) );
+
+        set("class", "taoist");
+
+        //carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/d/wudang/obj/greyrobe")->wear();
+}
+//少林日月鞭
+private void from_shaolin1()
+{
+        set("scale", 150);
+        set("from", ({
+                "据说此人出自少林，是少林的俗家高手，可却没有半点慈悲之心，唉！",
+                "听闻此人偷师于少林，练就了一身超凡脱俗的本领。",
+                "据说此人乃少林的火工头陀，偷学武艺后被发现，竟然打死"
+                + "达摩院长老出逃西域，想不到今日返回中原！",
+                "据说此人当年犯了少林的戒律，被迫离寺，想不到隐居多年"
+                + "以后居然重出江湖。"
+        }));
+
+        set_skill("force", 1);
+        set_skill("hunyuan-yiqi", 1);
+        set_skill("parry", 1);
+        set_skill("dodge", 1);
+        set_skill("shaolin-shenfa", 1);
+        set_skill("whip", 1);
+        set_skill("riyue-bian", 1);
+        set_skill("finger", 1);
+        set_skill("nianhua-zhi", 1);
+        set_skill("strike", 1);
+        set_skill("sanhua-zhang", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+        set_skill("buddhism", 1);
+
+        map_skill("parry", "riyue-bian");
+        map_skill("force", "hunyuan-yiqi");
+        map_skill("dodge", "shaolin-shenfa");
+        map_skill("whip", "riyue-bian");
+        map_skill("finger", "nianhua-zhi");
+        map_skill("strike", "sanhua-zhang");
+
+        prepare_skill("finger", "nianhua-zhi");
+        prepare_skill("strike", "sanhua-zhang");
+
+        set("chat_chance_combat", 100);
+        set("chat_msg_combat", ({
+                (: perform_action, "whip.chan" :),
+                (: perform_action, "whip.he" :),
+                (: perform_action, "whip.shang" :),
+                (: perform_action, "strike.san" :),
+                (: exert_function, "powerup" :),
+                (: exert_function, "recover" :),
+        }) );
+
+        set("class", "bonze");
+
+        carry_object("/clone/weapon/changbian")->wield();
+        carry_object("/clone/cloth/cloth")->wear();
+}
+//少林红叶刀
+private void from_shaolin2()
+{
+        set("scale", 150);
+        set("from", ({
+                "据说此人出自少林，是少林的俗家高手，可却没有半点慈悲之心，唉！",
+                "听闻此人偷师于少林，练就了一身超凡脱俗的本领。",
+                "据说此人乃少林的火工头陀，偷学武艺后被发现，竟然打死"
+                + "达摩院长老出逃西域，想不到今日返回中原！",
+                "据说此人当年犯了少林的戒律，被迫离寺，想不到隐居多年"
+                + "以后居然重出江湖。"
+        }));
+
+        set_skill("force", 1);
+        set_skill("hunyuan-yiqi", 1);
+        set_skill("parry", 1);
+        set_skill("dodge", 1);
+        set_skill("shaolin-shenfa", 1);
+        set_skill("blade", 1);
+        set_skill("hongye-daofa", 1);
+        set_skill("finger", 1);
+        set_skill("nianhua-zhi", 1);
+        set_skill("strike", 1);
+        set_skill("sanhua-zhang", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+        set_skill("buddhism", 1);
+
+        map_skill("parry", "hongye-daofa");
+        map_skill("force", "hunyuan-yiqi");
+        map_skill("dodge", "shaolin-shenfa");
+        map_skill("blade", "hongye-daofa");
+        map_skill("finger", "nianhua-zhi");
+        map_skill("strike", "sanhua-zhang");
+
+        prepare_skill("finger", "nianhua-zhi");
+        prepare_skill("strike", "sanhua-zhang");
+
+        set("chat_chance_combat", 100);
+        set("chat_msg_combat", ({
+                (: perform_action, "blade.kuang" :),
+                (: perform_action, "blade.leiting" :),
+                (: perform_action, "strike.san" :),
+                (: exert_function, "powerup" :),
+                (: exert_function, "recover" :),
+        }) );
+
+        set("class", "bonze");
+
+        carry_object("/clone/weapon/gangdao")->wield();
+        carry_object("/clone/cloth/cloth")->wear();
+}
+//少林去烦恼指
+private void from_shaolin3()
+{
+        set("scale", 150);
+        set("from", ({
+                "据说此人出自少林，是少林的俗家高手，可却没有半点慈悲之心，唉！",
+                "听闻此人偷师于少林，练就了一身超凡脱俗的本领。",
+                "据说此人乃少林的火工头陀，偷学武艺后被发现，竟然打死"
+                + "达摩院长老出逃西域，想不到今日返回中原！",
+                "据说此人当年犯了少林的戒律，被迫离寺，想不到隐居多年"
+                + "以后居然重出江湖。"
+        }));
+
+        set_skill("force", 1);
+        set_skill("hunyuan-yiqi", 1);
+        set_skill("parry", 1);
+        set_skill("dodge", 1);
+        set_skill("shaolin-shenfa", 1);
+        set_skill("finger", 1);
+        set_skill("qufannao-zhi", 1);
+        set_skill("strike", 1);
+        set_skill("sanhua-zhang", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+        set_skill("buddhism", 1);
+
+        map_skill("parry", "qufannao-zhi");
+        map_skill("force", "hunyuan-yiqi");
+        map_skill("dodge", "shaolin-shenfa");
+        map_skill("finger", "qufannao-zhi");
+        map_skill("strike", "sanhua-zhang");
+
+        prepare_skill("finger", "qufannao-zhi");
+        //prepare_skill("strike", "sanhua-zhang");
+
+        set("chat_chance_combat", 100);
+        set("chat_msg_combat", ({
+                (: perform_action, "finger.lingkong" :),
+                (: exert_function, "powerup" :),
+                (: exert_function, "recover" :),
+        }) );
+
+        set("class", "bonze");
+
+        //carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/cloth/cloth")->wear();
+}
+
+//少林神掌八打
+private void from_shaolin4()
+{
+        set("scale", 150);
+        set("from", ({
+                "据说此人出自少林，是少林的俗家高手，可却没有半点慈悲之心，唉！",
+                "听闻此人偷师于少林，练就了一身超凡脱俗的本领。",
+                "据说此人乃少林的火工头陀，偷学武艺后被发现，竟然打死"
+                + "达摩院长老出逃西域，想不到今日返回中原！",
+                "据说此人当年犯了少林的戒律，被迫离寺，想不到隐居多年"
+                + "以后居然重出江湖。"
+        }));
+
+        set_skill("force", 1);
+        set_skill("hunyuan-yiqi", 1);
+        set_skill("parry", 1);
+        set_skill("dodge", 1);
+        set_skill("shaolin-shenfa", 1);
+        set_skill("finger", 1);
+        set_skill("qufannao-zhi", 1);
+        set_skill("strike", 1);
+        set_skill("shenzhang-bada", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+        set_skill("buddhism", 1);
+
+        map_skill("parry", "shenzhang-bada");
+        map_skill("force", "hunyuan-yiqi");
+        map_skill("dodge", "shaolin-shenfa");
+        map_skill("finger", "qufannao-zhi");
+        map_skill("strike", "shenzhang-bada");
+
+        //prepare_skill("finger", "qufannao-zhi");
+        prepare_skill("strike", "shenzhang-bada");
+
+        set("chat_chance_combat", 100);
+        set("chat_msg_combat", ({
+                (: perform_action, "strike.bafang" :),
+                (: exert_function, "powerup" :),
+                (: exert_function, "recover" :),
+        }) );
+
+        set("class", "bonze");
+
+        //carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/cloth/cloth")->wear();
+}
+
+//桃花空手弹指神通
+private void from_taohua1()
+{
+        object ob;
+
+        set("scale", 135);
+        set("from", ({
+                "据说此人和桃花岛主黄药师有些关系。",
+        }));
+
+        set_skill("force", 1);
+        set_skill("bibo-shengong", 1);
+        set_skill("dodge", 1);
+        set_skill("anying-fuxiang", 1);
+        set_skill("finger", 1);
+        set_skill("throwing", 1);
+        set_skill("tanzhi-shentong", 1);
+        set_skill("parry", 1);
+        set_skill("sword", 1);
+        set_skill("yuxiao-jian", 1);
+        set_skill("qimen-wuxing", 1);
+        set_skill("count", 1);
+        set_skill("jingluo-xue", 1);
+        set_skill("mathematics", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "bibo-shengong");
+        map_skill("finger", "tanzhi-shentong");
+        map_skill("dodge", "anying-fuxiang");
+        map_skill("parry", "tanzhi-shentong");
+        map_skill("sword", "yuxiao-jian");
+        map_skill("throwing", "tanzhi-shentong");
+
+        prepare_skill("finger" , "tanzhi-shentong");
+
+        set("chat_chance_combat", 80);
+	set("chat_msg_combat", ({
+		(: perform_action, "sword.bihai" :),
+		(: perform_action, "sword.qing" :),
+		(: perform_action, "sword.tian" :),
+		(: perform_action, "finger.ding" :),
+		(: perform_action, "finger.xiao" :),
+		(: perform_action, "finger.po" :),
+		(: perform_action, "finger.zhuan" :),
+		(: exert_function, "powerup" :),
+		(: exert_function, "recover" :),
+	}));
+
+        //carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+        ob = carry_object("/d/taohua/obj/huaban");
+        ob->set_amount(80);
+        set_temp("handing", ob);
+}
+//雪山空手 龙象
+private void from_xueshan1()
+{
+        set("scale", 135);
+        set("from", ({
+                "据说此人是雪山大轮寺高手，独创中原，横行无忌，武功甚是了得。",
+        }));
+
+        set_skill("force", 1);
+        set_skill("longxiang-gong", 1);
+        set_skill("dodge", 1);
+        set_skill("shenkong-xing", 1);
+        set_skill("hammer", 1);
+        set_skill("riyue-lun", 1);
+        set_skill("parry", 1);
+        set_skill("unarmed", 1);
+        set_skill("lamaism", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "longxiang-gong");
+        map_skill("dodge", "shenkong-xing");
+        map_skill("unarmed", "longxiang-gong");
+        map_skill("parry", "longxiang-gong");
+        map_skill("hammer", "riyue-lun");
+
+        prepare_skill("unarmed", "longxiang-gong");
+
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "hammer.po" :),
+                (: perform_action, "hammer.yuan" :),
+                (: perform_action, "hammer.lian" :),
+                (: perform_action, "unarmed.tun" :),
+                (: perform_action, "unarmed.die" :),
+                (: perform_action, "unarmed.ji" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "shield" :),
+                (: exert_function, "powerup" :),
+        }));
+
+        set("class", "bonze");
+
+        //carry_object("/d/xueshan/obj/yinlun")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+//逍遥空手
+private void from_xiaoyao1()
+{
+        set("scale", 135);
+        set("from", ({
+                "据说此人和逍遥派无崖子本是同门弟子，后来不知何故翻脸成仇。",
+        }));
+
+        set_skill("force", 1);
+        set_skill("beiming-shengong", 1);
+        set_skill("dodge", 1);
+        set_skill("feiyan-zoubi", 1);
+        set_skill("liuyang-zhang", 1);
+        set_skill("parry", 1);
+        set_skill("sword", 1);
+        set_skill("liuyue-jian", 1);
+        set_skill("zhemei-shou", 1);
+        set_skill("hand", 1);
+        set_skill("strike", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "beiming-shengong");
+        map_skill("dodge", "feiyan-zoubi");
+        map_skill("hand", "zhemei-shou");
+        map_skill("strike", "liuyang-zhang");
+        map_skill("parry", "zhemei-shou");
+        map_skill("sword", "liuyue-jian");
+
+        prepare_skill("hand","zhemei-shou");
+        prepare_skill("strike","liuyang-zhang");
+
+        set("class", "taoist");
+
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "sword.liu" :),
+                (: perform_action, "sword.sheng" :),
+                (: perform_action, "hand.zhe" :),
+                (: perform_action, "hand.hai" :),
+                (: perform_action, "strike.zhong" :),
+                (: perform_action, "strike.huan" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "shield" :),
+                (: exert_function, "powerup" :),
+        }));
+
+        //carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+
+private void from_emei()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("linji-zhuang", 1);
+        set_skill("dodge", 1);
+        set_skill("zhutian-bu", 1);
+		set_skill("strike", 1);
+        set_skill("piaoxue-zhang", 1);
+        set_skill("parry", 1);
+        set_skill("sword", 1);
+        set_skill("huifeng-jian", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "linji-zhuang");
+        map_skill("dodge", "zhutian-bu");
+        map_skill("strike", "piaoxue-zhang");
+        map_skill("parry", "huifeng-jian");
+        map_skill("sword", "huifeng-jian");
+
+        prepare_skill("strike","piaoxue-zhang");
+		
+        set("class", "bonze");
+
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "sword.mie" :),
+                (: perform_action, "sword.jue" :),
+                (: perform_action, "strike.yun" :),
+                (: perform_action, "strike.zhao" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+        carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+
+private void from_xuanming()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("xuanming-shengong", 1);
+        set_skill("dodge", 1);
+        set_skill("liuying-bu", 1);
+		set_skill("strike", 1);
+        set_skill("xuanming-zhang", 1);
+        set_skill("parry", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "xuanming-shengong");
+        map_skill("dodge", "liuying-bu");
+        map_skill("strike", "xuanming-zhang");
+        map_skill("parry", "xuanming-zhang");
+        
+        prepare_skill("strike","xuanming-zhang");
+		
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "strike.lang" :),
+                (: perform_action, "strike.xing" :),
+                (: perform_action, "strike.ying" :),
+                (: perform_action, "strike.zhe" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+        carry_object("/clone/misc/cloth")->wear();
+}
+
+private void from_mingjiao()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("shenghuo-shengong", 1);
+        set_skill("dodge", 1);
+        set_skill("qingfu-shenfa", 1);
+		set_skill("cuff", 1);
+        set_skill("qishang-quan", 1);
+		set_skill("sword", 1);
+        set_skill("shenghuo-ling", 1);
+        set_skill("parry", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "shenghuo-shengong");
+        map_skill("dodge", "qingfu-shenfa");
+        map_skill("cuff", "qishang-quan");
+        map_skill("parry", "shenghuo-ling");
+		map_skill("sword", "shenghuo-ling");
+        
+        prepare_skill("cuff","qishang-quan");
+		
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "sword.can" :),
+                (: perform_action, "sword.hua" :),
+                (: perform_action, "sword.lian" :),
+                (: perform_action, "cuff.fei" :),
+				(: perform_action, "cuff.shang" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+		carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+private void from_lingjiu()
+{
+        set("scale", 135);
+        set("from", ({
+                "据说此人和逍遥派无崖子本是同门弟子，后来不知何故翻脸成仇。",
+        }));
+
+        set_skill("force", 1);
+        set_skill("bahuang-gong", 1);
+        set_skill("dodge", 1);
+        set_skill("yueying-wubu", 1);
+        set_skill("liuyang-zhang", 1);
+        set_skill("parry", 1);
+        set_skill("sword", 1);
+        set_skill("tianyu-qijian", 1);
+        set_skill("zhemei-shou", 1);
+        set_skill("hand", 1);
+        set_skill("strike", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "bahuang-gong");
+        map_skill("dodge", "yueying-wubu");
+        map_skill("hand", "zhemei-shou");
+        map_skill("strike", "liuyang-zhang");
+        map_skill("parry", "tianyu-qijian");
+        map_skill("sword", "tianyu-qijian");
+
+        prepare_skill("hand","zhemei-shou");
+        prepare_skill("strike","liuyang-zhang");
+
+        set("class", "taoist");
+
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "sword.huan" :),
+                (: perform_action, "sword.shan" :),
+				(: perform_action, "sword.ju" :),
+                (: perform_action, "hand.zhe" :),
+                (: perform_action, "hand.hai" :),
+                (: perform_action, "strike.zhong" :),
+                (: perform_action, "strike.huan" :),
+				(: perform_action, "strike.po" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "shield" :),
+                (: exert_function, "powerup" :),
+        }));
+
+        //carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+
+private void from_honghua()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("zhanshen-xinjing", 1);
+        set_skill("dodge", 1);
+        set_skill("zhuangzi-wu", 1);
+		set_skill("unarmed", 1);
+        set_skill("baihua-cuoquan", 1);
+        set_skill("parry", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "zhanshen-xinjing");
+        map_skill("dodge", "zhuangzi-wu");
+        map_skill("unarmed", "baihua-cuoquan");
+        map_skill("parry", "baihua-cuoquan");
+        
+        prepare_skill("unarmed","baihua-cuoquan");
+		
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "unarmed.hong" :),
+                (: perform_action, "unarmed.luan" :),
+                (: perform_action, "unarmed.yi" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+        carry_object("/clone/misc/cloth")->wear();
+}
+//全真空手
+private void from_quanzhen()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("xuanmen-neigong", 1);
+        set_skill("dodge", 1);
+        set_skill("jinyan-gong", 1);
+		set_skill("unarmed", 1);
+        set_skill("kongming-quan", 1);
+		set_skill("sword", 1);
+        set_skill("quanzhen-jian", 1);
+        set_skill("parry", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "xuanmen-neigong");
+        map_skill("dodge", "jinyan-gong");
+        map_skill("unarmed", "kongming-quan");
+        map_skill("parry", "kongming-quan");
+        
+        prepare_skill("unarmed","kongming-quan");
+		
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "unarmed.kong" :),
+                (: perform_action, "unarmed.ruo" :),
+                (: perform_action, "sword.chan" :),
+				(: perform_action, "sword.ding" :),
+				(: perform_action, "sword.hua" :),
+				(: perform_action, "sword.lian" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+		//carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+
+private void from_quanzhen1()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("xuanmen-neigong", 1);
+        set_skill("dodge", 1);
+        set_skill("jinyan-gong", 1);
+		set_skill("unarmed", 1);
+        set_skill("kongming-quan", 1);
+		set_skill("sword", 1);
+        set_skill("quanzhen-jian", 1);
+        set_skill("parry", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "xuanmen-neigong");
+        map_skill("dodge", "jinyan-gong");
+		map_skill("sword", "quanzhen-jian");
+        map_skill("unarmed", "kongming-quan");
+        map_skill("parry", "quanzhen-jian");
+        
+        prepare_skill("unarmed","kongming-quan");
+		
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "unarmed.kong" :),
+                (: perform_action, "unarmed.ruo" :),
+                (: perform_action, "sword.chan" :),
+				(: perform_action, "sword.ding" :),
+				(: perform_action, "sword.hua" :),
+				(: perform_action, "sword.lian" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+		carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+
+private void from_riyue()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("tianhuan-shenjue", 1);
+        set_skill("dodge", 1);
+        set_skill("juechen-shenfa", 1);
+		set_skill("strike", 1);
+        set_skill("guzhuo-zhang", 1);
+		set_skill("parry", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "tianhuan-shenjue");
+        map_skill("dodge", "juechen-shenfa");
+        map_skill("strike", "guzhuo-zhang");
+        map_skill("parry", "guzhuo-zhang");
+        
+        prepare_skill("strike","guzhuo-zhang");
+		
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "strike.yu" :),
+                (: perform_action, "strike.zhen" :),
+                (: perform_action, "strike.zhuo" :),
+				(: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+		//carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
+}
+
+private void from_song()
+{
+        set("scale", 135);
+		
+        set_skill("force", 1);
+        set_skill("hanbing-zhenqi", 1);
+        set_skill("dodge", 1);
+        set_skill("lingxu-bu", 1);
+		set_skill("strike", 1);
+        set_skill("hanbing-zhang", 1);
+		set_skill("sword", 1);
+        set_skill("poyang-jian", 1);
+        set_skill("parry", 1);
+        set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+
+        map_skill("force", "hanbing-zhenqi");
+        map_skill("dodge", "lingxu-bu");
+		map_skill("sword", "poyang-jian");
+        map_skill("strike", "hanbing-zhang");
+        map_skill("parry", "poyang-jian");
+        
+        prepare_skill("strike","hanbing-zhang");
+		
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "strike.han" :),
+                (: perform_action, "strike.hen" :),
+                (: perform_action, "sword.long" :),
+				(: perform_action, "sword.xian" :),
+				(: exert_function, "recover" :),
+                (: exert_function, "powerup" :),
+        }));
+
+		carry_object("/clone/weapon/changjian")->wield();
+        carry_object("/clone/misc/cloth")->wear();
 }
