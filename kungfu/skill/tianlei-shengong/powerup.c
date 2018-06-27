@@ -17,7 +17,7 @@ int exert(object me, object target)
         if ((int)me->query_temp("powerup"))
                 return notify_fail("你已经在运功中了。\n");
 
-        skill = me->query_skill("fenxin-jue", 1);
+        skill = me->query_skill("tianlei-shengong", 1);
         me->add("neili", -100);
         me->receive_damage("qi", 0);
         message_combatd(YEL "$N" YEL "微一凝神，运起天雷神功，真气顿时灌满全身，整"
@@ -27,18 +27,18 @@ int exert(object me, object target)
 		me->add_temp("apply/unarmed_damage", skill / 6);
         me->set_temp("powerup", 1);
 
-        me->start_call_out((:call_other, __FILE__, "remove_effect", me, skill :), skill);
+        me->start_call_out((:call_other, __FILE__, "remove_effect", me, skill / 3 :), skill);
         if (me->is_fighting()) me->start_busy(3);
         return 1;
 }
 
-void remove_effect(object me, int skill)
+void remove_effect(object me, int amount)
 {
         if (me->query_temp("powerup"))
         {
-                me->add_temp("apply/attack", -(skill / 3));
-                me->add_temp("apply/defense", -(skill / 3));
-				me->add_temp("apply/unarmed_damage", -(skill / 6));
+                me->add_temp("apply/attack", -amount);
+                me->add_temp("apply/defense", -amount);
+				me->add_temp("apply/unarmed_damage", -amount / 2);
                 me->delete_temp("powerup");
                 tell_object(me, "你的天雷神功运行完毕，将内力收回丹田。\n");
         }

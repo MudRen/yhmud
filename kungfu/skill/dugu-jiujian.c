@@ -418,7 +418,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 {
         int lvl;
         object weapon, weapon2;
-        int i, ap, dpp, dpd, dpf;
+        int i, n, ap, dpp, dpd, dpf;
         string type, msg;
 
         lvl = me->query_skill("dugu-jiujian", 1);
@@ -426,8 +426,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         if (me->query("neili") < 500
            || me->query_skill_mapped("sword") != "dugu-jiujian"
            ||! objectp(weapon = me->query_temp("weapon"))
-           || weapon->query("skill_type") != "sword"
-           || ! me->query("can_learn/dugu-jiujian/nothing"))
+           || weapon->query("skill_type") != "sword")
                      return 0;
 
         ap = me->query_skill("sword");
@@ -435,13 +434,14 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         dpd = victim->query_skill("dodge");
         dpf = victim->query_skill("force");
 
-
+		if (me->query("can_learn/dugu-jiujian/nothing"))
+			ap += random(ap / 2);
         //me->add("neili", -80);
 
         switch(random(3))
         {
            case 1:
-              if (ap * 3 / 4 + random(ap) > dpp)
+              if (ap * 2 / 3 + random(ap) > dpp)
               {
                   me->add("neili", -60);
                   victim->receive_wound("qi", (damage_bonus - 30) / 2, me);
@@ -467,7 +467,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                   if (weapon2)type = weapon2->query("skill_type");
 
 
-                  if (ap * 3 / 4 + random(ap) >= dpf && weapon2
+                  if (ap * 2 / 3 + random(ap) >= dpf && weapon2
                       && type != "pin")
                   {
                            msg = HIW "$n" HIW "觉得眼前眼花缭乱，手中"
@@ -482,7 +482,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                            me->add("neili", -40);
                   }
              }else 
-             if (ap * 3 / 4 + random(ap) > dpd)
+             if (ap * 2 / 3 + random(ap) > dpd)
              {
                           msg = HIY "$n" HIY "连忙抵挡，一时间不禁手忙脚乱，"
                                 "无暇反击。\n" NOR;
@@ -502,7 +502,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
              break;
           
           default :
-             if (ap * 2 / 3 + random(ap) > dpd && 
+             if (ap * 1 / 2 + random(ap) > dpd && 
                  ! me->is_busy() && lvl > 300 &&
                  ! me->query_temp("dugu-jiujian/lian"))
              {
@@ -514,7 +514,13 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 
                 me->add("neili", -300);
                 me->set_temp("dugu-jiujian/lian", 1);
-                for (i = 0; i < 9; i++)
+				
+				if (me->query("can_learn/dugu-jiujian/nothing"))
+					n = 9;
+				else
+					n = 4;
+				
+                for (i = 0; i < n; i++)
                 {
                     if (! me->is_fighting(victim))
                             break;

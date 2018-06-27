@@ -74,7 +74,8 @@ mixed valid_damage(object ob, object me, int damage, object weapon)
         if (lvl > 280 &&
             me->query_skill("zihui-xinfa", 1) > 300 &&
             ! me->is_busy() &&
-            me->query("max_neili") * 2 / 3 > ob->query("max_neili") &&
+            //me->query("max_neili") * 2 / 3 > ob->query("max_neili") &&
+			me->query("neili") * 4 / 5 > ob->query("neili") &&
             me->query("neili") > 500 &&
             mp < 100 &&
             random(ran) == 1 )
