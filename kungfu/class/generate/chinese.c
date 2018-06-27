@@ -1893,6 +1893,7 @@ private void from_pixie()
         set_skill("force", 1);
         set_skill("zixia-shengong", 1);
         set_skill("pixie-jian", 1);
+		set_skill("feiyan-zoubi", 1);
         set_skill("dodge", 1);
 		set_skill("unarmed", 1);
         set_skill("sword", 1);
@@ -1901,7 +1902,7 @@ private void from_pixie()
         set_skill("martial-cognize", 1);
 
         map_skill("force", "zixia-shengong");
-        map_skill("dodge", "pixie-jian");
+        map_skill("dodge", "feiyan-zoubi");
 		map_skill("sword", "pixie-jian");
         map_skill("unarmed", "pixie-jian");
         map_skill("parry", "pixie-jian");
