@@ -369,7 +369,7 @@ void place_npc(object ob, string *not_place, string *in_place)
         string *kp;
         string p;
         string startroom;
-        object pos;
+        //object pos;
 
         // select the place
         if (! arrayp(in_place))
