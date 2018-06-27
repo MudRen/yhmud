@@ -54,7 +54,7 @@ int perform(object me)
               "ÕóÇå´àµÄÇÙÒô¡­¡­\n" NOR;
 
         skill = me->query_skill("kunlun-jian", 1);
-        ap = me->query_skill("sword");
+        ap = me->query_skill("sword") + me->query_skill("tanqin-jifa");
         dp = target->query_skill("force");
         if (dp < 1) dp = 1;
         if (random(ap) > dp / 2)
