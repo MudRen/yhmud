@@ -53,7 +53,7 @@ int perform(object me, object target)
 	count = 0;
 	
 	if (me->query("family/family_name") == "ÌÒ»¨µº")
-		count = lvl / 2;
+		count = lvl / 4;
 	
 	me->add_temp("apply/attack", count);
 	me->add_temp("apply/unarmed_damage", count / 2);
