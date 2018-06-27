@@ -50,7 +50,7 @@ int perform(object me)
         msg = HIR "$N" HIR "一声冷笑，聚气于掌，飞身一跃而起，一招"
                   "携满剧毒的「毒蟾掌」对着$n" HIR "凌空拍下！\n"NOR;
 
-        ap = me->query_skill("strike") + lvl;
+        ap = me->query_skill("strike") + me->query_skill("poison");
         dp = target->query_skill("parry");
 
         if ( ap * 2 / 3 + random(ap) > dp + random(dp) )

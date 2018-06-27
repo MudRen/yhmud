@@ -51,7 +51,7 @@ int perform(object me, object target)
         {
                 me->start_busy(2);
                 me->add("neili", -200);
-                damage = me->query_skill("strike");
+                damage = me->query_skill("strike") + me->query_skill("force");
                 damage = damage / 2 + random(damage / 2);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50,
                                            HIR "结果$p" HIR "被$P" HIR "的气势所"

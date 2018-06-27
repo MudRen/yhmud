@@ -98,13 +98,13 @@ void attempt_apprentice(object ob)
 {
         if (! permit_recruit(ob))
                 return;
-
+/*
         if (ob->query("family/master_name") == "鹿杖客")
         {
                 command("say 你既然已得到我师兄指点，还是好好跟着他学吧！");
                 return;
         }
-
+*/
         if ((int)ob->query("shen") > 0)
         {
                 command("say 我玄冥谷向来不和你们这些正道人士交往。");

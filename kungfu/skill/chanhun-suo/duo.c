@@ -43,7 +43,7 @@ int perform(object me, object target)
               HIY "抖得笔直，劈向$n" HIY "手腕，可是待到中途却又停滞，转往$n"
               HIY "胸口挥去！\n" NOR;
 
-        ap = me->query_skill("whip") + me->query_skill("force");
+        ap = me->query_skill("whip") + me->query_skill("force") + me->query_skill("poison");
         dp = target->query_skill("force") + target->query_skill("parry");
 
         if (ap / 2 + random(ap) > dp)

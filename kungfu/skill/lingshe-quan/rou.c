@@ -30,7 +30,7 @@ int perform(object me, object target)
 	msg = HIG "$N" HIG "一拳打出，半途中手臂忽然不可思议的转了个圈子，打向$n"
               HIG "，令$p" HIG "防不胜防。\n"NOR;
 
-        ap = me->query_skill("cuff");
+        ap = me->query_skill("cuff") + me->query_skill("training", 1);
         dp = target->query_skill("dodge");
 	if (ap / 2 + random(ap) > dp)
 	{
