@@ -95,6 +95,16 @@ mapping *action = ({
         "lvl"    : 250,
         "damage_type" : "刺伤"
 ]),
+([      "action": " "RED" 越女剑之极意 "NOR"",
+        "force"  : (int)this_player()->query_skill("force")/2 + random((int)this_player()->query_skill("force")),
+        "attack" : (int)this_player()->query_skill("sword")/4 + random((int)this_player()->query_skill("sword")/2),
+        "dodge"  : (int)this_player()->query_skill("dodge")/4 + random((int)this_player()->query_skill("force")/3),
+        "parry"  : (int)this_player()->query_skill("parry")/4 + random((int)this_player()->query_skill("parry")/3),
+        "damage" : (int)this_player()->query_skill("force")/3 + random((int)this_player()->query_skill("sword")/3),
+        "lvl"    : 400,
+        //"skill_name" : "极意",
+        "damage_type": "刺伤"
+]),
 });
 
 int valid_enable(string usage) { return usage == "sword" || usage == "parry"; }
@@ -157,7 +167,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
         object weapon;
         //string name;
         int ap, dp;
-		int lvl;
+		int lvl, count;
 
         weapon = me->query_temp("weapon");
 		lvl = me->query_skill("yuenv-jian", 1);
@@ -183,11 +193,12 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
                        "，优美华丽，不带一丝尘俗之气，却将$n" HIW "攻得无暇反击！\n"
                        NOR, me, victim);
 
-        me->set_temp("is_attacking", 1);
+        if (me->query("family/family_name") == "峨嵋派")
+			count = (int)lvl / 10;
+		me->set_temp("is_attacking", 1);
         me->start_busy(1 + random(attack_time / 2));
         me->add("neili", -attack_time * 20);
-		if (me->query("family/family_name") == "峨嵋派")
-			me->add_temp("apply/damage", lvl / 10);
+		me->add_temp("apply/damage", count);
         for (i = 0; i < attack_time; i++)
         {
                 if (! me->is_fighting(victim))
@@ -200,8 +211,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
         }
 
         me->delete_temp("is_attacking");
-		if (me->query("family/family_name") == "峨嵋派")
-			me->add_temp("apply/damage", -lvl / 10);
+		me->add_temp("apply/damage", -count);
         return 1;
 }
 

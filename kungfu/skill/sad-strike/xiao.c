@@ -75,7 +75,7 @@ int perform(object me, object target)
                 COMBAT_D->do_attack(me, target, 0, 0);
         }
 
-        me->start_busy(2 + random(5));
+        me->start_busy(2 + random(4));
         me->add_temp("apply/attack", -count);
 
         return 1;

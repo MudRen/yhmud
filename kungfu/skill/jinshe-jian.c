@@ -191,7 +191,7 @@ int valid_learn(object me)
 
 	if ((int)me->query_skill("martial-cognize", 1) < 220)
 		return notify_fail("你的武学修养不足，没有办法领悟金蛇剑法。\n");
-
+/*
         if (me->query("character") == "心狠手辣")
                 return notify_fail("你一心想杀尽敌人，没能理解金蛇剑法。\n");
 
@@ -200,7 +200,7 @@ int valid_learn(object me)
 
         if (me->query("character") == "光明磊落")
                 return notify_fail("你心中暗道：什么金蛇剑法，乱七八糟的，没有半点气势。\n");
-
+*/
 	if ((int)me->query_skill("sword", 1) < (int)me->query_skill("jinshe-jian", 1))
 		return notify_fail("你的基本剑法水平有限，无法领会更高深的金蛇剑法。\n");
 

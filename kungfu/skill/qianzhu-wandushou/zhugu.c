@@ -6,7 +6,7 @@ inherit F_SSERVER;
 int perform(object me, object target)
 {
         string msg;
-        int lvl;
+        int lvl, poison;
         int damage;
 		
 		float improve;
@@ -60,20 +60,21 @@ int perform(object me, object target)
 			}
 		}
 		
-		improve = improve * 4 / 100 / lvls;
+		improve = improve * 5 / 100 / lvls;
 		
 		if (me->query("family/family_name") == "五毒教")
 			improve += 0.05;
 
-        lvl = (int)me->query_skill("hand", 1) / 2 +
-              (int)me->query_skill("qianzhu-wandushou", 1);
-			  
+        lvl = me->query_skill("hand");
+		poison = me->query_skill("poison");
+		
+		poison = (int)poison / 50;	  
 		lvl += lvl * improve;
 		
         if (lvl / 2 + random(lvl) > target->query_skill("force"))
         {
                 damage = lvl + random(lvl / 2);
-                msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50,
+                msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 50 + poison,
                                            HIR "$p" HIR "只觉得一股如山的劲力顺指尖猛"
                                            "攻过来，只觉得全身毒气狂窜，“哇”的一声"
                                            "吐出一口黑血！\n" NOR);

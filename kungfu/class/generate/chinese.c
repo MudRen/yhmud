@@ -1787,8 +1787,8 @@ private void from_murong()
 		
         set("chat_chance_combat", 80);
         set("chat_msg_combat", ({
-                (: perform_action, "finger.canhe" :),
-                (: perform_action, "finger.jin" :),
+                //(: perform_action, "finger.canhe" :),
+                //(: perform_action, "finger.jin" :),
 				(: perform_action, "finger.you" :),
 				(: perform_action, "finger.zhi" :),
                 (: perform_action, "blade.feng" :),
@@ -1912,7 +1912,7 @@ private void from_pixie()
         set("chat_chance_combat", 80);
         set("chat_msg_combat", ({
                 (: perform_action, "unarmed.gui" :),
-                (: perform_action, "sword.duo" :),
+                //(: perform_action, "sword.duo" :),
 				(: perform_action, "sword.gui" :),
 				(: perform_action, "sword.pi" :),
 				(: exert_function, "recover" :),
