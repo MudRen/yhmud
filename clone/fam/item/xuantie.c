@@ -17,7 +17,7 @@ void create()
                 set("material_name", NOR + CYN "天山玄铁" NOR);
                 set("can_make", ({ "all" }));
 				set("not_make", ({ "战衣", "腰带", "护腕", "靴子" }));
-                set("power_point", 40);
+                set("power_point", 100);
         }
 }
 

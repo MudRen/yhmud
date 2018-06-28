@@ -16,7 +16,7 @@ int perform(object me, object target)
                 return notify_fail("蛤蟆功" ZHEN "只能对战斗中的对手使用。\n");
 
         skill = me->query_skill("hamagong", 1);
-		poison = me->query_skill("poison", 1);
+		poison = me->query_skill("poison");
 
         if (skill < 240)
                 return notify_fail("你的蛤蟆功修为不够精深，不能使用" ZHEN "！\n");
@@ -54,9 +54,9 @@ int perform(object me, object target)
 			damage += poison* skill / 500;
 
 		if(me->query_temp("reverse"))
-		        hamagong_effect = (int)(skill / 100) * 5;
+		        hamagong_effect = (int)(skill / 200) * 5;
 		else
-			    hamagong_effect = (int)(skill / 200) * 5;
+			    hamagong_effect = (int)(skill / 300) * 5;
 
         if (ap * 2 / 3 + random(ap) > dp)
         {
