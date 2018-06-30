@@ -69,7 +69,7 @@ int perform(object me, object target)
         message_sort(msg, me, target);
         me->add_temp("apply/attack", count);
 
-        me->add("neili", -400);
+        me->add("neili", -70 * n);
         for (i = 0; i < n; i++)
         {
                 if (! me->is_fighting(target))

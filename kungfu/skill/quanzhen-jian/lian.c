@@ -41,7 +41,7 @@ int perform(object me, object target)
                 return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
 
         me->start_busy(3);
-        me->add("neili", -300);
+        me->add("neili", -200);
 
         msg = HIR "拆得数招，$N左剑平刺，右掌正击，同时左腿横扫而出，正是全真派中的" LIAN HIR"绝招。\n" NOR;
         message_combatd(msg, me, target);

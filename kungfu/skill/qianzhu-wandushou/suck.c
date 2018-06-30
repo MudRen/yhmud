@@ -87,6 +87,7 @@ int perform(object me,object target)
     
         //skill_count = duli * (10 + random((int)me->query_int()));
         skill_count = duli * (50 + random((int)me->query_int()));
+		skill_count += random(my_force);
         me->improve_skill("qianzhu-wandushou", skill_count);
         me->improve_skill("poison", skill_count);
         tell_object(me, HIC "你的「千蛛万毒手」和「基本毒技」熟练度提高了！\n" NOR);

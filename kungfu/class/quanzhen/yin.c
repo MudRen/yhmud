@@ -226,7 +226,7 @@ mixed ask_skill3()
         if (me->query_skill("quanzhen-jian", 1) < 180)
                 return "你的全真剑法不够娴熟，练高点再来吧。";
 
-        if (me->query("max_neili") < 3000)
+        if (me->query("max_neili") < 2500)
                 return "你的内力修为不够，还是练高点再来吧。";
 
         message_sort(HIY "\n$n" HIY "点了点头，喝道：“看仔细了。”话音刚"

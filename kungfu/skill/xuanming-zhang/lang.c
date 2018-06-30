@@ -71,7 +71,7 @@ int perform(object me, object target)
         } else
         {
                 msg += HIY "$n" HIY "看见$N" HIY "来势汹涌，急忙提气跃开。\n" NOR;
-                me->add("neili", -100);
+                me->add("neili", -75);
         }
         message_sort(msg, me, target);
          
@@ -88,7 +88,7 @@ int perform(object me, object target)
         } else
         {
                 msg += HIY "$n" HIY "看见$N" HIY "来势汹涌，急忙提气跃开。\n" NOR;
-                me->add("neili", -150);
+                me->add("neili", -100);
         }
         message_sort(msg, me, target);
 
