@@ -10,7 +10,7 @@ int perform(object me, object target)
         object weapon;
         string msg;
         int ap, dp, damage;
-        int i, count;
+        //int i, count;
 
         if (userp(me) && ! me->query("can_perform/quanzhen-jian/lian"))
                 return notify_fail("你所使用的外功中没有这种功能。\n");
@@ -41,7 +41,7 @@ int perform(object me, object target)
                 return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
 
         me->start_busy(3);
-        me->add("neili", -200);
+        me->add("neili", -60);
 
         msg = HIR "拆得数招，$N左剑平刺，右掌正击，同时左腿横扫而出，正是全真派中的" LIAN HIR"绝招。\n" NOR;
         message_combatd(msg, me, target);
@@ -58,13 +58,17 @@ int perform(object me, object target)
 
         if(random(ap) > dp / 2)
         {
-                damage = ap / 2 + random(ap / 2);
+                damage = ap / 2 + random(ap);
 
-                msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 100,
+                msg = COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 70,
                                            HIR "只见$n躲闪不及，已经被$N一腿扫中，惨叫声中，向后跌出丈许。\n" NOR);
-                message_combatd(msg, me, target);
+                me->add("neili", -150);
+				message_combatd(msg, me, target);
         } else
-                message_combatd(HIY "$n见此招来势凶猛，向后一跃，轻巧地躲了开去。\n" NOR, me, target);
+        {
+				message_combatd(HIY "$n见此招来势凶猛，向后一跃，轻巧地躲了开去。\n" NOR, me, target);
+				me->add("neili", -50);
+		}
 
         weapon->wield();
 

@@ -49,32 +49,38 @@ int perform(object me, object target)
 	else
 		count = 0;
 	
-	me->add_temp("apply/attack", count); 
+	me->add_temp("apply/attack", count);
+	me->add_temp("apply/parry", count); 
 	me->add_temp("apply/damage", count / 2);
 
 	COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
 	COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
 	COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
 	
-	me->add_temp("apply/attack", -count); 
+	me->add_temp("apply/attack", -count);
+	me->add_temp("apply/parry", -count);
 	me->add_temp("apply/damage", -count / 2);
 	
 	if (random(2) == 1)
 		{
-			me->add_temp("apply/attack", ap / 2); 
+			me->add_temp("apply/attack", ap / 2);
+			me->add_temp("apply/parry", ap / 2);
 			me->add_temp("apply/damage", ap / 2);
 			message_combatd(HIW  "$N从左面劈出第四刀！\n" NOR, me, target); 
 			COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
-			me->add_temp("apply/attack", -ap / 2); 
+			me->add_temp("apply/attack", -ap / 2);
+			me->add_temp("apply/parry", -ap / 2);
 			me->add_temp("apply/damage", -ap / 2);
 			
 			if (random(2) == 1)
 			{
-				me->add_temp("apply/attack", ap); 
+				me->add_temp("apply/attack", ap);
+				me->add_temp("apply/parry", ap);
 				me->add_temp("apply/damage", ap);
 				message_combatd(RED  "$N从右面劈出第五刀！\n" NOR, me, target); 
 				COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
-				me->add_temp("apply/attack", -ap); 
+				me->add_temp("apply/attack", -ap);
+				me->add_temp("apply/parry", -ap);
 				me->add_temp("apply/damage", -ap);
 			}
 			

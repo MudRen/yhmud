@@ -199,9 +199,9 @@ void init_npc_skill(object ob, int skl)
 		if (exp < 600000)
 			sk_lvl = to_int(pow(to_float(exp*10), 1.0 / 3)) * 0.4;
 		else if (exp < 2000000)
-            sk_lvl = to_int(pow(to_float(exp*10), 1.0 / 3)) * (0.50 + to_float(exp * 3 ) / 20000000);
+            sk_lvl = to_int(pow(to_float(exp*10), 1.0 / 3)) * (0.45 + to_float(exp * 3 ) / 20000000);
 		else
-			sk_lvl = to_int(pow(to_float(exp*10), 1.0 / 3)) * 0.8;
+			sk_lvl = to_int(pow(to_float(exp*10), 1.0 / 3)) * 0.75;
 
 		ob->set("magic_points", sk_lvl * 20);
 		if (sk_lvl >= 350)

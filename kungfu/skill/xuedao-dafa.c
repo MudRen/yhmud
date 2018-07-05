@@ -100,6 +100,16 @@ mapping *action = ({
         "skill_name"  : "血流漫面",
         "damage_type" : "割伤",
 ]),
+([      "action": " "RED" 血刀之极意 "NOR"",
+        "force"  : (int)this_player()->query_skill("force")/2 + random((int)this_player()->query_skill("force")),
+        "attack" : (int)this_player()->query_skill("blade")/4 + random((int)this_player()->query_skill("blade")/2),
+        "dodge"  : (int)this_player()->query_skill("dodge")/4 + random((int)this_player()->query_skill("force")/3),
+        "parry"  : (int)this_player()->query_skill("parry")/4 + random((int)this_player()->query_skill("parry")/3),
+        "damage" : (int)this_player()->query_skill("force")/3 + random((int)this_player()->query_skill("blade")/3),
+        "lvl"    : 100,
+        "skill_name" : "极意",
+        "damage_type": "割伤"
+]),
 });
 
 int valid_enable(string usage)
@@ -158,6 +168,27 @@ mapping query_action(object me, object weapon)
 int practice_skill(object me)
 {
         return notify_fail("血刀大法只能用学(learn)的来增加熟练度。\n");
+}
+
+mixed hit_ob(object me, object victim)
+{
+        int time;
+        time = me->query_temp("combat_time");
+
+        if(time > 10 && random(5) && ! me->query_temp("action_flag"))
+	 {
+		message_vision(RED "血刀大法，愈战愈勇，毫无败退之相。\n" NOR, me);
+		me->set_temp("action_flag", 1);
+	 	me->add_temp("apply/attack", time * 10);
+		me->add_temp("apply/parry", time * 10);
+	 	me->add_temp("apply/damage", time * 3);
+	 	COMBAT_D->do_attack(me, victim, me->query_temp("weapon"), random(2)?10:30);
+	 	me->add_temp("apply/attack", -time * 10);
+		me->add_temp("apply/parry", -time * 10);
+	 	me->add_temp("apply/damage", -time * 3);
+	 	me->delete_temp("action_flag");
+	 	return;
+	 }
 }
 
 int difficult_level()

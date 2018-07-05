@@ -63,12 +63,12 @@ int perform(object me, object target)
 		improve = improve * 5 / 100 / lvls;
 		
 		if (me->query("family/family_name") == "五毒教")
-			improve += 0.05;
+			improve += 0.1;
 
         lvl = me->query_skill("hand");
 		poison = me->query_skill("poison");
 		
-		poison = (int)poison / 50;	  
+		poison = (int)poison / 15;	  
 		lvl += lvl * improve;
 		
         if (lvl / 2 + random(lvl) > target->query_skill("force"))
@@ -79,10 +79,10 @@ int perform(object me, object target)
                                            "攻过来，只觉得全身毒气狂窜，“哇”的一声"
                                            "吐出一口黑血！\n" NOR);
                 target->affect_by("qianzhu_wandushou",
-                                  ([ "level" : lvl / 2 + random(lvl / 2),
+                                  ([ "level" : lvl * 2 / 3 + random(poison),
                                      "id"    : me->query("id"),
                                      "duration" : lvl / 40 + random(lvl / 18) ]));
-                me->add("neili", -220);
+                me->add("neili", -200);
                 me->start_busy(2);
         } else
         {

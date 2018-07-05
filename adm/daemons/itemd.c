@@ -22,7 +22,7 @@ string *imbue_list = ({
 
 // 浸入的次数的随机界限：如果每次IMBUE以后取0-IMBUE次数的随机
 // 数大于这个数值，则IMBUE最终成功。
-#define RANDOM_IMBUE_OK         100
+#define RANDOM_IMBUE_OK         50
 
 // 每次浸入需要圣化的次数
 #define SAN_PER_IMBUE           5

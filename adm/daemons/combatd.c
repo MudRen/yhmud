@@ -346,6 +346,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 	string damage_info;
 	mapping fight;
 
+	int shenzhao, nl_now, nl_limit, nl_improve;
 	//object env_me;
 	//object env_v;
 
@@ -829,8 +830,20 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
           }
         //测试代码结束
 */
+		shenzhao = me->query_skill("shenzhaojing", 1);
+		nl_limit = me->query("max_neili") * 4 / 5;
+		nl_now = me->query("neili");
+		nl_improve = shenzhao / 4 + random(shenzhao / 2);
+		if (nl_limit > nl_now && (nl_limit - nl_now) < nl_improve)
+			nl_improve = nl_limit - nl_now;	
+		if (shenzhao > 200 && nl_limit > nl_now && random(5) == 1)
+		{
+			tell_object(me, HIW "你只觉得内息澎湃，感觉内息得到了一些恢复\n" NOR);
+			me->add("neili", nl_improve);
+		}
+	
         if (damage > 0)
-	{
+		{
                 if (victim->is_busy()) victim->interrupt_me(me, 8 + random(4));
                 if ((! me->is_killing(your["id"])) && 
                     (! victim->is_killing(my["id"])) &&

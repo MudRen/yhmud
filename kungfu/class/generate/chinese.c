@@ -1303,7 +1303,7 @@ private void from_taohua1()
 		(: perform_action, "finger.ding" :),
 		(: perform_action, "finger.xiao" :),
 		(: perform_action, "finger.po" :),
-		(: perform_action, "finger.zhuan" :),
+		//(: perform_action, "finger.zhuan" :),
 		(: exert_function, "powerup" :),
 		(: exert_function, "recover" :),
 	}));

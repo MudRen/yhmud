@@ -420,8 +420,25 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         object weapon, weapon2;
         int i, n, ap, dpp, dpd, dpf;
         string type, msg;
+		int time;
 
         lvl = me->query_skill("dugu-jiujian", 1);
+		time = me->query_temp("combat_time");
+		
+		if(time > 10 && random(5) && ! me->query_temp("action_flag"))
+		{
+			message_vision(RED "¶À¹Â¾Å½££¬ÐÅÊÖÄéÀ´¡£\n" NOR, me);
+			me->set_temp("action_flag", 1);
+			me->add_temp("apply/attack", time * 10);
+			me->add_temp("apply/parry", time * 10);
+			me->add_temp("apply/damage", time * 3);
+			COMBAT_D->do_attack(me, victim, me->query_temp("weapon"), random(2)?10:30);
+			me->add_temp("apply/attack", -time * 10);
+			me->add_temp("apply/parry", -time * 10);
+			me->add_temp("apply/damage", -time * 3);
+			me->delete_temp("action_flag");
+			return;
+		}
 
         if (me->query("neili") < 500
            || me->query_skill_mapped("sword") != "dugu-jiujian"
@@ -437,8 +454,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 		if (me->query("can_learn/dugu-jiujian/nothing"))
 			ap += random(ap / 2);
         //me->add("neili", -80);
-
-        switch(random(3))
+		
+		switch(random(3))
         {
            case 1:
               if (ap * 2 / 3 + random(ap) > dpp)
