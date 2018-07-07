@@ -89,7 +89,7 @@ int perform(object me, object target)
         msg += HIM "\n$N" HIM "右掌向内一转，忽又向前，猛然间直袭$n" HIM "面门。\n" NOR;
         if (ap * 3 / 5 + random(ap) > dp)
         { 
-                damage = ap + random(ap / 2);
+                damage = ap / 2 + random(ap);
                 me->add("neili", -200);
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 60,
@@ -106,7 +106,7 @@ int perform(object me, object target)
         msg = HIM "\n$N" HIM "长舒一口气，左掌紧跟而出，风到掌到，正拍向$n" HIM "胸口。\n" NOR;
         if (ap / 2 + random(ap) > dp)
         { 
-                damage = ap + random(ap * 3 / 4);
+                damage = ap * 3 / 5 + random(ap);
                 me->add("neili", -300);
 
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 80,

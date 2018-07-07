@@ -56,7 +56,7 @@ int do_findway(string arg)
 	obs = filter_array(obs, (: ! playerp($1) && living($1) :));
 	exp = me->query("combat_exp");
 	lvl = to_int(pow(to_float(exp * 10), 1.0 / 3));
-	
+	n = sizeof(obs);
 		
 	if (n < 1 && me->query_temp("dungeons_killed") > 8)
 	{
@@ -78,7 +78,7 @@ int do_findway(string arg)
         
     if (n < 1 && me->query_temp("dungeons_killed") < 9)
 	{		
-		if (random(7) > 0)
+		if (random(8) > 0)
 		{
 			m = 1;
 			if (random(3) == 0) m = 2;
@@ -96,34 +96,30 @@ int do_findway(string arg)
 			ob->add_temp("apply/defence", lvl);
 			ob->add_temp("apply/damage", lvl / 10);
 			ob->add_temp("apply/unarmed_damage", lvl / 10);
-		
 			ob->move("/d/dungeons/hole1");
 			}
 			tell_object(me, HIW "你感觉身边好像多了个身影。\n" NOR);
 		}
-	else
-	{
-		if (random(200) > 1)
-		{
-			gift = ob1_list[random(sizeof(ob1_list))];
-			item = new(gift);
-			item->move(me);
-			tell_object(me, HIW "你突然发现了一" + item->query("unit") + item->name() +
-                                HIW "。\n" NOR);
-		}
 		else
 		{
-			gift = ob2_list[random(sizeof(ob2_list))];
-			item = new(gift);
-			item->move(me);
-			tell_object(me, HIW "你突然发现了一" + item->query("unit") + item->name() +
+			if (random(200) > 1)
+			{
+				gift = ob1_list[random(sizeof(ob1_list))];
+				item = new(gift);
+				item->move(me);
+				tell_object(me, HIW "你突然发现了一" + item->query("unit") + item->name() +
                                 HIW "。\n" NOR);
+			}
+			else
+			{
+				gift = ob2_list[random(sizeof(ob2_list))];
+				item = new(gift);
+				item->move(me);
+				tell_object(me, HIW "你突然发现了一" + item->query("unit") + item->name() +
+                                HIW "。\n" NOR);
+			}
 		}
 	}
-	}
-	
-	
-	
 	return 1;
 }
 

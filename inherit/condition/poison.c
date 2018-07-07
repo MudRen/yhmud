@@ -129,7 +129,7 @@ int do_effect(object ob, string cnd, mapping p)
         ob->apply_condition(cnd, cnd_info);
 		if (p["level"] > 200)
 		{
-			if (userp(ob) && random(5))
+			if (userp(ob) && random(5) == 1)
 				ob->apply_condition("exert_drug", 1);
 			else
 				ob->apply_condition("exert_drug", 1);
