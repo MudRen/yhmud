@@ -830,6 +830,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
           }
         //测试代码结束
 */
+		//神照功战斗中自行回内
 		shenzhao = me->query_skill("shenzhaojing", 1);
 		nl_limit = me->query("max_neili") * 4 / 5;
 		nl_now = me->query("neili");
@@ -840,6 +841,12 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 		{
 			tell_object(me, HIW "你只觉得内息澎湃，感觉内息得到了一些恢复\n" NOR);
 			me->add("neili", nl_improve);
+		}
+		//先天功战斗中自行回血
+		if (me->query_skill_mapped("force") == "xiantian-gong" && random(8) == 1)
+		{
+			me->receive_heal("qi", random(me->query_skill("xiantian-gong", 1) / 2) + 20);
+			tell_object(me, HIG "先天玄功自行运转，伤势竟然得到了恢复！\n" NOR);
 		}
 	
         if (damage > 0)

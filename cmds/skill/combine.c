@@ -108,35 +108,7 @@ mapping combine_list = ([
            "/clone/fam/gift/dex3-1",
            "/clone/fam/gift/con3-1", }) : "/clone/fam/max/tianshu1",
 		   
-		 // 忘情天书
-        ({ "/clone/fam/etc/lv5a-1",
-           "/clone/fam/etc/lv5b-1",
-           "/clone/fam/etc/lv5d-1",
-           "/clone/fam/etc/lv7d-1",
-           "/clone/fam/gift/str3-1", }) : "/clone/fam/max/tianshu1",
-
-        // 忘情天书
-        ({ "/clone/fam/etc/lv5a-1",
-           "/clone/fam/etc/lv5b-1",
-           "/clone/fam/etc/lv5d-1",
-           "/clone/fam/etc/lv7d-1",
-           "/clone/fam/gift/con3-1", }) : "/clone/fam/max/tianshu1",
-
-        // 忘情天书
-        ({ "/clone/fam/etc/lv5a-1",
-           "/clone/fam/etc/lv5b-1",
-           "/clone/fam/etc/lv5d-1",
-           "/clone/fam/etc/lv7d-1",
-           "/clone/fam/gift/int3-1", }) : "/clone/fam/max/tianshu1",
-
-        // 忘情天书
-        ({ "/clone/fam/etc/lv5a-1",
-           "/clone/fam/etc/lv5b-1",
-           "/clone/fam/etc/lv5d-1",
-           "/clone/fam/etc/lv7d-1",
-           "/clone/fam/gift/dex3-1", }) : "/clone/fam/max/tianshu1",
-
-        // 五张九宵纹龍图碎片拼凑出完整的九宵纹龍图
+		// 五张九宵纹龍图碎片拼凑出完整的九宵纹龍图
         ({ "/clone/tattoo/spcs1-1",
            "/clone/tattoo/spcs1-2",
            "/clone/tattoo/spcs1-3",
@@ -268,23 +240,10 @@ mapping combine_list = ([
 
         // 乾坤圣水
         ({ "/clone/fam/gift/int3-1",
-           "/clone/fam/etc/lv7a-1",
-           "/clone/fam/item/stone5-1" }) : "/clone/fam/item/bless_water",
-
-        // 乾坤圣水
-        ({ "/clone/fam/gift/con3-1",
-           "/clone/fam/etc/lv7a-1",
-           "/clone/fam/item/stone5-1" }) : "/clone/fam/item/bless_water",
-
-        // 乾坤圣水
-        ({ "/clone/fam/gift/dex3-1",
-           "/clone/fam/etc/lv7a-1",
-           "/clone/fam/item/stone5-1" }) : "/clone/fam/item/bless_water",
-
-        // 乾坤圣水
-        ({ "/clone/fam/gift/str3-1",
-           "/clone/fam/etc/lv7a-1",
-           "/clone/fam/item/stone5-1" }) : "/clone/fam/item/bless_water",
+			"/clone/fam/gift/con3-1",
+			"/clone/fam/gift/dex3-1",
+			"/clone/fam/gift/str3-1",
+			"/clone/fam/item/stone5-1" }) : "/clone/fam/item/bless_water",
 
         // 辉石
         ({ "/clone/fam/item/stone3-1",
