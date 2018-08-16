@@ -6,11 +6,11 @@ inherit F_CLEAN_UP;
 
 int main(object me, string arg)
 {
-        int skill_lvl;
+        int skill_lvl, sk_lvl;
         int jingcost;
         string skill;
         string name;
-        int lost;
+        int lost, lost_max;
 
         if(! arg || arg == "" || sscanf(arg, "%s", skill) != 1)
                 return notify_fail("你要放弃经验还是某一项技能？\n");
@@ -28,6 +28,8 @@ int main(object me, string arg)
         if (skill == "exp")
         {
                 lost = me->query("combat_exp");
+				sk_lvl = to_int(pow(to_float(lost*10), 1.0 / 3));
+				lost_max = lost - sk_lvl*sk_lvl*sk_lvl/10;
                 if (lost < 1000)
                         return notify_fail("你发现自己现在对武学简直就是一无所知。\n");
 
@@ -42,6 +44,8 @@ int main(object me, string arg)
                 }
 
                 lost = random(lost / 100) + 1;
+				if (lost > lost_max)
+					lost = lost_max;
                 me->add("combat_exp", -lost);
                 switch (random(6))
                 {

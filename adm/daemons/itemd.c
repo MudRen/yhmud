@@ -894,7 +894,7 @@ void reduce_consistence(object item)
         if (item->query("material") == "tian jing")
                 return;
 
-        if (random(st) > (100 - con) / 7)
+        if (random(st * 10) > (100 - con) / 7)
                 return;
 
         if (item->add("consistence", -1) > 0)

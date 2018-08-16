@@ -45,6 +45,7 @@ void remove_effect(object me, int amount)
         if (me->query_temp("shield"))
         {
                 me->add_temp("apply/armor", -amount);
+                me->add_temp("apply/strike", -amount / 4);
                 me->delete_temp("shield");
                 tell_object(me, "你的玄冥神功运行完毕，将内力收回丹田。\n");
         }

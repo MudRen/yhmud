@@ -75,6 +75,7 @@ int perform(object me, object target)
 
         ap = me->query_skill("unarmed") +
              me->query_skill("force");
+		ap += ap * improve;		
 
         dp = target->query_skill("parry") +
              target->query_skill("dodge");

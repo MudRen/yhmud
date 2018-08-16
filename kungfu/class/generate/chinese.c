@@ -224,10 +224,12 @@ private void from_huashan()
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
-                (: perform_action, "sword.jianzhang" :),
+                (: perform_action, "sword.lian" :),
                 (: perform_action, "sword.jie" :),
+				(: perform_action, "sword.long" :),
+				(: perform_action, "sword.xian" :),
                 (: perform_action, "cuff.leidong" :),
-                (: perform_action, "cuff.poshi" :),
+                (: perform_action, "cuff.po" :),
                 (: exert_function, "powerup" :),
                 (: exert_function, "recover" :),
         }) );
@@ -274,8 +276,9 @@ private void from_ouyang()
 
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
-                (: perform_action, "staff.lingshe" :),
-                (: perform_action, "staff.wyji" :),
+                (: perform_action, "staff.qianshe" :),
+				(: perform_action, "staff.wanshi" :),
+                (: perform_action, "staff.wuji" :),
                 (: perform_action, "cuff.rou" :),
                 (: exert_function, "powerup" :),
                 (: exert_function, "recover" :),
@@ -732,7 +735,7 @@ private void from_kunlun()
         carry_object("/clone/weapon/changjian")->wield();
         carry_object("/clone/misc/cloth")->wear();
 }
-
+//这个门派是废的
 private void from_yaowang()
 {
         //object ob;
@@ -1082,11 +1085,14 @@ private void from_shaolin1()
         set_skill("nianhua-zhi", 1);
         set_skill("strike", 1);
         set_skill("sanhua-zhang", 1);
-        set_skill("literate", 1);
+		set_skill("literate", 1);
         set_skill("martial-cognize", 1);
         set_skill("buddhism", 1);
-
-        map_skill("parry", "riyue-bian");
+		set_skill("cuff", 1);
+        set_skill("jingang-quan", 1);
+		
+		map_skill("cuff", "jingang-quan");
+		map_skill("parry", "riyue-bian");
         map_skill("force", "hunyuan-yiqi");
         map_skill("dodge", "shaolin-shenfa");
         map_skill("whip", "riyue-bian");
@@ -1102,6 +1108,7 @@ private void from_shaolin1()
                 (: perform_action, "whip.he" :),
                 (: perform_action, "whip.shang" :),
                 (: perform_action, "strike.san" :),
+				(: perform_action, "cuff.jingang" :),
                 (: exert_function, "powerup" :),
                 (: exert_function, "recover" :),
         }) );
@@ -1138,8 +1145,11 @@ private void from_shaolin2()
         set_skill("literate", 1);
         set_skill("martial-cognize", 1);
         set_skill("buddhism", 1);
-
-        map_skill("parry", "hongye-daofa");
+		set_skill("cuff", 1);
+        set_skill("jingang-quan", 1);
+		
+		map_skill("cuff", "jingang-quan");
+		map_skill("parry", "hongye-daofa");
         map_skill("force", "hunyuan-yiqi");
         map_skill("dodge", "shaolin-shenfa");
         map_skill("blade", "hongye-daofa");
@@ -1154,6 +1164,7 @@ private void from_shaolin2()
                 (: perform_action, "blade.kuang" :),
                 (: perform_action, "blade.leiting" :),
                 (: perform_action, "strike.san" :),
+				(: perform_action, "cuff.jingang" :),
                 (: exert_function, "powerup" :),
                 (: exert_function, "recover" :),
         }) );
@@ -1188,8 +1199,11 @@ private void from_shaolin3()
         set_skill("literate", 1);
         set_skill("martial-cognize", 1);
         set_skill("buddhism", 1);
-
-        map_skill("parry", "qufannao-zhi");
+		set_skill("cuff", 1);
+        set_skill("jingang-quan", 1);
+		
+		map_skill("cuff", "jingang-quan");
+		map_skill("parry", "qufannao-zhi");
         map_skill("force", "hunyuan-yiqi");
         map_skill("dodge", "shaolin-shenfa");
         map_skill("finger", "qufannao-zhi");
@@ -1201,6 +1215,7 @@ private void from_shaolin3()
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
                 (: perform_action, "finger.lingkong" :),
+				(: perform_action, "cuff.jingang" :),
                 (: exert_function, "powerup" :),
                 (: exert_function, "recover" :),
         }) );
@@ -1236,8 +1251,11 @@ private void from_shaolin4()
         set_skill("literate", 1);
         set_skill("martial-cognize", 1);
         set_skill("buddhism", 1);
-
-        map_skill("parry", "shenzhang-bada");
+		set_skill("cuff", 1);
+        set_skill("jingang-quan", 1);
+		
+		map_skill("cuff", "jingang-quan");
+		map_skill("parry", "shenzhang-bada");
         map_skill("force", "hunyuan-yiqi");
         map_skill("dodge", "shaolin-shenfa");
         map_skill("finger", "qufannao-zhi");
@@ -1249,6 +1267,7 @@ private void from_shaolin4()
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
                 (: perform_action, "strike.bafang" :),
+				(: perform_action, "cuff.jingang" :),
                 (: exert_function, "powerup" :),
                 (: exert_function, "recover" :),
         }) );

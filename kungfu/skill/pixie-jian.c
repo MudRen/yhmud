@@ -314,7 +314,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
                 }
                 else
                 {
-                        victim->receive_wound("qi", (damage_bonus - 80) / 3, me);
+                        victim->receive_wound("qi", (damage_bonus - 80) / 5, me);
                         victim->receive_wound("jing", (damage_bonus - 80) / 4, me);
                         return HIR "只见" + victim->name() +
                                HIR "神情恍惚，鲜血从身上数个穴位渗出！\n" NOR;
