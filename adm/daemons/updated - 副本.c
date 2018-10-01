@@ -456,8 +456,6 @@ void zhuan_player(object me)
         me->delete("detach");                // 脱离记录
         me->delete("betrayer");              // 叛师记录
         me->delete("long");                  // 个人描述
-		//新增转世清除世家
-		me->delete("born");
         
         me->delete("combat");                // PK  记录
         me->delete("animaout");              // 元婴出世
@@ -496,7 +494,7 @@ void zhuan_player(object me)
         me->set("character", "国士无双");    // 转世性格
         //补充 by 薪有所属
         me->delete("tattoo");                   // 刺青记录
-        //me->delete("special_skill");            // 特技记录
+        me->delete("special_skill");            // 特技记录
         me->delete("can_learned");             // 技能解密2(太玄)
         me->delete("mirror_task");             // task记录
         me->delete("mirror_count");             // task记录
@@ -557,58 +555,12 @@ void zhuan_player(object me)
         for (i = 0; i < sizeof(skills); i++)
                 me->delete_skill(skills[i]);
         }
-        //me->set("reborn", 1);
-		me->add("reborn/count", 1);
+        me->set("reborn", 1);
 
-		//新增转世获得后天九转
-		if (random(2))
-        {
-				write(HIM "臂力+1\n" NOR);
-                me->add("reborn/str", 1);
-        }
-		if (random(2))
-        {
-				write(HIM "根骨+1\n" NOR);
-                me->add("reborn/con", 1);
-        }
-		if (random(2))
-        {
-				write(HIM "悟性+1\n" NOR);
-                me->add("reborn/int", 1);
-        }
-		if (random(2))
-        {
-				write(HIM "身法+1\n" NOR);
-                me->add("reborn/dex", 1);
-        }
-		
         if (me->is_ghost()) me->reincarnate();
         me->reset_action();
 
         msg = HIG "你获得的转世技能有：" NOR;
-		
-		//新增转世获得普通技能
-		files = ({ "agile", "power", "ironskin", "hatred",
-                   "self", "divine", "cunning",
-				   "mystery", "health", "energy", "wrath", "might",
-                });
-				
-		for (i = 0; i < sizeof(files); i++)
-		{
-			if (me->query("special_skill/" + files[i]))
-			{
-				files -= ({ files[i] });
-				i--;
-			}
-		}
-		
-		// 获得第一项普通技能
-        special = files[random(sizeof(files))];
-        me->set("special_skill/" + special, 1);
-        msg += SPECIAL_D(special)->name() + HIG "、" NOR;
-
-        message("channel:rumor", HIR "【转世重生】" + me->query("name") +
-                "获得普通技能--" + SPECIAL_D(special)->name() + HIR "！\n" NOR, users());
 
         // 查看所有的转世特殊技能文件
         files = ({ "guibian", "guimai", "jinshen", "piyi",
@@ -631,16 +583,7 @@ void zhuan_player(object me)
          if (me->query("int") < 22 || me->query("dex") < 26)
          	files -= ({ "guimai" });
 
-        for (i = 0; i < sizeof(files); i++)
-		{
-			if (me->query("special_skill/" + files[i]))
-			{
-				files -= ({ files[i] });
-				i--;
-			}
-		}
-
-        // 获得转世技能
+        // 获得第一项技能
         special = files[random(sizeof(files))];
         me->set("special_skill/" + special, 1);
         msg += SPECIAL_D(special)->name();
@@ -648,25 +591,21 @@ void zhuan_player(object me)
         message("channel:rumor", HIR "【转世重生】" + me->query("name") +
                 "获得转世技能--" + SPECIAL_D(special)->name() + HIR "！\n" NOR, users());
 
-        if (me->query("int") < 16 && ! me->query("special_skill/tiandao"))
-		{
-			me->set("special_skill/tiandao", 1);
-			msg += HIG "、" NOR + HIG "天道酬勤" NOR;
-		}
+        files -= ({ special });
+
+        special = files[random(sizeof(files))];
+        me->set("special_skill/" + special, 1);
+        msg += HIG "、" NOR + SPECIAL_D(special)->name();
+
+        message("channel:rumor", HIR "【转世重生】" + me->query("name") +
+                "获得转世技能--" + SPECIAL_D(special)->name() + HIR "！\n" NOR, users());
+
+        if (me->query("int") < 16)
+       	me->set("special_skill/tiandao", 1);
        	else
-		if (! me->query("special_skill/clever"))
-		{
-			me->set("special_skill/clever", 1);
-			msg += HIG "、" NOR + HIM "天赋聪颖" NOR;
-		}
-		
-        if (! me->query("special_skill/shenyan"))
-		{
-			me->set("special_skill/shenyan", 1);
-			msg += HIG "、" NOR + SPECIAL_D("shenyan")->name();
-		}
-        msg += HIG "。\n" NOR;
-/*      if (me->query("per") < 20)
+        me->set("special_skill/clever", 1);
+        
+        if (me->query("per") < 20)
         me->set("per",20);
         
         me->set("special_skill/youth", 1);
@@ -681,7 +620,7 @@ void zhuan_player(object me)
        	else
         msg += HIG "、" NOR + HIM "天赋聪颖" NOR + HIG "、" NOR + HIG "天颜永驻" NOR + HIG "、" NOR + HIC "通慧神眼" NOR + HIG "、" NOR + HIR "愤怒之心" NOR + HIG "、" NOR + HIC "周天运转" NOR + HIG "、" NOR + HIR "移经易脉" NOR;
 
-        
+        msg += HIG "。\n" NOR;
 
         if (me->query("int") < 16)
         message("channel:rumor", HIR "【转世重生】" + me->query("name") +
@@ -707,7 +646,7 @@ void zhuan_player(object me)
 
         message("channel:rumor", HIR "【转世重生】恭喜" + me->query("name") +
                 "得到人神魔三界庇佑，元神转世重生！\n" NOR, users());
-*/
+
         me->start_call_out((: call_other, __FILE__,
                            "notice_player", me, msg :), 0);
 }

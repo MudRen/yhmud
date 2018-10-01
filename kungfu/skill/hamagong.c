@@ -146,6 +146,11 @@ string exert_function_file(string action)
         return __DIR__"hamagong/exert/" + action;
 }
 
+int difficult_level()
+{
+        return 600;
+}
+
 string perform_action_file(string action)
 {
         return __DIR__"hamagong/perform/" + action;

@@ -548,7 +548,7 @@ int ask_quest(object me, object who)
                 ob->add_temp("apply/unarmed_damage", 5 + level * 7);
                 ob->add_temp("apply/armor", 10 + level * 15);
                 ob->set_temp("quester", who->query("id"));
-                NPC_D->random_move(ob);
+				NPC_D->random_move(ob);
                 NPC_D->random_move(ob);
                 NPC_D->random_move(ob);
                 place = ob->query("place");
@@ -900,7 +900,8 @@ int accept_object(object me, object who, object ob)
                         weiwang += 1 + random(5);
                         score += 1 + random(5);
                 }
-
+				
+				
                 switch (quest_level = q["level"])
                 {
                 case 0:
@@ -1029,7 +1030,8 @@ int accept_object(object me, object who, object ob)
                 who->set("quest_count", quest_count);
                 who->set_temp("quest/next_level", quest_level);
         }
-
+		
+		
         if ((added = (int)who->query_temp("quest/help_count")) > 0)
         {
                 msg += HIY "$N" HIY "又道：这次敌人伏下帮手，而你能随机应变，"
@@ -1044,6 +1046,11 @@ int accept_object(object me, object who, object ob)
                 exp += exp * added / 2;
                 pot += pot * added / 2;
         }
+		//BK之后潜能奖励补贴
+		if (who->query("breakup"))
+		{
+				pot += random((int)who->query_skill("force", 1)/3);
+		}
 
         message_vision(msg, me, who);
         who->delete("quest");

@@ -204,7 +204,7 @@ void init_npc_skill(object ob, int skl)
 			sk_lvl = to_int(pow(to_float(exp*10), 1.0 / 3)) * 0.75;
 
 		ob->set("magic_points", sk_lvl * 20);
-		if (sk_lvl >= 350)
+		if (sk_lvl >= 300)
 			ob->set("breakup", 1);
 		if (sk_lvl >= 500)
 			ob->set("animaout", 1);

@@ -15,9 +15,17 @@ string *imbue_list = ({
         "/clone/fam/gift/con3",
         "/clone/fam/gift/str3",
         "/clone/fam/gift/dex3",
+		"/clone/fam/item/stone4",
         //"/clone/fam/item/bless_water",
         //"/clone/fam/etc/lv7d",
         //"/clone/fam/etc/lv7c",
+});
+
+string *imbue_list2 = ({
+        "/clone/fam/max/xuanhuang",//玄黄丹
+		"/clone/fam/max/longjia",//龙甲丹
+		"/clone/fam/obj/guo",//无花果
+        "/clone/fam/item/bless_water",//圣水
 });
 
 // 浸入的次数的随机界限：如果每次IMBUE以后取0-IMBUE次数的随机
@@ -25,7 +33,7 @@ string *imbue_list = ({
 #define RANDOM_IMBUE_OK         50
 
 // 每次浸入需要圣化的次数
-#define SAN_PER_IMBUE           5
+#define SAN_PER_IMBUE           1
 
 // 杀了人以后的奖励
 void killer_reward(object me, object victim, object item)
@@ -441,9 +449,9 @@ int do_san(object me, object item)
 
         if (item->item_owner() == my_id)
         {
-                if (! count)
-                        return notify_fail("你应该先寻求四位高手协助你先行圣化" +
-                                           item->name() + "。\n");
+                //if (! count)
+                //        return notify_fail("你应该先寻求四位高手协助你先行圣化" +
+                //                           item->name() + "。\n");
 
                 if (count < SAN_PER_IMBUE - 1)
                         return notify_fail("你应该再寻求" +
@@ -504,6 +512,8 @@ int do_san(object me, object item)
         //me->add("max_jingli", -(san * 5 + 50));
         me->add("max_jingli", -(san + 5));
         me->add("jingli", -(san * 5 + 50));
+		me->add("combat_exp", -(san * 100 + 1000));
+		me->add("potential", -(san * 10 + 100));
         item->set("magic/do_san/" + my_id, me->name(1));
         me->start_busy(1);
 
@@ -515,7 +525,15 @@ int do_san(object me, object item)
                         "微微一笑。\n" HIW, environment(me), ({ me }));
 
                 // 选定一个需要imbue的物品
-                item->set("magic/imbue_ob", imbue_list[random(sizeof(imbue_list))]);
+                if (random(10) < 1)
+				{
+					item->add("magic/imbue", random(2) + 1);
+					item->set("magic/imbue_ob", imbue_list2[random(sizeof(imbue_list2))]);
+				}
+				else
+				{
+					item->set("magic/imbue_ob", imbue_list[random(sizeof(imbue_list))]);
+				}
         }
         return 1;
 }

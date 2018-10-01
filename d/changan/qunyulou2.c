@@ -18,6 +18,10 @@ LONG);
         	"down"  : __DIR__"qunyulou1",
         	"up"    : __DIR__"qunyulou3",
         ]));
+		if (random(5) > 3)
+		set("objects", ([
+        	__DIR__"npc/fuyun" : 1,
+        ]) );
 
 	setup();
         replace_program(ROOM);

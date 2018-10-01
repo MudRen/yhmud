@@ -127,13 +127,13 @@ int do_effect(object ob, string cnd, mapping p)
 
         cnd_info = mixed_poison(ob->query_condition(cnd), p);
         ob->apply_condition(cnd, cnd_info);
-		if (p["level"] > 200)
-		{
-			if (userp(ob) && random(5) == 1)
-				ob->apply_condition("exert_drug", 1);
-			else
-				ob->apply_condition("exert_drug", 1);
-		}
+		//if (p["level"] > 200)//中毒导致不能吸气
+		//{
+		//	if (userp(ob) && random(5) == 1)
+		//		ob->apply_condition("exert_drug", 1);
+		//	else
+		//		ob->apply_condition("exert_drug", 1);
+		//}
         return 1;
 }
 
