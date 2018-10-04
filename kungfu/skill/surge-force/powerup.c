@@ -31,7 +31,7 @@ int exert(object me, object target)
 
         me->add_temp("apply/attack", skill * 2 / 5);
         me->add_temp("apply/defense", skill * 2 / 5);
-        me->add_temp("apply/unarmed_damage", skill / 4);
+        me->add_temp("apply/unarmed_damage", skill / 5);
         me->set_temp("powerup", 1);
         me->start_call_out((: call_other, __FILE__, "remove_effect", me, skill :), skill);
         if (me->is_fighting()) me->start_busy(3);
@@ -44,7 +44,7 @@ void remove_effect(object me, int skill)
         {
                 me->add_temp("apply/attack", -(skill * 2 / 5));
                 me->add_temp("apply/defense", -(skill * 2 / 5));
-                me->add_temp("apply/unarmed_damage", -(skill / 4));
+                me->add_temp("apply/unarmed_damage", -(skill / 5));
                 me->delete_temp("powerup");
                 tell_object(me, "你的怒海狂涛运行完毕，将内力收回丹田。\n");
         }

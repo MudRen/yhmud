@@ -80,7 +80,7 @@ int perform(object me, object target)
                                + "剑！\n" NOR;
                         message_combatd(msg, me, target);
 
-                        me->start_busy(1 + random(n));
+                        me->start_busy(1 + random(n/2));
                         while (n-- && me->is_fighting(target))
                         {
                                 if (! target->is_busy() && random(2))
@@ -111,7 +111,7 @@ int perform(object me, object target)
                 msg = HIC "$N" HIC "拿着手中的" + weapon->name() +
                       HIC "，东戳西指，不过$n" HIC "防守的异常严密，$N"
                       HIC "一时竟然无法找到破绽。\n" NOR;
-                me->start_busy(3 + random(2));
+                me->start_busy(2 + random(2));
                 target->start_busy(1);
         }
         message_combatd(msg, me, target);
