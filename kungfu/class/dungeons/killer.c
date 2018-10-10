@@ -29,15 +29,8 @@ void set_from_me(object me, object ob)
 		my["max_jing"] = my["max_jing"] * 2;
 		my["max_qi"] = my["max_qi"] * 2;
 		
-		//if (my["max_qi"] > 6000)
-        //        my["max_qi"] = 6000;
-	
-
-        if (my["max_jing"] < my["max_qi"] / 2)
+		if (my["max_jing"] < my["max_qi"] / 2)
                 my["max_jing"] = my["max_qi"] / 2;
-
-        //if (my["max_jing"] > 3000)
-        //        my["max_jing"] = 3000;
 
         my["eff_jing"] = my["max_jing"];
         my["jing"] = my["max_jing"];
@@ -94,11 +87,14 @@ void die(object ob)
 	int lvl;
 	
 	lvl = this_object()->query("lvl");
-	lvl += random(lvl * 3);
+	lvl += random(lvl * 5);
 	ob = query_last_damage_from();
-	ob->add("experience", lvl);
-	ob->add_temp("dungeons_killed", 1);
-	tell_object(ob, HIG "\n你获得了" + lvl + "点体会。\n" NOR );
+	if (random(3))
+		ob->add("experience", lvl);
+	else
+		ob->add("potential", lvl);
+	ob->add_temp("fuben_killed", 1);
+	tell_object(ob, HIG "\n你获得了" + lvl + "点奖励。\n" NOR );
 	
 	::die();
 }

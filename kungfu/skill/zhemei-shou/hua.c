@@ -61,7 +61,8 @@ int perform(object me, object target)
         msg = HIM "$N" HIM "深深吸进一口气，单手挥出，掌缘顿时霞光万道，漾出"
               "七色虹彩向$n" HIM "席卷而至。\n" NOR;
 
-		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvl = lvl * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;

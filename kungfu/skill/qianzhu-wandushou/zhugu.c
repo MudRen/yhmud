@@ -44,7 +44,8 @@ int perform(object me, object target)
         msg = HIB "$N" HIB "施出蛛蛊决，只见一缕黑气从"
               "指尖透出，只一闪就没入了$n" HIB "的眉心！\n" NOR;
 		
-		lvls = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvls = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvls = lvls * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;

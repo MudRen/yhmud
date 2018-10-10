@@ -59,7 +59,8 @@ int perform(object me, object target)
 	msg = HIR "$N" HIR "将八荒六合唯我独尊功提运至极限，全身真气迸发，呼的一掌"
               "向$n" HIR "头顶猛然贯落。\n" NOR;
 			  
-	lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+	lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+	lvl = lvl * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;

@@ -61,7 +61,8 @@ int valid_learn(object me)
         //                          "层乾坤大挪移实在是深奥无比，全然无法理解。\n");
 
 		//if (me->query("int") < 43 + layer - (int)me->query_skill("force")/50)
-		if (me->query("int") < 39 + layer - (int)me->query_skill("force")/50)
+		if (me->query("int") < 39 + layer - (int)me->query_skill("force")/50
+			&& me->query("family/family_name") != "明教")
                 return notify_fail("你觉乾坤大挪移实在是深奥无比，全然无法理解。\n");
 
         if ((int)me->query("max_neili") < 5000)

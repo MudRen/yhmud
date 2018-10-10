@@ -63,12 +63,12 @@ mapping *action = ({
         "damage_type": "割伤"
 ]),
 ([      "action": " "RED" 圣火令法之极意 "NOR"",
-        "force"  : (int)this_player()->query_skill("force")/2 + random((int)this_player()->query_skill("force")),
-        "attack" : (int)this_player()->query_skill("sword")/4 + random((int)this_player()->query_skill("sword")/2),
-        "dodge"  : (int)this_player()->query_skill("dodge")/4 + random((int)this_player()->query_skill("force")/3),
-        "parry"  : (int)this_player()->query_skill("parry")/4 + random((int)this_player()->query_skill("parry")/3),
-        "damage" : (int)this_player()->query_skill("force")/3 + random((int)this_player()->query_skill("sword")/3),
-        "lvl"    : 100,
+        "force"  : (int)this_player()->query_skill("force", 1)/2 + random((int)this_player()->query_skill("force", 1)),
+        "attack" : (int)this_player()->query_skill("sword", 1)/4 + random((int)this_player()->query_skill("sword", 1)/2),
+        "dodge"  : (int)this_player()->query_skill("dodge", 1)/6 + random((int)this_player()->query_skill("force", 1)/3),
+        "parry"  : (int)this_player()->query_skill("parry", 1)/6 + random((int)this_player()->query_skill("parry", 1)/3),
+        "damage" : (int)this_player()->query_skill("force", 1)/4 + random((int)this_player()->query_skill("sword", 1)/2),
+        "lvl"    : 200,
         "skill_name" : "极意",
         "damage_type": "割伤"
 ]),
@@ -86,9 +86,6 @@ int valid_learn(object me)
 
         if ((int)me->query_skill("sword", 1) < 200)
                 return notify_fail("你的基本剑法火候不到，无法学习圣火令法。\n");
-
-        if (me->query("int") < 32)
-                return notify_fail("你先天悟性不足，无法领会圣火令法。\n");
 
         if (me->query("max_neili") < 2400)
                 return notify_fail("你的内功修为不足，无法学习圣火令法。\n");

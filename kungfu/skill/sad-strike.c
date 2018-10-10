@@ -177,12 +177,12 @@ mapping *action = ({
         "damage_type": "内伤"
 ]),
 ([      "action": " "RED" 黯然销魂之极意 "NOR"",
-        "force"  : (int)this_player()->query_skill("force")/2 + random((int)this_player()->query_skill("force")),
-        "attack" : (int)this_player()->query_skill("unarmed")/4 + random((int)this_player()->query_skill("unarmed")/2),
-        "dodge"  : (int)this_player()->query_skill("dodge")/4 + random((int)this_player()->query_skill("force")/3),
-        //"parry"  : (int)this_player()->query_skill("parry")/4 + random((int)this_player()->query_skill("parry")/3),
-        "damage" : (int)this_player()->query_skill("force")/3 + random((int)this_player()->query_skill("unarmed")/3),
-        "lvl"    : 500,
+        "force"  : (int)this_player()->query_skill("force", 1)/2 + random((int)this_player()->query_skill("force", 1)),
+        "attack" : (int)this_player()->query_skill("unarmed", 1)/4 + random((int)this_player()->query_skill("unarmed", 1)/2),
+        "dodge"  : (int)this_player()->query_skill("dodge", 1)/6 + random((int)this_player()->query_skill("force", 1)/3),
+        //"parry"  : (int)this_player()->query_skill("parry", 1)/6 + random((int)this_player()->query_skill("parry", 1)/3),
+        "damage" : (int)this_player()->query_skill("force", 1)/4 + random((int)this_player()->query_skill("unarmed", 1)/2),
+        "lvl"    : 300,
         "skill_name" : "极意",
         "damage_type": "内伤"
 ]),

@@ -65,7 +65,8 @@ int perform(object me, object target)
               HIR "一转，招数顿时变得诡异无比，从意想不到的方"
               "位攻向$n" HIR "！\n" NOR;
 			  
-		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvl = lvl * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;

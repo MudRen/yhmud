@@ -112,13 +112,13 @@ void attempt_apprentice(object ob)
 
 mixed ask_migong()
 {
-        object me;
+        object room, me;
         me = this_player();
 		
-		if ((int)me->query_skill("martial-cognize", 1) < 200)
+		if ((int)me->query_skill("martial-cognize", 1) < 120)
                 return "你向我打听这个干什么，还是修炼要紧！";
 
-        if (time() - me->query("ask_migong") < 60 * 60 * 18)//cd 18小时 
+        if (time() - me->query("ask_migong") < 60)// * 60 * 18cd 18小时 
                 return "你不是刚刚来过吗？怎么还要！";
 
         if (query_temp("migong"))
@@ -126,10 +126,10 @@ mixed ask_migong()
 
         me->set("ask_migong", time());
 		me->set_temp("migong", 1);
-		me->delete_temp("dungeons_killer1");
+		me->delete_temp("fuben_killed");
 		tell_object(me, HIY "生死由命，富贵在天！\n" NOR );
-		
-		me->move("/d/dungeons/hole1");
+		room = new("/d/dungeons/hole_fb");
+		me->move(room);
 		
 		return 1;
 }

@@ -47,7 +47,8 @@ int perform(object me, object target)
         msg = HIY "$N" HIY "跨前一步，平平挥出一剑，横扫$n" HIY "而去，毫"
               "无半点花巧可言。\n" NOR;
 			  
-		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvl = lvl * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;

@@ -1078,6 +1078,9 @@ varargs void reconnect(object ob, object user, int silent)
 	user->set_temp("link_ob", ob);
 	ob->set_temp("body_ob", user);
 	exec(user, ob);
+	
+	if (user->query_temp("migong"))
+		user->move("/d/city/wumiao");
 
 	user->reconnect();
 

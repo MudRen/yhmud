@@ -16,7 +16,7 @@ int perform(object me, object target)
         int ap, dp;
 		
 		float improve;
-		int lvls, m, n;
+		int lvl, m, n;
 		string martial;
 		string *ks;
 		martial = "sword";
@@ -50,7 +50,8 @@ int perform(object me, object target)
 
         wname = weapon->name();
 		
-		lvls = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvl = lvl * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;
@@ -66,7 +67,7 @@ int perform(object me, object target)
 			}
 		}
 		
-		improve = improve * 5 / 100 / lvls;	
+		improve = improve * 5 / 100 / lvl;	
 
         //damage = (int)me->query_skill("huifeng-jian", 1) / 3;
         damage = (int)me->query_skill("huifeng-jian", 1) / 2;

@@ -81,7 +81,8 @@ int perform(object me, object target)
               HIR "腐尸毒" NOR + WHT"」毒质运于其上，朝$n"
               WHT "猛掷而去。\n" NOR;
 			  
-		lvls = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvls = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvl = lvl * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;

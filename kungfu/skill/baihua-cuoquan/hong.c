@@ -72,6 +72,7 @@ int perform(object me, object target)
 		}
 		
 		improve = improve * 4 / 100 / lvls;
+		lvls = lvls * 4 / 5;
 
         ap = me->query_skill("unarmed") +
              me->query_skill("force");

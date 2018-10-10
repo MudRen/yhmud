@@ -49,7 +49,8 @@ int perform(object me, object target)
               HIW "一振，将乾坤剑法逆行施展，顿时剑影重重，万"
               "道光华直追$n" + HIW "而去！\n" NOR;
 			  
-		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvl = lvl * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;
