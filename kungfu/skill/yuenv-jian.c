@@ -96,12 +96,12 @@ mapping *action = ({
         "damage_type" : "刺伤"
 ]),
 ([      "action": " "RED" 越女剑之极意 "NOR"",
-        "force"  : (int)this_player()->query_skill("force")/2 + random((int)this_player()->query_skill("force")),
-        "attack" : (int)this_player()->query_skill("sword")/4 + random((int)this_player()->query_skill("sword")/2),
-        "dodge"  : (int)this_player()->query_skill("dodge")/4 + random((int)this_player()->query_skill("force")/3),
-        "parry"  : (int)this_player()->query_skill("parry")/4 + random((int)this_player()->query_skill("parry")/3),
-        "damage" : (int)this_player()->query_skill("force")/3 + random((int)this_player()->query_skill("sword")/3),
-        "lvl"    : 400,
+        "force"  : (int)this_player()->query_skill("force", 1)/2 + random((int)this_player()->query_skill("force", 1)),
+        "attack" : (int)this_player()->query_skill("sword", 1)/4 + random((int)this_player()->query_skill("sword", 1)/2),
+        "dodge"  : (int)this_player()->query_skill("dodge", 1)/6 + random((int)this_player()->query_skill("force", 1)/3),
+        "parry"  : (int)this_player()->query_skill("parry", 1)/6 + random((int)this_player()->query_skill("parry", 1)/3),
+        "damage" : (int)this_player()->query_skill("force", 1)/4 + random((int)this_player()->query_skill("sword", 1)/2),
+        "lvl"    : 300,
         //"skill_name" : "极意",
         "damage_type": "刺伤"
 ]),
@@ -198,6 +198,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
 		me->set_temp("is_attacking", 1);
         me->start_busy(1 + random(attack_time / 2));
         me->add("neili", -attack_time * 20);
+		me->add_temp("apply/attack", count);
 		me->add_temp("apply/damage", count);
         for (i = 0; i < attack_time; i++)
         {
@@ -211,6 +212,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
         }
 
         me->delete_temp("is_attacking");
+		me->add_temp("apply/attack", count);
 		me->add_temp("apply/damage", -count);
         return 1;
 }
