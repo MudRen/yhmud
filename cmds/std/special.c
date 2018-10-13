@@ -49,7 +49,7 @@ int main(object me, string arg)
         }
 
 		files = ({ "guibian", "guimai", "jinshen", "piyi",
-                   "qinzong", "wuxing", "shenyan","tiandao",
+                   "qinzong", "wuxing", "shenyan", "tiandao",
                 });
 				
         msg = pro + "现在会以下这些特技：\n";

@@ -8,7 +8,7 @@ inherit F_SSERVER;
 int perform(object me, object target)
 {
 //      object weapon;
-        int ap, dp, damage;
+        int ap, dp, damage, count;
         string msg;
 		
 		float improve;
@@ -78,7 +78,7 @@ int perform(object me, object target)
         dp = target->query_skill("force",1) +
              target->query_skill("parry", 1) +
              target->query_skill("qimen-wuxing", 1);
-			 
+		count = me->query_skill("mathematics", 1); 
 		ap += ap * improve;
 
         if (ap / 2 + random(ap) > dp)
@@ -97,8 +97,8 @@ int perform(object me, object target)
 		{
                 	me->start_busy(3);
                 	damage = ap / 2 + random(ap);
-                	me->add("neili", -500);
-                	msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 100,
+                	me->add("neili", -(300 + random(count)));
+                	msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, (90 + random(count/10)),
                         	                   HIR "霎那间$n" HIR "只见寒芒一闪，$N"
                                                    HIR "食指已钻入$p" HIR "胸堂半尺，指劲"
                                                    "顿时破体而入。\n你听到“嗤”的一声，"
@@ -107,7 +107,7 @@ int perform(object me, object target)
         } else
         {
                 me->start_busy(2);
-                me->add("neili", -300);
+                me->add("neili", -200);
                 msg += CYN "$p" CYN "见$P" CYN "招式奇特，不感大"
                        "意，顿时向后跃数丈，躲闪开来。\n" NOR;
         }
