@@ -156,7 +156,7 @@ int do_born(string arg)
             ! userp(me))
                 return 1;
 
-        if (! me->query_temp("washed"))
+        if (! me->query_temp("washed") && ! me->query("reborn"))
                 return notify_fail("你先在忘忧池中洗一下(washto)，选择好天赋你再投胎也不迟啊！\n");
 
         if (arg && arg[0] < 160)
@@ -245,13 +245,16 @@ int do_born(string arg)
 			}
 
         // 选择特殊技能
-        UPDATE_D->born_player(me);
-
-        me->move(obj);
-        me->set("mud_age", 0);
-        me->set("age", 14);
-        me->save();
-        HELP_CMD->main(me, "rules");
+		if (! me->query("reborn"))
+		{
+			UPDATE_D->born_player(me);
+		}
+			me->move(obj);
+			me->set("mud_age", 0);
+			me->set("age", 14);
+			me->save();
+			HELP_CMD->main(me, "rules");
+		
         message_vision("$N揉揉眼睛，迷惘的望着这个陌生的世界。\n", me);
 
         return 1;

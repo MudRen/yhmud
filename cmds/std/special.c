@@ -23,7 +23,7 @@ int main(object me, string arg)
 
         pro = (ob == me) ? "你" : ob->name(1);
 
-        if (! ob->query("born"))
+        if (! ob->query("born") && ! ob->query("reborn"))
                 return notify_fail(pro + "还没有出生呐，会什么特技？\n");
 
         if (! mapp(ss = ob->query("special_skill")) ||

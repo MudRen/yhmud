@@ -69,13 +69,13 @@ int perform(object me, object target)
 			}
 		}
 		
-		improve = improve * 4 / 100 / lvls;
+		improve = improve * 5 / 100 / lvls;
 
-        ap = me->query_skill("finger", 1) +
+        ap = me->query_skill("finger") +
              me->query_skill("qimen-wuxing", 1) +
              me->query_skill("tanzhi-shentong", 1);
 
-        dp = target->query_skill("force",1) +
+        dp = target->query_skill("force") +
              target->query_skill("parry", 1) +
              target->query_skill("qimen-wuxing", 1);
 		count = me->query_skill("mathematics", 1); 
@@ -96,9 +96,9 @@ int perform(object me, object target)
                 } else
 		{
                 	me->start_busy(3);
-                	damage = ap / 2 + random(ap);
-                	me->add("neili", -(300 + random(count)));
-                	msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, (90 + random(count/10)),
+                	damage = ap + random(ap);
+                	me->add("neili", -(200 + random(count)));
+                	msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, (100 + random(count/10)),
                         	                   HIR "霎那间$n" HIR "只见寒芒一闪，$N"
                                                    HIR "食指已钻入$p" HIR "胸堂半尺，指劲"
                                                    "顿时破体而入。\n你听到“嗤”的一声，"
