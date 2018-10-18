@@ -353,6 +353,7 @@ int ask_quest(object me, object who)
         int exp;                // WHO的经验
         int t;                  // 用来计算时间的变量
         int level;              // QUEST的等级
+		int reborn;				//转世次数
         string place;
         string gender;
 
@@ -530,9 +531,12 @@ int ask_quest(object me, object who)
                 
                 */
 
+				reborn = 0;
+				reborn = who->query("reborn/count");
                 level = who->query_temp("quest/next_level");
                 if (level < 0 || level > MAX_QUEST_LEVEL)
                         level = 0;
+				level += reborn;
 
                 ob = new(CLASS_D("generate") + "/killed.c");
                 NPC_D->place_npc(ob, who->query("combat_exp") < 500000  ? ({ "大理一带", "终南山", "关外", "西域" }) :
@@ -696,6 +700,7 @@ int accept_object(object me, object who, object ob)
         int quest_count;        // 连续QUEST的数目
         int timeover;           // 标志：超时了？
         int added;              // 做任务的时候额外出现的敌人或敌人逃走
+		int reborn;				//新增转世次数
         mixed special = 0;      // 是否有特殊奖励
 
         if (me->query("family/family_name") != who->query("family/family_name"))
@@ -760,7 +765,7 @@ int accept_object(object me, object who, object ob)
                         timeover = 0;
                 }
                 bonus = (ob->query("receive_from") == who->query("id"));
-                exp = 15 + random(10);
+				exp = 15 + random(10);
                 pot = 5 + random(8);
                 mar = 1;
                 score = 6 + random(5);
@@ -848,9 +853,10 @@ int accept_object(object me, object who, object ob)
                         bonus = 1;
 
                 destruct(ob);
+				reborn = who->query("reborn/count");
                 lvl = NPC_D->check_level(who);
-                exp = 10 + random(5) + lvl;
-                pot = 5 + random(3) + lvl;
+                exp = 10 + random(5) + lvl + reborn;
+                pot = 5 + random(3) + lvl + reborn;
                 mar = 1 + random(2);
                 weiwang = 2 + random(3) + lvl / 2;
                 score = 2 + random(3) + lvl / 2;

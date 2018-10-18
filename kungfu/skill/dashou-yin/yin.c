@@ -48,11 +48,11 @@ int perform(object me, object target)
         ap = me->query_skill("hand") + me->query_skill("lamaism", 1);
         dp = target->query_skill("parry");
         if (dp < 1) dp = 1;
-        if (ap / 2 + random(ap * 4 / 5) > dp)
+        if (ap / 2 + random(ap) > dp)
         {
                 me->add("neili", -100);
                 me->start_busy(2);
-                damage = 10 + skill / 3 + random(skill / 2);
+                damage = ap / 2 + random(ap);
                 msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 40,
                                            HIR "结果$p" HIR "招架不及，被$P" HIR
                                            "这一下打得七窍生烟，吐血连连。\n" NOR);

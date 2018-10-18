@@ -43,8 +43,8 @@ int perform(object me, object target)
 
 	if (random(me->query_skill("force")) > target->query_skill("force") / 2)
 	{
-		damage = (int)me->query_skill("sword") / 2;
-		damage = damage + random(damage);
+		damage = (int)me->query_skill("sword");
+		damage += random(damage);
 
 		me->add("neili", -160);
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, 50,

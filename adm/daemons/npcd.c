@@ -299,7 +299,10 @@ void set_from_me(object tob, object fob, int scale)
         mapping my, hp_status;
 		int i;
         int points;
-        int tmpstr, tmpint, tmpcon, tmpdex;	
+		int tmpstr, tmpint, tmpcon, tmpdex;
+		int reborn;
+		reborn = 0;
+		reborn = fob->query("reborn/count");
 		tmpstr = tmpint = tmpcon = tmpdex = 10;
 
         hp_status = fob->query_entire_dbase();
@@ -308,7 +311,7 @@ void set_from_me(object tob, object fob, int scale)
         if (! scale)
         {
                 if (undefinedp(my["scale"]))
-                        my["scale"] = 100;
+                        my["scale"] = 100 + reborn * 10;
                 scale = my["scale"];
         }
         points = 80 - (tmpstr + tmpint + tmpcon + tmpdex);
@@ -320,10 +323,10 @@ void set_from_me(object tob, object fob, int scale)
                 case 3: if (tmpdex < 30) tmpdex++; else i--; break;
                 }
         }
-        my["str"] = tmpstr;
-        my["con"] = tmpcon;
-        my["dex"] = tmpdex;
-        my["int"] = tmpint;
+        my["str"] = tmpstr + reborn * 2;
+        my["con"] = tmpcon + reborn * 2;
+        my["dex"] = tmpdex + reborn * 2;
+        my["int"] = tmpint + reborn * 2;
 		my["per"] = 5 + random(25);
 		
 		my["max_qi"]     = hp_status["max_qi"]   * scale / 100;

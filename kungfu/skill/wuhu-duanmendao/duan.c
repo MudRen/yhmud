@@ -10,6 +10,7 @@ int perform(object me, object target)
 	object weapon, ob;
 	string msg;
 	int ap, dp, count;
+	int i, num, exp;
  
     if (userp(me) && ! me->query("can_perform/wuhu-duanmendao/duan"))
 			return notify_fail("你所使用的外功中没有这种功能。\n");
@@ -43,24 +44,30 @@ int perform(object me, object target)
 	ob = me->select_opponent();
 	ap = me->query_skill("blade");
 	dp = target->query_skill("parry");
+	exp = me->query("combat_exp");
 		
 	if (ap / 2 + random(ap) > dp)
-		count = ap / 2;
+		count = ap / 3;
 	else
 		count = 0;
+	num = 2;
+	if (exp < 100000 && exp > 600000)
+		num += 0;
+	else
+		num += 600000 / exp;
 	
-	me->add_temp("apply/attack", count);
-	me->add_temp("apply/parry", count); 
-	me->add_temp("apply/damage", count / 2);
-
-	COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
-	COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
-	COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
+	me->add_temp("apply/attack", count * num);
+	me->add_temp("apply/parry", count * num); 
+	me->add_temp("apply/damage", count * num / 2);
+	for (i = 0;i < num;i++)
+	{
+		COMBAT_D->do_attack(me, ob, me->query_temp("weapon"));
+	}
 	
-	me->add_temp("apply/attack", -count);
-	me->add_temp("apply/parry", -count);
-	me->add_temp("apply/damage", -count / 2);
-	
+	me->add_temp("apply/attack", -count* num);
+	me->add_temp("apply/parry", -count* num);
+	me->add_temp("apply/damage", -count * num / 2);
+/*	
 	if (random(2) == 1)
 		{
 			me->add_temp("apply/attack", ap / 2);
@@ -85,7 +92,7 @@ int perform(object me, object target)
 			}
 			
 		}
-	
+*/	
 	me->add("neili", -100);
 	me->start_busy(1 + random(3));
 	return 1;
