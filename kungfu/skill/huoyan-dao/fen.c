@@ -45,7 +45,7 @@ int perform(object me)
 	dp = target->query_skill("force");
 	
 	if (me->query("shen") < - skill * 1000 * 1000)
-		ap += skill / 3;
+		ap += skill / 2;
 
 	if (dp < 1) dp = 1;
 	if (ap / 2 + random(ap) > dp)

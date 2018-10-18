@@ -9,7 +9,8 @@ int perform(object me, object target)
 {
 	object weapon;
 	string msg;
-	int skill;
+	int skill, count, damage;
+	int ap, dp;
 	skill = me->query_skill("huoyan-dao", 1);
  
         if (userp(me) && ! me->query("can_perform/huoyan-dao/yan"))
@@ -44,15 +45,28 @@ int perform(object me, object target)
 
         if (! living(target))
                return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
+		
+		if (target->query("shen") > 0)
+			count = skill / 8;
+		else
+			count = 0;
+		me->add_temp("unarmed_damage", count);
+		
+		if (me->query("shen") < - skill * 1000 * 1000)
+		{
+			me->add("neili", -180);
+			ap = me->query_skill("strike");
+			damage = ap / 2 + random(ap / 2);
+			msg = COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 50,
+										HIR "$n" HIR "受到无形刀气的重创！\n" NOR);
+			message_combatd(msg, me, target);
+		}
 
 		msg = HIR "$N" HIR "一声怒嚎，狂催真气注入单掌，掌缘顿时腾起一道烈炎，接二连三朝$n"
               HIR "劈去。\n" NOR;
         message_combatd(msg, me, target);
-
-		me->add("neili", -400);
-		if (me->query("shen") < - skill * 1000 * 1000)
-			me->add_temp("apply/unarmed_damage", skill/10);
-
+		
+		me->add("neili", -200);
         me->add_temp("apply/attack", 10);
       	COMBAT_D->do_attack(me, target, weapon, 0);
 
@@ -69,10 +83,8 @@ int perform(object me, object target)
 		COMBAT_D->do_attack(me, target, weapon, 0);
 
         // 消除攻击修正
-        me->add_temp("apply/attack", -150);
-		if (me->query("shen") < - skill * 1000 * 1000)
-			me->add_temp("apply/unarmed_damage", -skill/10);
-
+		me->add_temp("apply/attack", -150);
+		me->add_temp("unarmed_damage", -count);
 		me->start_busy(2 + random(3));
 
 		return 1;
