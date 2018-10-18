@@ -174,7 +174,7 @@ private void from_shaolin()
         set("chat_chance_combat", 100);
         set("chat_msg_combat", ({
                 (: perform_action, "sword.sanjue" :),
-                (: perform_action, "sword.shang" :),
+                //(: perform_action, "sword.shang" :),
                 (: perform_action, "sword.luan" :),
                 (: perform_action, "sword.zhe" :),
                 (: perform_action, "strike.san" :),
