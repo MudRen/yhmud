@@ -43,12 +43,15 @@ int perform(object me)
 
 	ap = me->query_skill("force") + skill / 3;
 	dp = target->query_skill("force");
+	
+	if (me->query("shen") < - skill * 1000 * 1000)
+		ap += skill / 3;
 
 	if (dp < 1) dp = 1;
 	if (ap / 2 + random(ap) > dp)
 	{
-		me->add("neili", -300);
-		damage = 150 + skill / 4 + random(skill);
+		me->add("neili", -200);
+		damage = 150 + ap / 2 + random(ap);
                 msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 70,
                                            HIR "$p" HIR "强运内力试图抵抗，然而无法掌握$P"
                                            HIR "内力的变化，结果被$P"
@@ -59,7 +62,7 @@ int perform(object me)
 	{
 		msg += HIC "却见$p" HIC "不慌不忙，轻轻一闪，躲过了$P"
 		       HIC "的必杀一击！\n" NOR;
-		me->add("neili", -150);
+		me->add("neili", -100);
 		me->start_busy(3);
 	}
 	message_combatd(msg, me, target);
