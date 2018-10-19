@@ -57,7 +57,7 @@ int perform(object me, object target)
 			me->add("neili", -180);
 			ap = me->query_skill("strike");
 			damage = ap / 2 + random(ap / 2);
-			msg = COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 50,
+			msg = COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 60,
 										HIR "$n" HIR "受到无形刀气的重创！\n" NOR);
 			message_combatd(msg, me, target);
 		}

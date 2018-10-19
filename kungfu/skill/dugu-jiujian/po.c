@@ -80,13 +80,13 @@ int perform(object me, object target)
                                + "½££¡\n" NOR;
                         message_combatd(msg, me, target);
 
-                        me->start_busy(1 + random(n/2));
                         while (n-- && me->is_fighting(target))
                         {
                                 if (! target->is_busy() && random(2))
                                         target->start_busy(1);
                                 COMBAT_D->do_attack(me, target, weapon, 0);
                         }
+						me->start_busy(1 + random(n/2));
 
                         if (weapon2 && random(ap) > dp && type != "pin")
                         {

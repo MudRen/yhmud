@@ -84,7 +84,7 @@ mapping *action = ({
         "damage_type" : "瘀伤",
 ]),
 ([      "action": " "RED" 火焰刀之极意 "NOR"",
-        "force"  : (int)this_player()->query_skill("force", 1)/2 + random((int)this_player()->query_skill("force", 1)),
+        "force"  : (int)this_player()->query_skill("force", 1)/3 + random((int)this_player()->query_skill("force")),
         "attack" : (int)this_player()->query_skill("strike", 1)/4 + random((int)this_player()->query_skill("strike", 1)/2),
         "dodge"  : (int)this_player()->query_skill("dodge", 1)/6 + random((int)this_player()->query_skill("force", 1)/3),
         "parry"  : (int)this_player()->query_skill("parry", 1)/6 + random((int)this_player()->query_skill("parry", 1)/3),
@@ -169,7 +169,9 @@ int practice_skill(object me)
 
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
-        int lvl, lvl2;
+        int lvl, lvl2, damage;
+		//object cloth;
+		//string msg;
 
         lvl = me->query_skill("huoyan-dao", 1);
 		lvl2 = victim->query_skill("force") / 2;
@@ -178,9 +180,20 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 
         if (lvl + damage_bonus / 10 > lvl2 + victim->query_con())
         {
+				/*if (objectp(cloth = victim->query_temp("armor/cloth"))
+					&& cloth->query("consistence") > 0)
+					{
+						cloth->add("consistence", -10);
+						msg = HIR "只见$n身上的" + cloth->name() + "突然烧了起来。\n" NOR;
+						message_combatd(msg, me, victim);
+					}
+						
+				if (cloth->query("consistence") < 0)
+					cloth->set("consistence", 0);
+				*/
 				if (me->query("shen") < - lvl * 1000 * 1000)
-					damage_bonus += random(lvl);
-                victim->receive_wound("qi", (damage_bonus - 80) / 3, me);
+					damage = damage_bonus + random(lvl);
+                victim->receive_wound("qi", (damage - 80) / 3, me);
 
                 return random(2) ? HIR "只听$n" HIR "前胸「咔嚓」一声脆响，竟像是"
                                    "肋骨断折的声音。\n" NOR:
