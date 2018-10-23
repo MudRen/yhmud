@@ -34,8 +34,9 @@ int perform(object me, object target)
         if (me->query_temp("weapon") || me->query_temp("secondary_weapon"))
                 return notify_fail(HUA "只能空手施展。\n");
 
-        if ((int)me->query_skill("beiming-shengong", 1) < 220)
-                return notify_fail("你的北冥神功火候不够，难以施展" HUA "。\n");
+        if ((int)me->query_skill("beiming-shengong", 1) < 220
+			|| (int)me->query_skill("xiaowuxiang", 1) < 220)
+                return notify_fail("你的逍遥内功火候不够，难以施展" HUA "。\n");
 
         if (lv = (int)me->query_skill("zhemei-shou", 1) < 220)
                 return notify_fail("你逍遥折梅手等级不够，难以施展" HUA "。\n");
@@ -43,8 +44,9 @@ int perform(object me, object target)
         if (me->query("max_neili") < 4000)
                 return notify_fail("你的内力修为不足，难以施展" HUA "。\n");
 
-        if (me->query_skill_mapped("force") != "beiming-shengong")
-                return notify_fail("你没有激发北冥神功，难以施展" HUA "。\n");
+        if (me->query_skill_mapped("force") != "beiming-shengong"
+			|| me->query_skill_mapped("force") != "xiaowuxiang")
+                return notify_fail("你没有激发逍遥内功，难以施展" HUA "。\n");
 
         if (me->query_skill_mapped("hand") != "zhemei-shou")
                 return notify_fail("你没有激发逍遥折梅手，难以施展" HUA "。\n");

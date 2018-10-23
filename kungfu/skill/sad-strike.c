@@ -177,7 +177,7 @@ mapping *action = ({
         "damage_type": "内伤"
 ]),
 ([      "action": " "RED" 黯然销魂之极意 "NOR"",
-        "force"  : (int)this_player()->query_skill("force", 1)/2 + random((int)this_player()->query_skill("force", 1)),
+        "force"  : (int)this_player()->query_skill("force", 1)/3 + random((int)this_player()->query_skill("force")),
         "attack" : (int)this_player()->query_skill("unarmed", 1)/4 + random((int)this_player()->query_skill("unarmed", 1)/2),
         "dodge"  : (int)this_player()->query_skill("dodge", 1)/6 + random((int)this_player()->query_skill("force", 1)/3),
         //"parry"  : (int)this_player()->query_skill("parry", 1)/6 + random((int)this_player()->query_skill("parry", 1)/3),

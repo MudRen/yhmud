@@ -543,8 +543,8 @@ mixed ask_skill8()
         if (me->query("gongxian") < 2500)
                 return "你虽在我逍遥门下，却甚无作为，这招我先不忙传你。";
 
-        if ((int)me->query_skill("beiming-shengong", 1) < 220)
-                return "你的北冥神功火候不足，学不成这招。";
+        //if ((int)me->query_skill("beiming-shengong", 1) < 220)
+        //        return "你的北冥神功火候不足，学不成这招。";
 
         if (me->query_skill("zhemei-shou", 1) < 220)
                 return "你的逍遥折梅手火候未到，尚且学不了这一招。";
@@ -588,12 +588,12 @@ mixed ask_skill8()
                 me->improve_skill("force", 1500000);
         if (me->can_improve_skill("force"))
                 me->improve_skill("force", 1500000);
-        if (me->can_improve_skill("beiming-shengong"))
-                me->improve_skill("beiming-shengong", 1500000);
-        if (me->can_improve_skill("beiming-shengong"))
-                me->improve_skill("beiming-shengong", 1500000);
-        if (me->can_improve_skill("beiming-shengong"))
-                me->improve_skill("beiming-shengong", 1500000);
+        //if (me->can_improve_skill("beiming-shengong"))
+        //        me->improve_skill("beiming-shengong", 1500000);
+        //if (me->can_improve_skill("beiming-shengong"))
+        //        me->improve_skill("beiming-shengong", 1500000);
+        //if (me->can_improve_skill("beiming-shengong"))
+        //        me->improve_skill("beiming-shengong", 1500000);
         me->improve_skill("martial-cognize", 1500000);
         me->set("can_perform/zhemei-shou/hua", 1);
         me->add("gongxian", -2500);
