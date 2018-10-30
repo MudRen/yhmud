@@ -45,7 +45,7 @@ int perform(object me, object target)
                 return notify_fail("你的内力修为不足，难以施展" HUA "。\n");
 
         if (me->query_skill_mapped("force") != "beiming-shengong"
-			|| me->query_skill_mapped("force") != "xiaowuxiang")
+			&& me->query_skill_mapped("force") != "xiaowuxiang")
                 return notify_fail("你没有激发逍遥内功，难以施展" HUA "。\n");
 
         if (me->query_skill_mapped("hand") != "zhemei-shou")

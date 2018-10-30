@@ -333,22 +333,22 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         string parry_msg;
         mixed foo;
 
-	int delta;
+		int delta;
         int ap, dp, pp;
         int damage, damage_bonus;
         int wounded;
-		int int1;
+		int str1, int1;
 
-	object weapon2;	// weapon of victim
+		object weapon2;	// weapon of victim
         object cloth;   // armor of victim
 
-	string result;
-	string damage_info;
-	mapping fight;
+		string result;
+		string damage_info;
+		mapping fight;
 
-	int shenzhao, nl_now, nl_limit, nl_improve;
-	//object env_me;
-	//object env_v;
+		int shenzhao, nl_now, nl_limit, nl_improve;
+		//object env_me;
+		//object env_v;
 
         if (environment(me)->query("no_fight"))
         {
@@ -403,16 +403,16 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         //
         // (1) Find out what action the offenser will take.
         //
-	me->reset_action();
+		me->reset_action();
         action = me->query_action();
 
         if (! action)
-	{
+		{
 		// reconfirm
                 me->reset_action();
                 action = me->query_action();
                 if (! mapp(action))
-		{
+				{
                         CHANNEL_D->do_channel( this_object(), "sys",
                                 sprintf("%s(%s): bad action = %O",
                                         me->query("name"), me->query("id"),
@@ -430,21 +430,21 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         // (2) Prepare AP, DP for checking if hit.
         //
         limbs = victim->query("limbs");
-	if (! arrayp(limbs))
-	{
-		limbs = ({ "身体" });
-		victim->set("limbs", limbs);
-	}
+		if (! arrayp(limbs))
+		{
+			limbs = ({ "身体" });
+			victim->set("limbs", limbs);
+		}
         limb = limbs[random(sizeof(limbs))];
 
-	if (! my["not_living"])
-	{
-		fight = allocate_mapping(5);
-		fight["attack"] = action["attack"];
-		fight["dodge"]  = action["dodge"];
-        	fight["parry"]  = action["parry"];
-		my_temp["fight"] = fight;
-	}
+		if (! my["not_living"])
+		{
+			fight = allocate_mapping(5);
+			fight["attack"] = action["attack"];
+			fight["dodge"]  = action["dodge"];
+				fight["parry"]  = action["parry"];
+			my_temp["fight"] = fight;
+		}
 
         ap = skill_power(me, attack_skill, SKILL_USAGE_ATTACK, 0);
         if (ap < 1) ap = 1;
@@ -468,10 +468,10 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         //     or be hit.
         //
         damage = 0;
-	wounded = 0;
-	damage_info = "";
+		wounded = 0;
+		damage_info = "";
         if (random(ap + dp) < dp)
-	{  // Does the victim dodge this hit?
+		{  // Does the victim dodge this hit?
 #if INSTALL_COMBAT_TEST
                 if (wizardp(me) && me->query("env/combat_test"))
                         tell_object(me, HIY "【测试精灵】：己方 AP：" + ap +
@@ -484,15 +484,15 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                 result += SKILL_D(dodge_skill)->query_dodge_msg(limb);
 
                 if (dp < ap && (! userp(victim) || ! userp(me)))
-		{
-			if (random(your["combat_exp"]) < EXP_LIMIT && random(2))
+				{
+						if (random(your["combat_exp"]) < EXP_LIMIT && random(2))
                         {
-                        	your["combat_exp"]++;
+								your["combat_exp"]++;
                                 victim->improve_skill("dodge", 1);
                         }
                 }
-        } else
-	{
+		} else
+		{
                 //
                 //      (4) Check if the victim can parry this attack.
                 //
@@ -505,14 +505,14 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                                 me->improve_skill(attack_skill, 1);
                         }
                 }
-		delta = 0;
-		if (weapon2 = your_temp["weapon"])
-		{
-			if (! weapon) delta = 10;
-		} else
-		{
-			if (weapon) delta = -10;
-		}
+				delta = 0;
+				if (weapon2 = your_temp["weapon"])
+				{
+					if (! weapon) delta = 10;
+				} else
+				{
+					if (weapon) delta = -10;
+				}
                 pp = skill_power(victim, "parry", SKILL_USAGE_DEFENSE, delta);
 
                 if (victim->is_busy()) pp /= 3;
@@ -544,7 +544,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 
                         if (pp < ap && (! userp(victim) || ! userp(me)))
                         {
-				if (random(your["combat_exp"]) < EXP_LIMIT && random(2))
+								if (random(your["combat_exp"]) < EXP_LIMIT && random(2))
                                 {
                                 	your["combat_exp"]++;
                                         victim->improve_skill("parry", 1);
@@ -585,9 +585,9 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 
                         // Let force skill take effect.
                         if (my["jiali"] && (my["neili"] > my["jiali"]))
-			{
+						{
                                 if (force_skill = me->query_skill_mapped("force"))
-				{
+								{
                                         foo = SKILL_D(force_skill)->hit_ob(me, victim, damage_bonus, my["jiali"]);
                                         if (stringp(foo)) damage_info += foo; else
                                         if (intp(foo)) damage_bonus += foo; else
@@ -740,22 +740,25 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                                 if (my["character"] == "心狠手辣")
                                         damage += damage * 20 / 100;
 									
-								// 新增int对攻击的影响，几率正比 伤害反比
+								// 新增str int对攻击的影响，几率正比 伤害反比
+								// do str effect
+								str1 = me->query("str") * 2 + me->query_str() + random(me->query_temp("str") / 2);
+								damage += damage * str1 / 300;
 								// do int effect
-								int1 = me->query_int();
-								if (random(int1) > 10)
+								int1 = me->query("int");
+								if (random(int1) > 8)
 								{
 										if (int1 < 16)
-												damage += damage * 5 / int1;
+												damage += damage * 10 / int1;
 										else
 										if (int1 < 40)
-												damage += damage * 4 / int1;
+												damage += damage * 7 / int1;
 										else 
-												damage += damage * 3 / int1;
+												damage += damage * 4 / int1;
 								}
 								
 								//do dex effect 闪避
-								if (((me->query_dex() - 10) / 4 + 2) > random(100))
+								if (((me->query("dex") - 10) / 4 + 2) > random(100))
 									damage = 0;
 
                                 // calculate wounded
@@ -783,7 +786,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
                                         wounded -= wounded * 20 / 100;
 									
 								// do con effect
-								wounded -= wounded * (me->query_con() - 10) / 100;
+								wounded -= wounded * (me->query("con") - 10) / 100;
 
                                 damage = victim->receive_damage("qi", damage, me);
                                 if (wounded > 0 &&
@@ -837,7 +840,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 		nl_improve = shenzhao / 4 + random(shenzhao / 2);
 		if (nl_limit > nl_now && (nl_limit - nl_now) < nl_improve)
 			nl_improve = nl_limit - nl_now;	
-		if (shenzhao > 200 && nl_limit > nl_now && random(5) == 1)
+		if (shenzhao > 200 && nl_limit > nl_now && random(7) == 1)
 		{
 			tell_object(me, HIW "你只觉得内息澎湃，感觉内息得到了一些恢复\n" NOR);
 			me->add("neili", nl_improve);
@@ -876,7 +879,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
         if (attack_type == TYPE_REGULAR &&
             damage < 1 &&
             your_temp["guarding"])
-	{
+		{
                 //your_temp["guarding"];
                 if (random(my["dex"]) < 5)
                 {
@@ -920,8 +923,9 @@ varargs string do_damage(object me, object target, mixed type,
         string limb;
         string damage_type;
         string result;
-        int str;
+        int str, int1;
         int damage_bonus;
+		int shenzhao, nl_now, nl_limit, nl_improve;
 
         // Am I use weapon
         if (type == WEAPON_ATTACK)
@@ -1046,14 +1050,27 @@ varargs string do_damage(object me, object target, mixed type,
                 }
 
                 // do strength effect
-                str = me->query_str() + random(me->query_str()) + me->query_temp("str") / 2;
-                if (str < 20)
+                str = me->query("str") * 2 + me->query_str() + random(me->query_temp("str") / 2);
+                if (str < 40)
                         damage += damage * str / 50;
                 else
-                if (str < 40)
-                        damage += damage * ((str - 20) / 2 + 20) / 50;
+                if (str < 70)
+                        damage += damage * ((str - 30) / 2 + 20) / 50;
                 else
-                        damage += damage * ((str - 40) / 4 + 30) / 50;
+                        damage += damage * ((str - 60) / 4 + 30) / 50;
+					
+				// do int effect
+				int1 = me->query("int");
+				if (random(int1) > 8)
+				{
+				if (int1 < 16)
+						damage += damage * 10 / int1;
+				else
+				if (int1 < 40)
+						damage += damage * 7 / int1;
+				else 
+						damage += damage * 4 / int1;
+				}
 
                 if (damage < 1) break;
 
@@ -1070,9 +1087,22 @@ varargs string do_damage(object me, object target, mixed type,
                 if (target->query("character") == "光明磊落")
                         wound -= wound * 20 / 100;
 				// do con effect
-				wound -= wound * (me->query_con() - 10) / 100;
+				wound -= wound * (me->query("con") - 10) / 100;
 					
                 if (wound > 0) target->receive_wound("qi", wound, me);
+				
+				//神照功战斗中自行回内
+				shenzhao = me->query_skill("shenzhaojing", 1);
+				nl_limit = me->query("max_neili") * 4 / 5;
+				nl_now = me->query("neili");
+				nl_improve = shenzhao / 4 + random(shenzhao / 2);
+				if (nl_limit > nl_now && (nl_limit - nl_now) < nl_improve)
+					nl_improve = nl_limit - nl_now;	
+				if (shenzhao > 200 && nl_limit > nl_now && random(3) == 1)
+				{
+					tell_object(me, HIW "你只觉得内息澎湃，感觉内息得到了一些恢复\n" NOR);
+					me->add("neili", nl_improve);
+				}
                  
                 if (functionp(final)) final = evaluate(final);
                 if (stringp(final))

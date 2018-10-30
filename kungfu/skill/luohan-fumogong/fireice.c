@@ -44,7 +44,7 @@ int exert(object me, object target)
         me->set_temp("fireice", 1);
 
         me->start_call_out((: call_other, __FILE__, "remove_effect",
-                              me, skill / 4 :), skill);
+                              me, skill / 5 :), skill);
 
         if (me->is_fighting())
                 me->start_busy(3);
