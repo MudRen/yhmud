@@ -280,6 +280,23 @@ void nuoyi(object ob, object me)
         message_sort(msg, me, ob);
 }
 
+int query_effect_parry(object attacker, object me)
+{
+    int lvl;
+	lvl = me->query_skill("qiankun-danuoyi", 1);
+	
+	if (me->query("family/family_name") == "明教")
+	{
+        if (lvl < 80)  return 0;
+        if (lvl < 200) return 40;
+        if (lvl < 280) return 60;
+        if (lvl < 350) return 80;
+        return 100;
+	}
+	else
+		return 0;
+}
+
 int practice_skill(object me)
 {
         return notify_fail("乾坤大挪移只能通过学习或研读乾坤大挪移心法提高。\n");

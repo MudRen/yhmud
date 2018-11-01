@@ -66,7 +66,7 @@ int main(object me, string arg)
 int exercising(object me)
 {
 	int exercise_cost = (int)me->query_temp("exercise_cost");
-	int neili_gain = (int)me->query_skill("force") / 5;
+	int neili_gain = (int)me->query_skill("force") / 3;
 
         neili_gain = 1 + neili_gain / 2 + random(neili_gain) +
                      environment(me)->query("exercise_improve");
@@ -85,7 +85,7 @@ int exercising(object me)
                         exercise_cost = 0;
                 } else
                 {
-                        me->set_temp("exercise_cost", exercise_cost -= 2 * neili_gain);
+                        me->set_temp("exercise_cost", exercise_cost -= neili_gain);
                 }
                 me->add("neili", neili_gain);
                 me->add("qi", -neili_gain);
