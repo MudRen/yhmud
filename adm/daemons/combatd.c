@@ -447,6 +447,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 		}
 
         ap = skill_power(me, attack_skill, SKILL_USAGE_ATTACK, 0);
+		ap += random(me->query_skill("count", 1) / 2);
         if (ap < 1) ap = 1;
 
         if (my["character"] == "阴险奸诈")
@@ -851,6 +852,17 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 			me->receive_heal("qi", random(me->query_skill("xiantian-gong", 1) / 2) + 20);
 			tell_object(me, HIG "先天玄功自行运转，伤势竟然得到了恢复！\n" NOR);
 		}
+		//hubo debuff
+		if (me->query_temp("debuff/1st"))
+		{
+			damage = damage * me->query_temp("debuff/1st") / 100;
+			me->delete_temp("debuff/1st");
+		}
+		if (me->query_temp("debuff/2nd"))
+		{
+			damage = damage * me->query_temp("debuff/2nd") / 100;
+			me->delete_temp("debuff/2nd");
+		}
 	
         if (damage > 0)
 		{
@@ -1081,8 +1093,21 @@ varargs string do_damage(object me, object target, mixed type,
                 if (damage > 500)
                         damage = (damage - 500) / 2 + 500;
 
+				//hubo debuff
+				if (me->query_temp("debuff/1st"))
+				{
+					damage = damage * me->query_temp("debuff/1st") / 100;
+					me->delete_temp("debuff/1st");
+				}
+				if (me->query_temp("debuff/2nd"))
+				{
+					damage = damage * me->query_temp("debuff/2nd") / 100;
+					me->delete_temp("debuff/2nd");
+				}
                 // do damage
                 target->receive_damage("qi", damage, me);
+				armor -= random(me->query_skill("count", 1) / 2);
+				if (armor < 1) armor = 1;
                 wound = (damage - random(armor)) * percent / 100;
                 if (target->query("character") == "光明磊落")
                         wound -= wound * 20 / 100;

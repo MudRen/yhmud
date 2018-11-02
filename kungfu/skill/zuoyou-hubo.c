@@ -21,11 +21,11 @@ int valid_learn(object me)
                                    "用，可是却觉得阴阳失调，心浮气躁。\n");
         
         //转世特技循影擒踪
-         if (me->query_skill("count", 1) && !me->query("special_skill/qinzong"))
+         if (me->query_skill("count", 1) || me->query("special_skill/qinzong"))
                 return notify_fail("你受到阴阳八卦影响甚深，难以尝" 
                                    "试更高深的分心之术。\n"); 
 
-        if (me->query("int") > 15 && me->query("int") < 50)
+        if (me->query("int") > 15 && !me->query("special_skill/tiandao"))
                 return notify_fail("你觉得心烦意乱，难以尝"
                                    "试更高深的分心之术。\n");
 

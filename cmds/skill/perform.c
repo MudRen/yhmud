@@ -36,7 +36,7 @@ int main(object me, string arg)
                         return notify_fail("你要干什么？以为自己有三头六臂啊！\n");
                         
                 //转世特技循影擒踪
-                  if (me->query_skill("count", 1) && ! me->query("special_skill/qinzong"))
+                  if (me->query_skill("count", 1) || me->query("special_skill/qinzong"))
                         return notify_fail("你杂学太多，心头烦乱，难以分心二用。\n");
 
                 if (lvl <= 100)
@@ -48,7 +48,9 @@ int main(object me, string arg)
                 if (lvl < 360 && random(lvl) < 100)
                 {
                         me->start_busy(1);
+						me->set_temp("debuff/1st", 60);
                         write("你试图分心二用，但是手就是不听使唤。\n");
+						result = do_perform(me, arg);
                         return 1;
                 }
         }
@@ -85,6 +87,7 @@ int main(object me, string arg)
                 }
 
                 message_combatd(msg, me);
+				me->set_temp("debuff/2nd", 60);
         }
 
         busy = me->query_busy();
