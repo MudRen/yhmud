@@ -172,6 +172,31 @@ int practice_skill(object me)
 
 mixed hit_ob(object me, object victim)
 {
+        int skill, att, dam;
+		int qi, eff_qi, max_qi;
+		
+		qi = me->query("qi");
+		eff_qi = me->query("eff_qi");
+		max_qi = me->query("max_qi");
+		skill = me->query_skill("xuedao-dafa", 1);
+		att = random(skill * (max_qi - qi) / max_qi) + 20;
+		dam = random(skill * (max_qi - eff_qi) / max_qi) + 10;
+		
+		if (random(3) == 1 && (att > 20 || dam > 10))
+		{
+				me->add_temp("apply/attack", att);
+				me->add_temp("apply/damage", dam);
+				COMBAT_D->do_attack(me, victim, me->query_temp("weapon"), random(2)?10:30);
+				message_vision(HIR "血刀大法-->"HIW "天神下凡-->"RED "愈战愈勇！\n" NOR, me);
+				me->add_temp("apply/attack", -att);
+				me->add_temp("apply/damage", -dam);
+				return;
+		}
+}
+
+/*
+mixed hit_ob(object me, object victim)
+{
         int time;
         time = me->query_temp("combat_time");
 
@@ -190,7 +215,7 @@ mixed hit_ob(object me, object victim)
 	 	return;
 	 }
 }
-
+*/
 int difficult_level()
 {
         return 400;
