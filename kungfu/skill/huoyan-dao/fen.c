@@ -26,7 +26,7 @@ int perform(object me)
  
         skill = me->query_skill("huoyan-dao", 1);
 
-	if (skill < 120)
+	if (skill < 180)
                 return notify_fail("你的火焰刀等级不够，还不能使出「焚身」！\n");
 
 	if (me->query_skill("force") < 120)

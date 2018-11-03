@@ -193,6 +193,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 				*/
 				if (me->query("shen") < - lvl * 1000 * 1000)
 					damage = damage_bonus + random(lvl);
+				else
+					damage = damage_bonus;
                 victim->receive_wound("qi", (damage - 80) / 3, me);
 
                 return random(2) ? HIR "只听$n" HIR "前胸「咔嚓」一声脆响，竟像是"

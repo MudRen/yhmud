@@ -28,7 +28,7 @@ int perform(object me, object target)
         if (me->query_skill("force") < 200) 
                 return notify_fail("你的内功的修为不够，无法施展" YAN "。\n");
         
-        if (me->query_skill("huoyan-dao", 1) < 150) 
+        if (me->query_skill("huoyan-dao", 1) < 220) 
                 return notify_fail("你的火焰刀修为不够，无法施展" YAN "。\n");
          
         if (me->query("neili") < 600 || me->query("max_neili") < 2000) 
