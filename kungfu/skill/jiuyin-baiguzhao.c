@@ -137,7 +137,7 @@ int practice_skill(object me)
                 if (sizeof(obs) < 1)
                         return notify_fail("练九阴白骨抓需有尸体或是完好的头盖骨。\n");
 
-                me->add("neili", -450);
+                me->add("neili", -250);
         }
 
         me->receive_damage("qi", 80);
@@ -154,7 +154,7 @@ int practice_skill(object me)
                                     "上面赫然有五个小洞，伸手一探，刚好可以插入。\n");
 
                 obs[0]->set_temp("clawed_by_jiuyin", 1);
-                me->improve_skill("jiuyin-baiguzhao", 100 + skill * 5 + random(500));
+                me->improve_skill("jiuyin-baiguzhao", 600 + random(skill) * 12);
         }
 
         return 1;

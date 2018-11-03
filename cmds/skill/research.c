@@ -162,7 +162,7 @@ int main(object me, string arg)
                 improve += lvl / 50 + me->query("int") / 3;            
        // 转世技能六阴鬼脉提升内功技能的研究速度
         if (me->query("special_skill/guimai") && SKILL_D(skill)->valid_enable("force"))
-                improve += improve * 50 / 100; 
+                improve += improve * 30 / 100; 
 
        //转世特技武星转世 by 薪有所属
         if (me->query("special_skill/wuxing"))
