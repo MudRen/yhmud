@@ -104,10 +104,10 @@ mixed ask_me()
         if(me->query("can_perform/huoyan-dao/fen"))
                 return "绝技你已经学会了，剩下的就要靠你自己多练习了。";
 
-        if (me->query_skill("huoyan-dao", 1) < 160)
+        if (me->query_skill("huoyan-dao", 1) < 180)
                 return "你的火焰刀法修为还不够，等你练好了再说吧！";
 			
-		if (me->query("shen") > -120000 )
+		if (me->query("shen") > -65000 )
                 return "你为人太过心软，这招暂时还不能传你。";
 
         if(me->query("gongxian") < 600 )
@@ -138,19 +138,16 @@ mixed ask_skill()
         if (me->query("can_perform/huoyan-dao/yan") )
                 return "你又来干什么？自己下去多练。";
 
-        if (me->query_skill("huoyan-dao", 1) < 1)
-                return "你连无上火焰刀都没学，哪里来绝招？";
-
         if (me->query("gongxian") < 1200 )
                 return "你的贡献还不够，这招暂时还不能传你。";
 
-        if (me->query("shen") > -65000 )
+        if (me->query("shen") > -120000 )
                 return "你为人太过心软，这招暂时还不能传你。";
 
-        if (me->query_skill("force") < 120)
+        if (me->query_skill("force") < 220)
                 return "你的内功修为不足，还学不了这一招。";
 
-        if (me->query("max_neili") < 6000 )
+        if (me->query("max_neili") < 5000 )
                 return "你的内力修为不足，还是修炼高点再来吧。";
 
         if (me->query_skill("huoyan-dao", 1) < 220)
@@ -193,7 +190,13 @@ int accept_object(object who, object ob)
             return -1;
 		}
 		
-		if (me->add("skybook/tianlong/jiumozhi", 1 + random(5)) < 10)
+		if (me->query("family/family_name" == "雪山派"))
+		{
+			me->add("skybook/tianlong/jiumozhi", 8);
+			command("say 原来是我雪山的后辈！");
+		}
+		
+		if (me->add("skybook/tianlong/jiumozhi", 1 + random(6)) < 10)
 		{
 			command("say 谢谢施主送来的六脉剑谱。");
 			command("heihei");

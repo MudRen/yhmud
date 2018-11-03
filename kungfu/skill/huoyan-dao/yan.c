@@ -31,7 +31,7 @@ int perform(object me, object target)
         if (me->query_skill("huoyan-dao", 1) < 220) 
                 return notify_fail("你的火焰刀修为不够，无法施展" YAN "。\n");
          
-        if (me->query("neili") < 600 || me->query("max_neili") < 2000) 
+        if (me->query("neili") < 600 || me->query("max_neili") < 3000) 
                 return notify_fail("你的真气不够，无法施展" YAN "。\n");
 
         if (me->query_skill_mapped("strike") != "huoyan-dao") 
@@ -52,7 +52,7 @@ int perform(object me, object target)
 			count = 0;
 		me->add_temp("unarmed_damage", count);
 		
-		if (me->query("shen") < - skill * 1000 * 1000)
+		if (me->query("shen") < - skill * skill * 1000)
 		{
 			me->add("neili", -180);
 			ap = me->query_skill("strike");
