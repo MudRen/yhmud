@@ -488,7 +488,9 @@ void zhuan_player(object me)
         
         //获取转生前门派，用于脱离时无损判断 by 薪有所属
         menpai1 = me->query("family/family_name");
-        me->set("old_family_name",menpai1);
+        //me->set("old_family_name",menpai1);
+		me->set("reborn/family/" + menpai1, 1);
+		me->deltet("reborn/family/mark");		//删除门派脱离记录
         me->delete("family");                // 门派记录
         
         //转世set
@@ -559,6 +561,7 @@ void zhuan_player(object me)
         }
         //me->set("reborn", 1);
 		me->add("reborn/count", 1);
+		me->add("reborn/point", 1);			//转世获得洗点1
 
 		//新增转世获得后天九转
 		if (random(2))

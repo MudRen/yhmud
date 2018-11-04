@@ -87,7 +87,7 @@ int perform(object me, object target)
 		
 		improve = improve * 5 / 100 / lvl;
 
-	me->add("neili", -180);
+		me->add("neili", -180);
         ap = (me->query_skill("sword") + me->query_skill("dodge")) / 2;
         dp = target->query_skill("dodge");
 		ap += ap * improve;

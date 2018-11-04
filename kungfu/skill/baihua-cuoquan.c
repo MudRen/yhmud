@@ -277,6 +277,9 @@ mixed hit_ob(object me, object victim, int damage_bonus)
         int lvl;
 
         lvl = me->query_skill("baihua-cuoquan", 1);
+		
+		if (me->query_craze() > 2000 && me->query("jianu"))
+				damage_bonus += me->query("jianu");
 
         if (damage_bonus < 150 || lvl < 150) return 0;
 

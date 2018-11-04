@@ -55,7 +55,8 @@ int perform(object me, object target)
         msg = HIW "$N" HIW "一声怒嚎，将战神心经提运极至，双拳顿时携着"
               "雷霆万钧之势猛贯向$n" HIW "。\n" NOR;
 			  
-		lvls = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3)) + 1;
+		lvls = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		lvls = lvls * 4 / 5;
 		ks = keys(me->query_skills(martial));
 		improve = 0;
 		n = 0;
@@ -72,9 +73,8 @@ int perform(object me, object target)
 		}
 		
 		improve = improve * 4 / 100 / lvls;
-		lvls = lvls * 4 / 5;
-
-        ap = me->query_skill("unarmed") +
+		
+		ap = me->query_skill("unarmed") +
              me->query_skill("force");
 		ap += ap * improve;		
 
@@ -96,7 +96,7 @@ int perform(object me, object target)
                 } else
 		{
                 	me->start_busy(4);
-                	me->add("neili", -600);
+                	me->add("neili", -400);
                 	damage = ap * 2 / 3 + random(ap);
                 	msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 150,
                         	                   HIR "结果$p" HIR "闪避不及，$P" HIR "的"
@@ -106,7 +106,7 @@ int perform(object me, object target)
         } else
         {
                 me->start_busy(5);
-                me->add("neili", -300);
+                me->add("neili", -150);
                 msg += CYN "可是$p" CYN "识破了$P"
                        CYN "这一招，斜斜一跃避开。\n" NOR;
         }
