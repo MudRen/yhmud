@@ -46,6 +46,9 @@ int main(object me, string str)
 		
 	} 
 	else
+	if (! owner)
+		tell_object(me, "这个人好像消失了！\n");
+	else
 		tell_object(me, "你的"+ ob->query("name") + "在" + owner->query("name") + "那里，你去找他吧。\n");
 	
 	return 1;
