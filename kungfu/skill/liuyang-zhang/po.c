@@ -80,7 +80,7 @@ int perform(object me, object target)
 		
 		improve = improve * 4 / 100 / lvl;
 
-		me->add("neili", -500);
+		me->add("neili", -380);
         ap = me->query_skill("force") + me->query_skill("strike");
         dp = target->query_skill("force") + target->query_skill("parry");
 		ap += ap * improve;
@@ -101,20 +101,19 @@ int perform(object me, object target)
                 } else
 			{
 			//damage = ap * 2 / 3;
-			        damage = ap;
-                	damage += random(damage / 2);
+			        damage = ap + random(ap / 2);
 
 	                msg += COMBAT_D->do_damage(me, target, UNARMED_ATTACK, damage, 90,
         	                                   HIR "$n" HIR "慌忙抵挡，可已然不及，$N"
                                                    HIR "掌劲如洪水般涌入体内，接连震断数根"
                                                    "肋骨。\n:内伤@?");
 			}
-			me->start_busy(3);
+			me->start_busy(1 + random(3));
 		} else
 		{
 			msg += CYN "$p" CYN "见$P" CYN "掌劲澎湃，决计抵挡不"
                        "住，当即身子向后横丈许，躲闪开来。\n" NOR;
-			me->start_busy(4);
+			me->start_busy(1 + random(4));
 		}
 		message_combatd(msg, me, target);
 
