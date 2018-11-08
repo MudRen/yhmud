@@ -89,8 +89,10 @@ int perform(object me, object target)
 		damage = me->query_skill("jinshe-jian", 1) +
                  me->query_skill("force", 1) +
                  me->query_skill("martial-cognize", 1);
-		if (me->query("family/family_name" == "五毒教"))
+				 
+		if (me->query("family/family_name") == "五毒教")
 				damage += damage / 10;
+			
 		damage += random(damage / 2);
 		
         if (ap * 2 / 3 + random(ap) > random(dp))
