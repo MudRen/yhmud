@@ -18,6 +18,7 @@ int main(string arg)
 {
         object *list, *ob, me;
         int i;
+		int index = 0;
         string msg;
 
         me = this_player();
@@ -40,6 +41,8 @@ int main(string arg)
 
         for (i = 0; i < 10; i++)
         {
+				if(list[i]->query("name") == me->query("name"))
+						index = i + 1;
                 if (i >= sizeof(list)||list[i]->query("id") == 0||get_score(list[i]) < 10)	//ivy
                 {
                         msg += HIW "┃        暂时空缺              无             -  ┃\n" NOR;
@@ -53,10 +56,21 @@ int main(string arg)
                         list[i]->query("family/family_name") : "江湖浪人",
                         get_score(list[i]));
         }
+		
+		if(index == 0)
+				for (i = 10; i < sizeof(list); i++)
+				{
+						if(list[i]->query("name") == me->query("name"))
+						{
+								index = i + 1;
+								break;
+						}
+				}
+		
         msg += HIW "┗━━━━━━━━━━━━━━━━━━━━━━━━┛\n" NOR;
         msg += HIG + NATURE_D->game_time() + "记。\n" NOR;
         msg += WHT "英雄壁下面有一行小字刻着：" + me->query("name") + "，目前评价：" +
-               get_score(me) + "。\n\n" NOR;
+               get_score(me) + "，排行第" + chinese_number(index) + "。\n\n" NOR;
 
         write(msg);
         me->set_temp("last_view", time());
