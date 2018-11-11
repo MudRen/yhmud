@@ -198,6 +198,32 @@ int practice_skill(object me)
         return 1;
 }
 
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
+        int lvl, damage;
+        object weapon = me->query_temp("weapon");
+
+        lvl = me->query_skill("yuxiao-jian", 1);
+
+        if (damage_bonus < 120
+           || lvl < 160
+           || random(2)
+           || me->query("neili") < 500
+           || me->query_skill_mapped("sword") != "yuxiao-jian" )
+      		return 0;
+
+        if (damage_bonus / 6 > victim->query_con())
+        {
+                
+					me->add("neili", -60);
+					damage = damage_bonus * 2 / 3 + random(me->query_skill("chuixiao-jifa") / 2);
+					victim->receive_wound("jing", damage, me);
+		  
+					return HIW "$N" HIW "手中" + weapon->name() + HIW "发出阵阵箫音，"
+						   "让$n" HIW "感到难受至极。\n" NOR;
+		}
+}
+
 string perform_action_file(string action)
 {
         return __DIR__"yuxiao-jian/" + action;

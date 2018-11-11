@@ -357,6 +357,8 @@ private void from_taohua()
         set_skill("mathematics", 1);
         set_skill("literate", 1);
         set_skill("martial-cognize", 1);
+		set_skill("chuixiao-jifa", 1);
+        set_skill("bihai-chaosheng", 1);
 
         map_skill("force", "bibo-shengong");
         map_skill("finger", "tanzhi-shentong");
@@ -708,6 +710,8 @@ private void from_kunlun()
         set_skill("zhengliangyi-jian", 1);
         set_skill("qiankun-jian", 1);
         set_skill("literate", 1);
+        set_skill("martial-cognize", 1);
+		set_skill("tanqin-jifa", 1);
         set_skill("martial-cognize", 1);
 
         map_skill("force", "liangyi-shengong");
@@ -1304,6 +1308,8 @@ private void from_taohua1()
         set_skill("mathematics", 1);
         set_skill("literate", 1);
         set_skill("martial-cognize", 1);
+		set_skill("chuixiao-jifa", 1);
+        set_skill("bihai-chaosheng", 1);
 
         map_skill("force", "bibo-shengong");
         map_skill("finger", "tanzhi-shentong");
