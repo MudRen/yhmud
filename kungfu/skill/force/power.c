@@ -50,7 +50,7 @@ int exert(object me, object target)
 		return notify_fail("你只能提升自己的战斗力。\n");
 
 	if ((int)me->query("neili") < 100)
-		return notify_fail("你的内力不够!");
+		return notify_fail("你的内力不够！\n");
 
 	if ((int)me->query_temp("power"))
 		return notify_fail("你已经在运功中了。\n");

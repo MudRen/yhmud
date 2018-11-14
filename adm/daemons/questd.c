@@ -16,6 +16,7 @@ public void   set_information(object qob, string key, mixed info);
 public mixed  query_information(object qob, string key);
 public void   remove_information(object qob, string key);
 public void   remove_all_information(object qob);
+public void remove_quest(string name);
 public string generate_information(object knower, object who, string topic);
 public void   start_all_quest();
 
@@ -1437,6 +1438,35 @@ public void remove_all_information(object qob)
         // 务本身，而一个提供消息的任务清除所有消息也具有相
         // 同的含义。
         map_delete(total, qob);
+}
+
+// 删除某一个任务
+public void remove_quest(string name)
+{
+        mapping total;
+        object *obs;
+        object qob;
+
+        if (! mapp(total = query("information")))
+                return;
+
+        obs = keys(total);
+        obs = filter_array(obs, (: objectp($1) :));
+
+        if (! sizeof(obs))
+                return;
+
+		qob = find_object(name);
+		if (! objectp(qob) || member_array(qob, obs) == -1)
+		{
+				obs = filter_array(obs, (: $1->name() == $(name) :));
+				if (! sizeof(obs))
+						return;
+				qob = obs[0];
+		}
+
+		remove_all_information(qob);
+		return;
 }
 
 // QUEST系统重新启动的时候收集所有任务对象的消息
