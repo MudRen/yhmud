@@ -191,7 +191,7 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 				if (cloth->query("consistence") < 0)
 					cloth->set("consistence", 0);
 				*/
-				if (me->query("shen") < - lvl * 1000 * 1000)
+				if (me->query("shen") < - lvl * lvl * lvl)
 					damage = damage_bonus + random(lvl);
 				else
 					damage = damage_bonus;
