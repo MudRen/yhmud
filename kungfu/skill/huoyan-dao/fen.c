@@ -44,7 +44,7 @@ int perform(object me)
 	ap = me->query_skill("force") + skill / 3;
 	dp = target->query_skill("force");
 	
-	if (me->query("shen") < - skill * 1000 * 1000)
+	if (me->query("shen") < - skill * skill * skill)
 		ap += skill / 2;
 
 	if (dp < 1) dp = 1;

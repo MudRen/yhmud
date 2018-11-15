@@ -52,7 +52,7 @@ int perform(object me, object target)
 			count = 0;
 		me->add_temp("unarmed_damage", count);
 		
-		if (me->query("shen") < - skill * skill * 1000)
+		if (me->query("shen") < - skill * skill * skill)
 		{
 			me->add("neili", -180);
 			ap = me->query_skill("strike");
