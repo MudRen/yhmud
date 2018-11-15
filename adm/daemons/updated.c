@@ -627,7 +627,7 @@ void zhuan_player(object me)
          	files -= ({ "tiandao" });
          	
          	//转世先天悟性小于35点不会随机到count特技 by 薪有所属
-         if (me->query("int") < 35)
+         if (me->query("int") < 35 || me->query("special_skill/tiandao"))
          	files -= ({ "qinzong" });
          	
          	//转世int<22或dex<26,极限也无法达到葵花要求时不给鬼脉特技 2017-03-29
