@@ -46,6 +46,7 @@ int perform(object me, object target)
 
         ap = me->query_skill("staff") +
              me->query_skill("martial-cognize",1) +
+			 me->query("family/beggarlvl") * 10 +
 			 me->query("int") * 10;
 
         dp = target->query_skill("dodge") +

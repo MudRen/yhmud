@@ -66,6 +66,7 @@ int perform(object me, object target)
                        "Ó°£¬¼±Ã¦ÊÕÁ²ĞÄÉñ£¬×ĞÏ¸ÕĞ¼Ü¡£\n" NOR;
                 count = ap / 12;
         }
+		count += me->query("family/beggarlvl") * 10;
 		me->add_temp("apply/attack", count);
         me->add_temp("apply/damage", count / 2);
         message_combatd(msg, me, target);
