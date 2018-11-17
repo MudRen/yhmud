@@ -16,6 +16,7 @@ int perform(object me, object target)
         int exp;
         int lvl;
         int sk;
+		int sk_lvl;
  
         if (! target)
                 return notify_fail("ÄãÒªÈ¡ÄÄÌõÉßµÄ¶¾ÒºÁ·Ò©£¿\n");
@@ -76,21 +77,23 @@ int perform(object me, object target)
         message_vision(msg, me);
         tell_object(me, HIC "ÄãÁ¶ÖÆÁËÒ»¿ÅÉß¶¾Ò©Íè¡£\n" NOR);
 
+		sk_lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
+		
         // improve skill
         exp = lvl;
-        me->improve_skill("poison", exp + random(exp));
+        //me->improve_skill("poison", exp + random(exp));
         if (me->can_improve_skill("shedu-qiqiao"))
                 me->improve_skill("shedu-qiqiao", exp + random(exp));
 
         //if (me->can_improve_skill("hamagong"))
         //        me->improve_skill("hamagong", 2 + random(exp / 6), 1);
-        if (me->can_improve_skill("poison"))
+        if (me->query_skill("poison", 1) < sk_lvl)
                 me->improve_skill("poison", exp + random(exp));
 
         // create the object
         ob = new("/clone/misc/shedu");
         ob->set("poison", ([
-                "level" : lvl,
+                "level" : (lvl / 60 * 60),
                 "id"    : me->query("id"),
                 "name"  : "Éß¶¾",
                 "duration" : 10,

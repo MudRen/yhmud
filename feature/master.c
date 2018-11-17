@@ -23,6 +23,7 @@ int prevent_learn(object me, string skill)
 void attempt_detach(object me)
 {
 		string menpai1;
+		menpai1 = me->query("family/family_name");
         if (! me->is_apprentice_of(this_object()))
         {
                 command("say 走开，我又不是你师傅，别来烦我。");

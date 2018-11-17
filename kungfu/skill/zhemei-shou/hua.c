@@ -35,7 +35,7 @@ int perform(object me, object target)
                 return notify_fail(HUA "只能空手施展。\n");
 
         if ((int)me->query_skill("beiming-shengong", 1) < 220
-			|| (int)me->query_skill("xiaowuxiang", 1) < 220)
+			&& (int)me->query_skill("xiaowuxiang", 1) < 220)
                 return notify_fail("你的逍遥内功火候不够，难以施展" HUA "。\n");
 
         if (lv = (int)me->query_skill("zhemei-shou", 1) < 220)

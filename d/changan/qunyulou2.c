@@ -18,32 +18,11 @@ LONG);
         	"down"  : __DIR__"qunyulou1",
         	"up"    : __DIR__"qunyulou3",
         ]));
-		if (random(5) > 3)
+		if (random(5) > 2)
 		set("objects", ([
         	__DIR__"npc/fuyun" : 1,
         ]) );
 
 	setup();
         replace_program(ROOM);
-}
-
-void init()
-{
-        add_action("do_say", "say");
-}
-
-int do_say(string arg)
-{
-        string dir;
-        object ob;
-
-        if( ! arg || arg == "" ) return 0;
-
-        if( arg == "天王盖地虎，宝塔镇河妖！" )
-        {
-                ob = new("/d/changan/npc/fuyun");
-                ob->move("/d/changan/qunyulou2"); 
-                message_vision(HIW "忽然屏风后面钻出一个鬼鬼祟祟的小老头。\n");     
-                return 1;
-        }
 }
