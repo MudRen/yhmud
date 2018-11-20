@@ -19,7 +19,7 @@ int main(string arg)
         object *list, *ob, me;
         int i;
 		int index = 0;
-        string msg;
+        string msg, zhuans;
 
         me = this_player();
 
@@ -48,10 +48,14 @@ int main(string arg)
                         msg += HIW "┃        暂时空缺              无             -  ┃\n" NOR;
                         continue;
                 }
+				if (list[i]->query("reborn/count"))
+					zhuans = "*";
+				else
+					zhuans = "";
                 msg += sprintf(HIW "┃" HIG "  %-5s %-22s%-10s %5d  " HIW "┃\n" NOR,
                         chinese_number(i + 1),
                         list[i]->query("name") + "(" +
-                        capitalize(list[i]->query("id")) + ")",
+                        capitalize(list[i]->query("id")) + ")" + zhuans,
                         list[i]->query("family") ?
                         list[i]->query("family/family_name") : "江湖浪人",
                         get_score(list[i]));

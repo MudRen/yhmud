@@ -538,8 +538,16 @@ int ask_quest(object me, object who)
                 if (level < 0 || level > MAX_QUEST_LEVEL)
                         level = 0;
 				level += reborn;
-
-                ob = new(CLASS_D("generate") + "/killed.c");
+				who->delete_temp("super");
+				//添加转世超级npc  
+				if (who->query("reborn") && who->query("combat_exp") > 800000 && random(50) <= reborn)
+				{
+					who->set_temp("super", reborn);
+					ob = new(CLASS_D("generate") + "/killed_super.c");
+					ob->set("can_learn/dugu-jiujian/nothing", 1);
+				}
+				else
+					ob = new(CLASS_D("generate") + "/killed.c");
                 NPC_D->place_npc(ob, who->query("combat_exp") < 500000  ? ({ "大理一带", "终南山", "关外", "西域" }) :
                                      who->query("combat_exp") < 800000 ? ({ "大理一带", "终南山", "西域" }) : 0);
                 NPC_D->set_from_me(ob, who, 100);
@@ -1058,7 +1066,9 @@ int accept_object(object me, object who, object ob)
 		{
 				pot += random((int)who->query_skill("force", 1)/3);
 		}
-
+		//转世出现超级npc额外奖励潜能,体会
+		pot += random(pot * who->query_temp("super"));
+		mar += random(mar * who->query_temp("super"));
         message_vision(msg, me, who);
         who->delete("quest");
         if (! bonus) return 1;
@@ -1121,7 +1131,7 @@ int accept_object(object me, object who, object ob)
         who->add("gongxian", gongxian);
 
         // 随机停止发送任务，必须等完成一定数量的freequest才能继续。
-        if (random(100) == 1 && quest_count >= 30 && ! who->query_temp("wiz_test"))
+        if (random(100) == 1 && quest_count >= 50 && ! who->query_temp("wiz_test"))
                 who->add("quest/freequest", 1 + random(3));
 
         return 1;

@@ -16,8 +16,7 @@ private void from_hubo();
 
 function *init_family = ({ (: from_jiuyin :),   (: from_jiuyang :),   (: from_liumai :),
                            (: from_taixuan :),   (: from_jiujian :),   (: from_kuihua :),
-                           (: from_pixie :),     (: from_xingxiu :),   (: from_xueshan :),
-                           (: from_xuedao :),   (: from_jiuyin1 :),   (: from_xianglong :), 
+                           (: from_pixie :),      (: from_jiuyin1 :),   (: from_xianglong :), 
                            (: from_lingbo :),	(: from_hubo :), });
 void create()
 {
