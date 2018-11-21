@@ -172,24 +172,29 @@ int practice_skill(object me)
 
 mixed hit_ob(object me, object victim)
 {
-        int skill, att, dam;
-		int qi, eff_qi, max_qi;
+        int skill, qi, eff_qi, max_qi;
+		int att_p, dam_p, att, dam;
+		
 		
 		qi = me->query("qi");
 		eff_qi = me->query("eff_qi");
 		max_qi = me->query("max_qi");
 		skill = me->query_skill("xuedao-dafa", 1);
-		att = random(skill * (max_qi - qi) / max_qi) + 20;
-		dam = random(skill * (max_qi - eff_qi) / max_qi) + 10;
+		att_p = (max_qi - qi) * 100 / max_qi;
+		dam_p = (max_qi - eff_qi) * 100 / max_qi;
+		att = random(skill * (max_qi - qi) / max_qi);
+		dam = random(skill * (max_qi - eff_qi) / max_qi);
 		
-		if (random(3) == 1 && (att > 20 || dam > 10))
+		if (random(4) == 1 && att_p > 20 && dam_p > 10 && ! me->query_temp("is_attacking"))
 		{
 				me->add_temp("apply/attack", att);
 				me->add_temp("apply/damage", dam);
+				me->set_temp("is_attacking", 1);
 				COMBAT_D->do_attack(me, victim, me->query_temp("weapon"), random(2)?10:30);
 				message_vision(HIR "血刀大法-->"HIW "天神下凡-->"RED "愈战愈勇！\n" NOR, me);
 				me->add_temp("apply/attack", -att);
 				me->add_temp("apply/damage", -dam);
+				me->delete_temp("is_attacking");
 				return;
 		}
 }
