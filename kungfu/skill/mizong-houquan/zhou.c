@@ -17,13 +17,13 @@ int perform(object me, object target)
 			"茫茫秋水六荒天！",
 			"笑问叶落看风云！",
 			"回首化月望秋水！",}); 
-	n = 2 + random(me->query_skill("houquan", 1) / 40);
+	n = 2 + random(me->query_skill("mizong-houquan", 1) / 40);
 	if (n > 8) n = 8;
 	
 	if (me->is_busy())
 		return notify_fail("你现在没空！！\n");
 	
-	if ((int)me->query_skill("houquan", 1) < 200)
+	if ((int)me->query_skill("mizong-houquan", 1) < 200)
 		return notify_fail("你的猴拳不够娴熟!\n");
 	
 	if (me->query_temp("weapon") || me->query_temp("secondary_weapon"))
@@ -41,7 +41,7 @@ int perform(object me, object target)
 		me->query_skill_prepared("strike"))
 			n -= 3;
 		
-	msg = HIY  "$N使出独步天下的［猴拳］，一招[破釜沉舟]打出了第一式！\n" NOR;
+	msg = HIY  "$N使出独步天下的［迷踪猴拳］，一招[破釜沉舟]打出了第一式！\n" NOR;
 	message_combatd(msg, me, target);
 	
 	for (i = 1; i < n; i++)

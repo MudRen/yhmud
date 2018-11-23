@@ -80,7 +80,7 @@ int perform(object me, object target)
 		sk_lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
 		
         // improve skill
-        exp = lvl;
+        exp = lvl / 2;
         //me->improve_skill("poison", exp + random(exp));
         if (me->can_improve_skill("shedu-qiqiao"))
                 me->improve_skill("shedu-qiqiao", exp + random(exp));

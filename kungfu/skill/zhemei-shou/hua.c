@@ -80,10 +80,10 @@ int perform(object me, object target)
 			}
 		}
 		
-		improve = improve * 5 / 100 / lvl;
+		improve = improve * 4 / 100 / lvl;
 			  
-        ap = me->query_skill("dodge", 1) + me->query_skill("hand");
-        dp = target->query_skill("dodge", 1) + target->query_skill("parry");
+        ap = me->query_skill("dodge") + me->query_skill("hand");
+        dp = target->query_skill("dodge") + target->query_skill("parry");
 
 		ap += ap * improve;
 		
@@ -129,14 +129,14 @@ int perform(object me, object target)
                         msg += "( $n" + eff_status_msg(p) + " )\n";
                         
                         me->add("neili", cost_neili);
-                        me->start_busy(3);
+                        me->start_busy(2);
                 }
         } else
         {
                 msg += CYN "$p" CYN "见状大惊失色，完全勘破不透$P"
                        CYN "招中奥秘，当即飞身跃起丈许，躲闪开来。\n" NOR;
                 me->add("neili", -200);
-                me->start_busy(4);
+                me->start_busy(3);
         }
         message_combatd(msg, me, target);
 
