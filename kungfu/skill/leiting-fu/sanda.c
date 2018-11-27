@@ -10,6 +10,9 @@ int perform(object me, object target)
 		string msg;
 		int ap, dp;
 		int damage, count;
+		int zhuan;
+		
+		zhuan = me->query("reborn/count");
 		
 		if (! target) target = offensive_target(me);
 		
@@ -39,14 +42,14 @@ int perform(object me, object target)
 			return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
 
 		ap = me->query_skill("hammer");
-        dp = target->query_skill("dodge");
+        dp = target->query_skill("force");
 		damage = me->query_skill("leiting-fu", 1);
 		damage += random(damage);
 		
 		// 第一斧劈脑袋
 		ap += me->query("str") * 6;
-		damage += me->query_str() * 6;
-		count = me->query_str();
+		damage += (me->query_str() - zhuan * 20) * 6;
+		count = me->query_str() - zhuan * 10;
 		
         msg = "\n" HIW "$N" HIW "喝道：劈脑袋！\n" NOR;
         if (ap * 2 / 3 + random(ap) > dp)
@@ -64,8 +67,8 @@ int perform(object me, object target)
         // 第二斧鬼剔牙
         ap += me->query("dex") * 8;
         dp = target->query_skill("parry");
-		damage += me->query_dex() * 8;
-		count += me->query("dex");
+		damage += (me->query_dex() - zhuan * 20) * 8;
+		count += me->query("dex") - zhuan * 10;
         msg += "\n" YEL "$N" YEL "喝道：鬼剔牙！\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
@@ -81,9 +84,9 @@ int perform(object me, object target)
 
         // 第三斧掏耳朵
         ap += me->query("con") * 10;
-        dp = target->query_skill("force");
-		damage += me->query_con() * 10;
-		count += me->query("con");
+        dp = target->query_skill("dodge");
+		damage += (me->query_con() - zhuan * 20) * 10;
+		count += me->query("con") - zhuan * 10;
         msg += "\n" HIM "$N" HIM "喝道：掏耳朵！\n" NOR;
         if (ap * 1 / 3 + random(ap) > dp)
         {

@@ -336,7 +336,7 @@ void set_from_me(object tob, object fob, int scale)
         my["eff_jing"]   = my["max_jing"];
         my["jing"]       = my["max_jing"];
         my["max_neili"]  = hp_status["max_neili"]* scale / 100;//适当减少NPC的最大内力，约为理论最大内力的77%
-        my["jiali"]      = tob->query_skill("force") / 7 + random(tob->query_skill("force") / 4);//适当减少NPC加力3->4
+        my["jiali"]      = tob->query_skill("force") / 10 + random(tob->query_skill("force") / 4);//适当减少NPC加力3->4
         //取消NPC最大内力上限9000的设定
 		/*
 		if (my["max_neili"] > 9000)
