@@ -41,14 +41,9 @@ int perform(object me, object target)
 		if (! living(target))
 			return notify_fail("对方都已经这样了，用不着这么费力吧？\n");
 
-		ap = me->query_skill("hammer");
-        dp = target->query_skill("force");
-		
-		damage += random(damage);
-		
 		// 第一斧劈脑袋
 		ap = me->query_skill("hammer") + me->query("str") * 2;
-		dp = target->query_skill("force") + target->query("str") * 2;
+		dp = target->query_skill("force");
 		damage = me->query_skill("leiting-fu", 1);
 		damage += (me->query_str() - zhuan * 20) * 2;
 		count = me->query_str() - zhuan * 20;
@@ -60,50 +55,55 @@ int perform(object me, object target)
                                            HIR "$p" HIR "一楞，只见$P" HIR "身形"
                                            "一闪，已晃至自己跟前，躲闪不及，被这"
                                            "招击个正中。\n" NOR);
+				me->add("neili", -80);
         } else
         {
                 msg += CYN "$p" CYN "冷静非凡，丝毫不为这奇幻的招数"
                        "所动，凝神抵挡，不漏半点破绽！\n" NOR;
+				me->add("neili", -40);
         }
 
         // 第二斧鬼剔牙
         ap += me->query("dex") * 3;
-		dp = target->query_skill("parry") + target->query("dex") * 3;
+		dp = target->query_skill("parry");
 		damage += (me->query_dex() - zhuan * 20) * 3;
 		count += me->query("dex") - zhuan * 20;
         msg += "\n" YEL "$N" YEL "喝道：鬼剔牙！\n" NOR;
-        if (ap / 2 + random(ap) > dp)
+        if (ap / 2 + random(ap * 4 / 5) > dp)
         {
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, count,
                                            HIR "$p" HIR "一楞，只见$P" HIR "身形"
                                            "一闪，已晃至自己跟前，躲闪不及，被这"
                                            "招击个正中。\n" NOR);
+				me->add("neili", -110);
         } else
         {
                 msg += CYN "$p" CYN "冷静非凡，丝毫不为这奇幻的招数"
                        "所动，凝神抵挡，不漏半点破绽！\n" NOR;
+				me->add("neili", -55);
         }
 
         // 第三斧掏耳朵
         ap += me->query("con") * 5;
-        dp = target->query_skill("dodge") + target->query("con") * 5;
+        dp = target->query_skill("dodge");
 		damage += (me->query_con() - zhuan * 20) * 5;
 		count += me->query("con") - zhuan * 20;
         msg += "\n" HIM "$N" HIM "喝道：掏耳朵！\n" NOR;
-        if (ap * 1 / 3 + random(ap) > dp)
+        if (ap / 3 + random(ap * 3 / 5) > dp)
         {
                 msg += COMBAT_D->do_damage(me, target, WEAPON_ATTACK, damage, count,
                                            HIR "$p" HIR "一楞，只见$P" HIR "身形"
                                            "一闪，已晃至自己跟前，躲闪不及，被这"
                                            "招击个正中。\n" NOR);
+				me->add("neili", -140);
         } else
         {
                 msg += CYN "$p" CYN "冷静非凡，丝毫不为这奇幻的招数"
                        "所动，凝神抵挡，不漏半点破绽！\n" NOR;
+				me->add("neili", -70);
         }
 
-        me->start_busy(2 + random(3));
-        me->add("neili", -200 - random(100));
+        me->start_busy(3 + random(3));
         message_combatd(msg, me, target);
         return 1;
 }
