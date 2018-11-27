@@ -43,13 +43,15 @@ int perform(object me, object target)
 
 		ap = me->query_skill("hammer");
         dp = target->query_skill("force");
-		damage = me->query_skill("leiting-fu", 1);
+		
 		damage += random(damage);
 		
 		// µÚÒ»¸«ÅüÄÔ´ü
-		ap += me->query("str") * 4;
-		damage += (me->query_str() - zhuan * 20) * 4;
-		count = me->query_str() - zhuan * 10;
+		ap = me->query_skill("hammer") + me->query("str") * 2;
+		dp = target->query_skill("force") + target->query("str") * 2;
+		damage = me->query_skill("leiting-fu", 1);
+		damage += (me->query_str() - zhuan * 20) * 2;
+		count = me->query_str() - zhuan * 20;
 		
         msg = "\n" HIW "$N" HIW "ºÈµÀ£ºÅüÄÔ´ü£¡\n" NOR;
         if (ap * 2 / 3 + random(ap) > dp)
@@ -65,10 +67,10 @@ int perform(object me, object target)
         }
 
         // µÚ¶þ¸«¹íÌÞÑÀ
-        ap += me->query("dex") * 6;
-        dp = target->query_skill("parry");
-		damage += (me->query_dex() - zhuan * 20) * 6;
-		count += me->query("dex") - zhuan * 10;
+        ap += me->query("dex") * 3;
+		dp = target->query_skill("parry") + target->query("dex") * 3;
+		damage += (me->query_dex() - zhuan * 20) * 3;
+		count += me->query("dex") - zhuan * 20;
         msg += "\n" YEL "$N" YEL "ºÈµÀ£º¹íÌÞÑÀ£¡\n" NOR;
         if (ap / 2 + random(ap) > dp)
         {
@@ -83,10 +85,10 @@ int perform(object me, object target)
         }
 
         // µÚÈý¸«ÌÍ¶ú¶ä
-        ap += me->query("con") * 8;
-        dp = target->query_skill("dodge");
-		damage += (me->query_con() - zhuan * 20) * 8;
-		count += me->query("con") - zhuan * 10;
+        ap += me->query("con") * 5;
+        dp = target->query_skill("dodge") + target->query("con") * 5;
+		damage += (me->query_con() - zhuan * 20) * 5;
+		count += me->query("con") - zhuan * 20;
         msg += "\n" HIM "$N" HIM "ºÈµÀ£ºÌÍ¶ú¶ä£¡\n" NOR;
         if (ap * 1 / 3 + random(ap) > dp)
         {
