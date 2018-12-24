@@ -34,7 +34,7 @@ int exert(object me, object target)
         me->add_temp("apply/unarmed_damage", skill / 5);
         me->set_temp("powerup", 1);
         me->start_call_out((: call_other, __FILE__, "remove_effect", me, skill :), skill);
-        if (me->is_fighting()) me->start_busy(3);
+        if (me->is_fighting()) me->start_busy(1 + random(3));
         return 1;
 }
 

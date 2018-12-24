@@ -452,6 +452,7 @@ void zhuan_player(object me)
         me->delete("bunch");                 // 帮派记录
         me->delete("league");                // 同盟记录
         //me->delete("family");                // 门派记录
+		me->set("family/family_name", "无门无派"); 
         me->delete("class");                 // 称号记录
         me->delete("detach");                // 脱离记录
         me->delete("betrayer");              // 叛师记录

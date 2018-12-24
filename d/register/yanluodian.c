@@ -252,6 +252,8 @@ int do_born(string arg)
 			me->move(obj);
 			me->set("mud_age", 0);
 			me->set("age", 14);
+			// 新增出生默认门派为无门无派				
+			me->set("family/family_name", "无门无派");
 			me->save();
 			HELP_CMD->main(me, "rules");
 		

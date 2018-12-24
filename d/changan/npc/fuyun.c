@@ -19,14 +19,15 @@ mapping convert_list = ([
 	5:			({"/clone/fam/item/yanluo", 1000, 0}),
 	6:			({"/clone/fam/item/lihuo", 1000, 0}),
 	7:			({"/clone/fam/item/qiankun_stone", 1000, 0}),
-	8:			({"/clone/fam/max/tianshu2", 3000, 0}),
-	9:			({"/clone/fam/max/tianshu1", 5000, 0}),
-	10:			({"/clone/fam/obj/guo", 6666, 0}),
-	11:			({"/clone/fam/max/longjia", 8888, 0}),
-	12:			({"/clone/fam/max/xuanhuang", 8888, 0}),
-	13:			({"/clone/fam/item/bless_water", 9999, 0}),
-	14:			({"/d/death/obj/qise", 99999, 0}),
-	15:			({"/d/death/obj/tianjing", 999999, 0}),
+	8:			({"/d/item/obj/tiancs", 1000, 0}),
+	9:			({"/clone/fam/max/tianshu2", 3000, 0}),
+	10:			({"/clone/fam/max/tianshu1", 5000, 0}),
+	11:			({"/clone/fam/obj/guo", 6666, 0}),
+	12:			({"/clone/fam/max/longjia", 8888, 0}),
+	13:			({"/clone/fam/max/xuanhuang", 8888, 0}),
+	14:			({"/clone/fam/item/bless_water", 9999, 0}),
+	15:			({"/d/death/obj/qise", 99999, 0}),
+	16:			({"/d/death/obj/tianjing", 999999, 0}),
 ]);
 
 void create()

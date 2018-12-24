@@ -189,7 +189,7 @@ void init_npc_skill(object ob, int skl)
 		
 		exp = ob->query("combat_exp");
 
-		if(exp == 3000000)
+		if(exp == 3000000 && skl >= 0 && skl <= sizeof(levels))
 	    {
 			exps = sort_array(keys(levels), 1);
 			exp = exps[skl];

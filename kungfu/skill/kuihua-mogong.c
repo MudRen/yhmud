@@ -179,8 +179,8 @@ int valid_learn(object me)
 
         level = me->query_skill("kuihua-mogong", 1);
 		
-		// 武学修养超过500时，取消武学修养对葵花魔攻的限制 by MK
-        if ((int)me->query_skill("martial-cognize", 1) < level && (int)me->query_skill("martial-cognize", 1)<500)
+		// 武学修养超过300时，取消武学修养对葵花魔攻的限制 by MK
+        if ((int)me->query_skill("martial-cognize", 1) < level && (int)me->query_skill("martial-cognize", 1)<300)
                 return notify_fail("你觉得自己的武学修养有限，难以领会更高深的葵花魔功。\n");
 
         for (i = 0; i < sizeof(usage_skills); i++)
@@ -324,7 +324,7 @@ mixed hit_ob(object me, object victim, int damage_bonus, int i, int attack_time)
            || ! living(victim)
            || damage_bonus < 120
            || me->query("neili") < 300
-           || me->query_temp("action_flag") == 0
+           || me->query_temp("action_flag")
            || me->query_skill("kuihua-mogong", 1) < 200)
         	return 0;
 

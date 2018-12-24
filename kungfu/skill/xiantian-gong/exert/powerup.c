@@ -29,7 +29,7 @@ int exert(object me, object target)
 
         me->start_call_out((: call_other, __FILE__, "remove_effect", me,
                               skill * 2 / 5 :), skill);
-        if (me->is_fighting()) me->start_busy(3);
+        if (me->is_fighting()) me->start_busy(1 + random(3));
         return 1;
 }
 

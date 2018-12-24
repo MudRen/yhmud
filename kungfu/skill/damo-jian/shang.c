@@ -74,7 +74,7 @@ string final(object me, object target, int damage)
         target->affect_by("damo_shangshen",
                 ([ "level"    : lvl + random(lvl),
                    "id"       : me->query("id"),
-                   "duration" : lvl / 50 + random(lvl / 20) ]));
+                   "duration" : 5 + random(lvl / 20) ]));
 
         target->receive_damage("jing", damage / 2, me);
         target->receive_wound("jing", damage / 4, me);

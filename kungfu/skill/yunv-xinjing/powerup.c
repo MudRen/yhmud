@@ -32,7 +32,7 @@ int exert(object me, object target)
                            skill / 3:), skill);
 
         if (me->is_fighting())
-                me->start_busy(3);
+                me->start_busy(1 + random(3));
 
         return 1;
 }

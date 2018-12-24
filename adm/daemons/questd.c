@@ -1079,6 +1079,16 @@ int accept_object(object me, object who, object ob)
         weiwang /= bonus;
         score /= bonus;
         gongxian /= bonus;
+		
+		if (me->query("family/family_name") == "нчценчеи")
+		{
+			exp += random(exp);
+			pot += random(pot);
+			mar += random(mar);
+			weiwang += random(weiwang);
+			score += random(score);
+			gongxian += random(gongxian);
+		}
 
         // bouns
         if (timeover)

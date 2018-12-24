@@ -80,7 +80,7 @@ int perform(object me, object target)
 		sk_lvl = to_int(pow(to_float(me->query("combat_exp") * 10), 1.0 / 3));
 		
         // improve skill
-        exp = lvl / 2;
+        exp = lvl;
         //me->improve_skill("poison", exp + random(exp));
         if (me->can_improve_skill("shedu-qiqiao"))
                 me->improve_skill("shedu-qiqiao", exp + random(exp));
@@ -88,7 +88,7 @@ int perform(object me, object target)
         //if (me->can_improve_skill("hamagong"))
         //        me->improve_skill("hamagong", 2 + random(exp / 6), 1);
         if (me->query_skill("poison", 1) < sk_lvl)
-                me->improve_skill("poison", exp + random(exp));
+                me->improve_skill("poison", (exp + random(exp)) * 3 / 2);
 
         // create the object
         ob = new("/clone/misc/shedu");
