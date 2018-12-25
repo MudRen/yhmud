@@ -46,7 +46,10 @@ int perform(object me, object target)
 
         me->add("neili", -100);
 
-        ap = skill * 3 / 2 + me->query_skill("martial-cognize", 1);
+        ap = me->query_skill("unarmed");
+		if(ap < me->query_skill("finger"))
+			ap = me->query_skill("finger");
+		ap += me->query_skill("martial-cognize", 1);
         dp = target->query_skill("parry") + target->query_skill("martial-cognize", 1);
 
         msg = HIY "$N" HIY "出手成指，随意点戳，似乎看尽了$n"

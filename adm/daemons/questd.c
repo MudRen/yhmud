@@ -1082,12 +1082,12 @@ int accept_object(object me, object who, object ob)
 		
 		if (me->query("family/family_name") == "нчценчеи")
 		{
-			exp += random(exp);
-			pot += random(pot);
-			mar += random(mar);
-			weiwang += random(weiwang);
-			score += random(score);
-			gongxian += random(gongxian);
+			exp += random(exp/2);
+			pot += random(pot/2);
+			mar += random(mar/2);
+			weiwang += random(weiwang/2);
+			score += random(score/2);
+			gongxian += random(gongxian/2);
 		}
 
         // bouns
