@@ -114,7 +114,7 @@ int perform(object me, object target)
         else
                 dp = target->query_skill("dodge") +
                      target->query_skill("parry") +
-					 target->query_skill("throwing");
+					 target->query_skill("martial-cognize",1);
 
         if (ap / 2 + random(ap) > dp)
         {

@@ -94,7 +94,7 @@ int perform(object me, object target)
                                "可能断气。" NOR ")\n";
                         damage = -1;
                 } else
-		{
+		        {
                 	me->start_busy(4);
                 	me->add("neili", -400);
                 	damage = ap * 2 / 3 + random(ap);
@@ -102,7 +102,7 @@ int perform(object me, object target)
                         	                   HIR "结果$p" HIR "闪避不及，$P" HIR "的"
                                                    "拳力掌劲顿时透体而入，口中鲜血狂喷，连"
                                                    "退数步。\n" NOR);
-		}
+		        }
         } else
         {
                 me->start_busy(5);

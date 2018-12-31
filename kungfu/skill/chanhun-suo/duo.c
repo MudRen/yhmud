@@ -57,7 +57,7 @@ int perform(object me, object target)
                                            HIR "的企图，被这一鞭硬击在胸口，鲜血飞"
                                            "溅，皮肉绽开！\n" NOR);
                 message_combatd(msg, me, target);
-                if (ap > 400) ap = 400;
+                //if (ap > 400) ap = 400;
                 dp += target->query_skill("martial-cognize", 1) * 2;
                 if (! target->is_busy() &&
                     weapon->query("material") == "white silk" &&
