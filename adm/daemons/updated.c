@@ -48,7 +48,7 @@ void check_user(object ob)
 
 	my = ob->query_entire_dbase();
 
-	if (ob->query("family/generation") == 0)
+	if (ob->query("family/generation") == 0 && ob->query("family/family_name") != "无门无派")
 		ob->delete("family");
 
 	if (ob->query("gender") == "无性")
@@ -346,9 +346,9 @@ void born_player(object me)
                 for (i = 0; i < sizeof(files); i++)
                         sscanf(files[i], "%s.c", files[i]);
 
-                // 去除转世特技
+                // 去除转世特技 //因取消师门药品奖励，故去除本草知识
                 files -= ({ "guibian", "guimai", "jinshen", "piyi",
-                   "qinzong", "wuxing", "shenyan","tiandao"});
+                   "qinzong", "wuxing", "shenyan", "tiandao", "herb"});
 
                 // 性格不符不会愤怒之心
                 if (me->query("character") != "光明磊落"
@@ -446,6 +446,7 @@ void zhuan_player(object me)
 
 
 //转世清除记录delete
+        me->set_name();                      // 重置姓名
         me->delete("couple");                // 家庭记录
         me->delete("sex");                   // 做爱记录
         me->delete("brothers");              // 结拜兄弟
@@ -491,11 +492,12 @@ void zhuan_player(object me)
         menpai1 = me->query("family/family_name");
         //me->set("old_family_name",menpai1);
 		me->set("reborn/family/" + menpai1, 1);
-		me->deltet("reborn/family/mark");		//删除门派脱离记录
+		me->delete("reborn/family/mark");		//删除门派脱离记录
+		me->delete("mark");		               //删除郭府打工记录
         me->delete("family");                // 门派记录
         
         //转世set
-        me->set("title", "普通百姓");        // 个人称号
+        me->set("title", "无门无派");        // 个人称号
         me->set("character", "国士无双");    // 转世性格
         //补充 by 薪有所属
         me->delete("tattoo");                   // 刺青记录

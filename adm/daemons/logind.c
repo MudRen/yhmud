@@ -803,8 +803,8 @@ object make_body(object ob)
 
 private void init_new_player(object user)
 {
-        // 初始化必要属性
-	user->set("title", "普通百姓");
+    // 初始化必要属性
+	user->set("title", "无门无派");
 	user->set("birthday", time() );
 	user->set("potential", 99);
         user->set("food", (user->query("str") + 10) * 10);

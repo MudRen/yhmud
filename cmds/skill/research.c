@@ -156,10 +156,10 @@ int main(object me, string arg)
 //相对原版增加300级和500级后的研究速度 2016-12-24
         if (lvl >= 500)
                 //improve += lvl / 75 + me->query("int") / 6;
-                //提升500级后的技能研究速度。 2017-02-18
-                improve += lvl / 50 + me->query("int") / 6;
+                //提升500级后的技能研究速度。
+                improve += lvl / 50 + to_int(pow(me->query("int") / 6.0, 2));
         else
-                improve += lvl / 50 + me->query("int") / 3;            
+                improve += lvl / 50 + to_int(pow(me->query("int") / 12.0, 2));            
        // 转世技能六阴鬼脉提升内功技能的研究速度
         if (me->query("special_skill/guimai") && SKILL_D(skill)->valid_enable("force"))
                 improve += improve * 30 / 100; 

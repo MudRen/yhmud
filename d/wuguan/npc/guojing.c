@@ -191,7 +191,7 @@ void init()
 				&& (int)ob->query("combat_exp") > 12500        //③ 确认经验值12.5K和40K之间
                 && (int)ob->query("combat_exp") < 40000
 				&& ! ob->query_temp("job_name")                //④ 此时没有领取工作
-				&& ! ob->query("family/family_name")           //⑤ 没有拜师
+				&& ( ! ob->query("family/family_name")|| ob->query("family/family_name") == "无门无派")           //⑤ 没有拜师
 				&& ! ob->query("can_learn/3skills/guojing")    //⑤ 保证以前未触发此情节
 				&& ! stringp(ob->query_skill_mapped("force"))) //⑥ 没有激发特殊内功
 			{

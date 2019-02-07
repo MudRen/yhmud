@@ -83,12 +83,12 @@ int main(object me, string arg)
 */
 //练习和int挂钩 by 大曾
         if (skill >= 500)
-                improve = skill_basic / (int) me->query("int");
+                improve = to_int(skill_basic / pow((int) me->query("int"), 1.0 / 2) / 6);
         else
         if (skill >= 300)
-                improve = skill_basic * 3 / (int) me->query("int");
+                improve = to_int(skill_basic * 3 / pow((int) me->query("int"), 1.0 / 2) / 6);
         else
-                improve = skill_basic * 6 / (int) me->query("int") + 30 / (int) me->query("int");
+                improve = to_int((skill_basic * 6 + 30) / pow((int) me->query("int"), 1.0 / 2) / 6);
 
 //转世特技武星转世 by 薪有所属
         if (me->query("special_skill/wuxing"))

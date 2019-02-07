@@ -46,6 +46,7 @@ void create()
         set_skill("literate", 350);
         set_skill("martial-cognize", 400);
         set_skill("kuihua-mogong", 450);
+		set_skill("pixie-jian", 450);
 
 	map_skill("force", "kuihua-mogong");
 	map_skill("dodge", "kuihua-mogong");
@@ -90,6 +91,33 @@ void create()
 
         carry_object(__DIR__"zhen")->wield();
 	carry_object(__DIR__"changpao")->wear();
+}
+
+
+int recognize_apprentice(object me, string skill)
+{
+		me = this_player();
+		if (me->query("family/family_name") != "日月神教")
+        {
+                command("say 哪里来的狂徒！");
+				me->move("/d/heimuya/up1");
+                return -1;
+        }
+		
+		if (me->query("family/master_name") == "任我行")
+        {
+                command("say 原来是任老头安排过来的奸细！");
+				me->move("/d/heimuya/up1");
+                return -1;
+        }
+
+        if (skill != "pixie-jian")
+        {
+                command("say 没其他的事别来骚扰本姑娘。");
+				me->move("/d/heimuya/up1");
+                return -1;
+        }
+        return 1;
 }
 
 mixed ask_kuihua()
