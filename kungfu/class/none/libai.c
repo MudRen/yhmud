@@ -18,7 +18,7 @@ LONG);
         set("gender", "ÄĞĞÔ");
         set("age", 37);
         set("attitude", "friendly");
-        set("shen_type", 1);
+        //set("shen_type", 1);
         set("str", 50);
         set("int", 50);
         set("con", 50);

@@ -230,6 +230,15 @@ mixed ask_riyue()
 
         me->set_skill("shigu-bifa", 10);
 		me->set("can_learn/meizhuang", 1);
+		
+		if (me->query("gongxian") > 10000 &&
+			me->query("balance") > 100000000)
+		{
+			me->add("gongxian", -10000);
+			me->add("balance", -100000000);
+			me->set("can_perform/shigu-bifa/feng", 1);
+			me->set("can_perform/shigu-bifa/shiyi", 1);
+		}
 
         tell_object(me, HIG "你学会了石鼓打穴笔法！\n" NOR);
 

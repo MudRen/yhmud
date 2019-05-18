@@ -191,6 +191,14 @@ mixed ask_riyue()
 
         me->set_skill("pomopima-jian", 10);
 		me->set("can_learn/meizhuang", 1);
+		
+		if (me->query("gongxian") > 10000 &&
+			me->query("balance") > 100000000)
+		{
+			me->add("gongxian", -10000);
+			me->add("balance", -100000000);
+			me->set("can_perform/pomopima-jian/zui", 1);
+		}
 
         tell_object(me, HIG "ÄãÑ§»áÁËÆÃÄ«ÅûÂé½££¡\n" NOR);
 

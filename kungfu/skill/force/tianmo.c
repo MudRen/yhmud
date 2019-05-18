@@ -10,11 +10,14 @@ int exert(object me, object target)
 {
 	int shen, shen_lvl;
 	int skill, count;
+	int i;
+	string *skills;
 		
 	shen = me->query("shen");
 	shen_lvl = to_int(pow(to_float(-shen), 1.0 / 3));
 	skill = me->query_skill("force", 1);
 	count = (shen_lvl + skill) / 4;
+	skills = keys(me->query_skill_map());
 	
 	if (me->query_temp("tianmo"))
 		return notify_fail("你已经在运功中了。\n");
@@ -45,12 +48,17 @@ int exert(object me, object target)
 	me->add_temp("apply/int", me->query("int"));
 	me->add_temp("apply/con", me->query("con"));
 	me->add_temp("apply/dex", me->query("dex"));
-	me->add_temp("apply/dodge", me->query("dex") * 2);
-	me->add_temp("apply/parry", me->query("con") + me->query("dex"));
-	me->add_temp("apply/force", me->query("con") * 2);
+	//me->add_temp("apply/dodge", me->query("dex"));
+	//me->add_temp("apply/parry", me->query("dex"));
+	//me->add_temp("apply/force", me->query("con"));
 	me->add_temp("apply/attack", count);
 	me->add_temp("apply/damage", me->query("str") * 3);
 	me->add_temp("apply/unarmed_damage", me->query("str") * 3);
+	
+	for (i = 0; i < sizeof(skills); i++)
+    {
+			me->add_temp("apply/" + skills[i], count / 2);
+	}
 	
 	me->set_temp("tianmo", 1);
 

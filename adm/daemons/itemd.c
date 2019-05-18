@@ -856,7 +856,7 @@ void continue_attack(object me, object victim, object weapon, int times)
         string msg;
         int ap, dp;
 
-        if (! me || ! victim || ! weapon || ! me->is_fighting(victim))
+        if (! me || ! victim || ! weapon || ! me->is_fighting(victim) || ! living(victim))
                 return;
 
         msg  = HIW "霎时只听$N" HIW "纵声长啸，人与" + weapon->name() +

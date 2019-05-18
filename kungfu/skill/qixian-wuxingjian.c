@@ -85,6 +85,17 @@ mapping *action_unarmed = ({
         "skill_name" : "星河气旋",
         "damage_type" : "刺伤"
 ]),
+([      "action": " "RED" 七弦无形剑之极意 "NOR"",
+        "force"  : (int)this_player()->query_skill("force", 1)/2 + (int)this_player()->query_skill("tanqin-jifa", 1),
+        "attack" : (int)this_player()->query_skill("unarmed", 1)/4 + random((int)this_player()->query_skill("tanqin-jifa", 1)/2),
+        "dodge"  : (int)this_player()->query_skill("dodge", 1)/6 + random((int)this_player()->query_skill("force", 1)/3),
+        "parry"  : (int)this_player()->query_skill("parry", 1)/6 + random((int)this_player()->query_skill("parry", 1)/3),
+        "damage" : (int)this_player()->query_skill("force", 1)/8 + random((int)this_player()->query_skill("tanqin-jifa", 1)),
+        "lvl"    : 300,
+		"weapon" : HIW "破体无形剑气" NOR,
+		"skill_name" : "星河旋涡",
+        "damage_type": "刺伤"
+]),
 });
 
 
@@ -152,6 +163,15 @@ mapping *action_sword = ({
         "lvl" : 240,
         "damage_type" : "刺伤",
 ]),
+([      "action": " "RED" 七弦无形剑之极意 "NOR"",
+        "force"  : (int)this_player()->query_skill("force", 1)/2 + random((int)this_player()->query_skill("tanqin-jifa", 1)),
+        "attack" : (int)this_player()->query_skill("sword", 1)/4 + random((int)this_player()->query_skill("tanqin-jifa", 1)/2),
+        "dodge"  : -50,
+        "parry"  : -50,
+        "damage" : (int)this_player()->query_skill("force", 1)/8 + random((int)this_player()->query_skill("tanqin-jifa", 1)),
+        "lvl"    : 300,
+        "damage_type": "刺伤"
+]),
 });
 
 int valid_enable(string usage) 
@@ -176,20 +196,21 @@ int valid_learn(object me)
         if ((int)me->query_skill("sword", 1) < 180)
                 return notify_fail("你的基本剑法火候不够，无法修炼七弦无形剑。\n");
 
-        if ((int)me->query_skill("tanqin-jifa", 1) < 100)
+        if ((int)me->query_skill("tanqin-jifa", 1) < 200)
                 return notify_fail("弹琴技法水平有限，无法修炼七弦无形剑。\n");
 
         if ((int)me->query_skill("force", 1) < (int)me->query_skill("qixian-wuxingjian", 1))
                 return notify_fail("你的内功修为有限，无法领会更高深的七弦无形剑。\n");
 
-        if ((int)me->query_skill("unarmed", 1) < (int)me->query_skill("qixian-wuxingjian", 1))
-                return notify_fail("你的基本拳脚水平有限，无法领会更高深的七弦无形剑。\n");
+        //if ((int)me->query_skill("unarmed", 1) < (int)me->query_skill("qixian-wuxingjian", 1))
+        //        return notify_fail("你的基本拳脚水平有限，无法领会更高深的七弦无形剑。\n");
 
-        if ((int)me->query_skill("sword", 1) < (int)me->query_skill("qixian-wuxingjian", 1))
-                return notify_fail("你的基本剑法水平有限，无法领会更高深的七弦无形剑。\n");
+        if ((int)me->query_skill("sword", 1) < (int)me->query_skill("qixian-wuxingjian", 1) &&
+			(int)me->query_skill("unarmed", 1) < (int)me->query_skill("qixian-wuxingjian", 1))
+                return notify_fail("你的基础太差，无法领会更高深的七弦无形剑。\n");
 
-        if ((int)me->query_skill("tanqin-jifa", 1) < (int)me->query_skill("qixian-wuxingjian", 1) / 2)
-                return notify_fail("你对琴学的了解不够深入，无法领会更高深的七弦无形剑。\n");
+        //if ((int)me->query_skill("tanqin-jifa", 1) < (int)me->query_skill("qixian-wuxingjian", 1) / 2)
+        //        return notify_fail("你对琴学的了解不够深入，无法领会更高深的七弦无形剑。\n");
 
         return 1;
 }
@@ -226,6 +247,9 @@ int practice_skill(object me)
 
         if ((int)me->query("neili") < 120)
                 return notify_fail("你的内力不够练七弦无形剑！\n");
+			
+		if ((int)me->query_skill("qixian-wuxingjian", 1) > 500)
+			return notify_fail("更高深的七弦无形剑只能通过研究提升！\n");
 
         me->receive_damage("qi", 60);
         me->add("neili", -100);

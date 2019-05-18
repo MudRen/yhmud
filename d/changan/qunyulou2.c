@@ -18,7 +18,7 @@ LONG);
         	"down"  : __DIR__"qunyulou1",
         	"up"    : __DIR__"qunyulou3",
         ]));
-		if (random(5) > 2)
+		//if (random(5) > 2)
 		set("objects", ([
         	__DIR__"npc/fuyun" : 1,
         ]) );

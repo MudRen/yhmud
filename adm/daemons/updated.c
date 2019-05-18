@@ -453,7 +453,7 @@ void zhuan_player(object me)
         me->delete("bunch");                 // 帮派记录
         me->delete("league");                // 同盟记录
         //me->delete("family");                // 门派记录
-		me->set("family/family_name", "无门无派"); 
+		 
         me->delete("class");                 // 称号记录
         me->delete("detach");                // 脱离记录
         me->delete("betrayer");              // 叛师记录
@@ -499,6 +499,7 @@ void zhuan_player(object me)
         //转世set
         me->set("title", "无门无派");        // 个人称号
         me->set("character", "国士无双");    // 转世性格
+		me->set("family/family_name", "无门无派");	//设定转世后默认散人
         //补充 by 薪有所属
         me->delete("tattoo");                   // 刺青记录
         //me->delete("special_skill");            // 特技记录

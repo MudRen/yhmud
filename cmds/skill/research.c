@@ -95,9 +95,10 @@ int main(object me, string arg)
 
                 if (ks[i] == skill)
                         continue;
-
+				//取消子技能不能加成研究的限制
                 if (SKILL_D(ks[i])->main_skill()
-                   && SKILL_D(ks[i])->main_skill() != ks[i])
+					&& SKILL_D(ks[i])->main_skill() != ks[i]
+					&& me->query_skill(SKILL_D(ks[i])->main_skill(), 1) > 0)
                         continue;
 
                 if (SKILL_D(skill)->valid_enable(ks[i]))

@@ -174,6 +174,7 @@ int main(object me, string arg)
          				    if (me->query("family/family_name")=="峨嵋派") room = get_object("/d/emei/hcahoudian");else
          				    //补充重新开放的嵩山 2017-02-07
          				    if (me->query("family/family_name")=="嵩山派") room = get_object("/d/songshan/fengchantai");else
+							if (me->query("family/family_name")=="无门无派") room = get_object("/d/luoyang/zuixianlou4");else
          							//古墓分支
          						
          						if (me->query("family/family_name")=="古墓派") 
