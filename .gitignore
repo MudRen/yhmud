@@ -1,0 +1,10 @@
+/backup
+/binaries
+/data
+/dump
+/log
+/temp
+/tmp
+/version
+*DUMP
+desktop.ini
