@@ -1,3 +1,3 @@
 :start
-fluffos64\driver.exe -C config.cfg
+bin\driver.exe config.ini
 goto start
