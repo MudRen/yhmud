@@ -33,11 +33,6 @@ STATIC_VAR_TAG mixed *story = ({
 void create()
 {
         seteuid(getuid());
-        if (! objectp(select_character()))
-        {
-                destruct(this_object());
-                return;
-        }
 }
 
 object select_character()
