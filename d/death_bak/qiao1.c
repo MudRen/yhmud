@@ -31,7 +31,7 @@ LONG NOR );
 
 int valid_leave(object me, string dir)
 {
-        object ob;
+//      object ob;
         me = this_player();
 
         if (dir == "north")
@@ -53,7 +53,7 @@ void init()
 
 int do_move(string arg)
 {
-        object paper,
+        object /*paper,*/
         me = this_player();
 
         if (! arg || arg == "")

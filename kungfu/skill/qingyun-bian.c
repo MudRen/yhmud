@@ -81,7 +81,7 @@ int valid_learn(object me)
 { 
         object weapon; 
         int lvl = (int)me->query_skill("qingyun-bian", 1); 
-        int t = 1, j; 
+        int t = 1/*, j*/; 
         if( (int)me->query("max_neili") < 500 ) 
                 return notify_fail("你的内力不足，没有办法练青云鞭法, 多练些内力再来吧。\n"); 
  
@@ -139,4 +139,3 @@ string perform_action_file(string action)
 { 
                 return __DIR__"qingyun-bian/" + action; 
 } 
-

@@ -8,7 +8,7 @@ void remove_effect(object me, int amount);
 
 int exert(object me, object target)
 {
-        int skill, qi, maxqi;
+        int skill/*, qi, maxqi*/;
 
 
         //if (me->query("family/family_name") != "…Ÿ¡÷≈…")
@@ -52,4 +52,3 @@ int exert(object me, object target)
 
         return 1;
 }
-

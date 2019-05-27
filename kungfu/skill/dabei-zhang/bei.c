@@ -10,7 +10,7 @@ int perform(object me, object target)
         int damage;
         string msg;
         int i, ap, dp;
-        object weapon;
+//      object weapon;
 
         if (userp(me) && ! me->query("can_perform/dabei-zhang/bei"))
                 return notify_fail("你所使用的外功中没有这种功能。\n");
@@ -77,4 +77,3 @@ int perform(object me, object target)
         me->start_busy(4 + random(3));
         return 1;
 }
-

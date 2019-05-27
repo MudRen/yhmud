@@ -9,9 +9,9 @@ void remove_effect(object me, int amount);
 
 int exert(object me, object target)
 {
-        string msg;
-        mapping buff, data;
-        int d_count, count, qi, maxqi, skill;
+//      string msg;
+//      mapping buff,data;
+        int /*d_count,count,*/ qi, maxqi, skill;
 		object weapon = me->query_temp("weapon");
 		skill = me->query_skill("zixia-shengong", 1);
 

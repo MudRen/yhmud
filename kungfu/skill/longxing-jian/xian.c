@@ -5,7 +5,7 @@
 int perform(object me)
 {
         int skill;
-        string msg;
+//      string msg;
 
         if (! me->is_fighting())
                 return notify_fail("神龙再现只能在战斗中使用。\n");
@@ -36,4 +36,3 @@ int perform(object me)
 
         return 1;
 }
-

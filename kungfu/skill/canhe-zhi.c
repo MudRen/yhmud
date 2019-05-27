@@ -111,7 +111,7 @@ int get_ready(object me)
 
 int get_finish(object me)
 {
-        object ob;
+//      object ob;
 
         if (me->query("int") < 34)
         {

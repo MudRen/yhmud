@@ -8,8 +8,8 @@ inherit F_SSERVER;
 int perform(object me, object target)
 {
         string type, msg;
-        object weapon, weapon2;
-        int i, count, damage;
+        object weapon/*, weapon2*/;
+        int i, count/*, damage*/;
         int ap, dp;
 
         if (me->query_skill("daojian-guizhen", 1) < 200)

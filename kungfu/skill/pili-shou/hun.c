@@ -10,7 +10,7 @@ inherit F_SSERVER;
 int perform(object me, object target)
 {
 	string msg;
-	object weapon;
+//	object weapon;
 	int skill, ap, dp, damage;
 
         if (! target)

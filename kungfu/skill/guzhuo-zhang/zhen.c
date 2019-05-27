@@ -10,7 +10,7 @@ int perform(object me, object target)
         int damage;
         string msg;
         int i, ap, dp;
-        object weapon;
+//      object weapon;
 		
 		float improve;
 		int lvl, m, n;
@@ -110,4 +110,3 @@ int perform(object me, object target)
         me->start_busy(2 + random(4));
         return 1;
 }
-

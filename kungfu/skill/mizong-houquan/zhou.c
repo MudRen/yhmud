@@ -7,7 +7,7 @@ int perform(object me, object target)
 {
 	string msg;
 	int i, n;
-	object weapon;
+//	object weapon;
 	string *msgs = ({ 
 			"笑问七剑一指仙！",
 			"叶落枫舞二穿山！",

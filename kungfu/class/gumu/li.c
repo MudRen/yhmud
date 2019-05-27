@@ -261,7 +261,7 @@ string ask_zhen()
 {
         object me;
         object ob;
-        mapping fam;
+//      mapping fam;
 
         me = this_player();
 

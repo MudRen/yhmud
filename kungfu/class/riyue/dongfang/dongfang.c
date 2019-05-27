@@ -1,4 +1,3 @@
-
 #include <ansi.h>
 #include <command.h>
 #include "/kungfu/skill/eff_msg.h";
@@ -17,7 +16,7 @@ int p, j;
 
 void create()
 {
-        object ob;
+//      object ob;
 	set_name(HIR "东方不败" NOR, ({ "dongfang bubai", "dongfang", "bubai" }));
 	set("long", " 她就是东方不败，看起来不男不女，样子却甚为妖媚。\n");
 	set("gender", "无性");

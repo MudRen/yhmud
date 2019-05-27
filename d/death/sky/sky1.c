@@ -39,7 +39,7 @@ void init()
 
 int do_move(string arg)
 {
-        object paper,
+        object /*paper,*/
         me = this_player();
 
         if (! arg || arg == "")
@@ -62,4 +62,3 @@ int do_move(string arg)
         }
         return 0;
 }
-

@@ -10,7 +10,7 @@ int perform(object me, object target)
 	object weapon;
 	string msg;
 	int skill, count, damage;
-	int ap, dp;
+	int ap/*, dp*/;
 	skill = me->query_skill("huoyan-dao", 1);
  
         if (userp(me) && ! me->query("can_perform/huoyan-dao/yan"))

@@ -8,7 +8,7 @@ void remove_effect(object me, int a_amount);
 
 int exert(object me, object target)
 {
-        object weapon;
+//      object weapon;
         int skill;
         string msg;
 
@@ -37,4 +37,3 @@ int exert(object me, object target)
 
         return 1;
 }
-

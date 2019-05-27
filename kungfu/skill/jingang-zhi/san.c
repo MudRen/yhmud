@@ -13,8 +13,8 @@ string *xue_name = ({
 int perform(object me, object target)
 {
         int damage, lvl;
-        string msg, wp;
-        object weapon;
+        string msg/*, wp*/;
+//      object weapon;
         int ap, dp;
 
         if (userp(me) && ! me->query("can_perform/jingang-zhi/san"))
@@ -87,4 +87,3 @@ int perform(object me, object target)
 
         return 1;
 }
-

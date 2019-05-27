@@ -122,7 +122,7 @@ void create()
 
 mixed ask_quest()
 {
-        object ob;
+//      object ob;
         object me;
         me = this_player();
 

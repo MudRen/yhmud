@@ -18,9 +18,9 @@ void create()
 void main()
 {
 	object me, *obs;
-	object ob;
+//	object ob;
 	object room;
-	int i, exp;
+	int /*i,*/ exp;
 	int lvl, num;
 	
 	me = this_player();
@@ -79,5 +79,4 @@ void creat_npc(int lvl, int num)
 	}
 	tell_object(me, HIW "你感觉身边好像多了个身影。\n" NOR);
 }
-
 

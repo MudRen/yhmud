@@ -39,7 +39,7 @@ int dispel(object me, object ob, int duration)
 
 int update_condition(object me, int duration)
 {
-	int limit;
+//	int limit;
 
 	if (! living(me) && (me->query("eff_qi") < 20 || me->query("eff_jing") < 10))
         {

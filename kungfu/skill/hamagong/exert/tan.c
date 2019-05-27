@@ -7,7 +7,7 @@ inherit F_SSERVER;
 int exert(object me, object target)
 {
 	object du;
-	int damage;
+//	int damage;
         int ap;
 	string msg;
 

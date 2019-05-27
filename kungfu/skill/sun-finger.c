@@ -255,7 +255,7 @@ int practice_skill(object me)
 
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
-      	string name, weapon;
+      	string name/*, weapon*/;
       	name = xue_name[random(sizeof(xue_name))];
 
       	if (victim->is_busy())

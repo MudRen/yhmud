@@ -13,7 +13,7 @@ int exert(object me, object target)
         int amount;
         int exp;
         int lvl;
-        int sk;
+//      int sk;
 
         if (! target || target == me)
         {
@@ -101,4 +101,3 @@ int exert(object me, object target)
 
         return 1;
 }
-

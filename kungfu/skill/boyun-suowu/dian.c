@@ -9,7 +9,7 @@ string name()
 
 int perform( object me, object target )
 {
-	int	ap, dp, damage;
+	int	ap, dp/*, damage*/;
 	string	msg;
 
 	if ( !target )

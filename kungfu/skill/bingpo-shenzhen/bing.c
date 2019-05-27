@@ -9,7 +9,7 @@ inherit F_SSERVER;
 
 int perform(object me, object target)
 {
-        int skill, n;
+        int skill/*, n*/;
         int ap, dp, p;
         string msg, pmsg;
         object weapon;

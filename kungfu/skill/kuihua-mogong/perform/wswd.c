@@ -12,7 +12,7 @@ int perform(object me, object target)
     object weapon;
     string msg;
     int ap, dp;
-    int damage,busy,cost;
+    int damage,busy/*,cost*/;
 
     if( !target ) target = offensive_target(me);
     

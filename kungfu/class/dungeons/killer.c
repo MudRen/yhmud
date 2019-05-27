@@ -1,10 +1,9 @@
-
 #include <ansi.h>
 inherit CLASS_D("generate") + "/chinese";
 
 void create()
 {
-        mapping my;
+//      mapping my;
 
         ::create();
         set("age", 30 + random(30));

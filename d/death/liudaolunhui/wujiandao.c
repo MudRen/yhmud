@@ -37,7 +37,7 @@ void init()
 
 int do_say(string arg)
 {
-        string dir;
+//      string dir;
         object ob;
 
         if( ! arg || arg == "" ) return 0;
@@ -181,5 +181,4 @@ int do_smash(string arg)
         
         return 1;
 }
-
 

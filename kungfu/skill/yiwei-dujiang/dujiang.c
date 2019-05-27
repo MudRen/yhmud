@@ -8,9 +8,9 @@ inherit F_CLEAN_UP;
 
 int perform(object me, object target)
 {
-        object weapon;  
+//      object weapon;  
         string msg;
-        int count, cnt, skill;
+        int count/*, cnt*/, skill;
 
         if ((int)me->query_temp("dujiang"))
                 return notify_fail("你已经运起「一苇渡江」了。\n");
@@ -63,4 +63,3 @@ void remove_effect(object me, int amount, int amount1)
                 tell_object(me, "你的「一苇渡江」运功完毕，将内力收回丹田。\n");
         }
 }
-

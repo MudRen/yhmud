@@ -10,7 +10,7 @@ void cuixin_end(object me, object target, int count);
 int perform(object me)
 {
         string msg;
-        object weapon, target;
+        object /*weapon,*/ target;
         int ap, dp;
         int damage, lvl, count; 
 

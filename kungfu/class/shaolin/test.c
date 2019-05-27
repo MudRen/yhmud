@@ -99,10 +99,10 @@ void create()
 
 string ask_me()
 {
-        mapping fam, my_fam, skl; 
-        object fighter, me, room, monk;
-        string *sname;
-        int i,j;
+        mapping /*fam,*/ my_fam/*, skl*/; 
+        object fighter, me/*, room, monk*/;
+//      string *sname;
+//      int i,j;
 
         fighter = this_player();
         me = this_object();

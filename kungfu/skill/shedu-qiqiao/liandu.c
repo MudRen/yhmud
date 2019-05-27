@@ -15,7 +15,7 @@ int perform(object me, object target)
         int amount;
         int exp;
         int lvl;
-        int sk;
+//      int sk;
 		int sk_lvl;
  
         if (! target)
@@ -102,4 +102,3 @@ int perform(object me, object target)
 
         return 1;
 }
-

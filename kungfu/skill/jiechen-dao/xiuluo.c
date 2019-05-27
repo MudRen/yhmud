@@ -6,7 +6,7 @@ inherit F_SSERVER;
 int perform(object me, object target) 
 { 
       int i, jiali, count; 
-        string msg; 
+//      string msg; 
        object weapon; 
  
        if( !target ) target = offensive_target(me); 
@@ -71,4 +71,3 @@ int perform(object me, object target)
         me->start_busy(1+random(3)); 
         return 1; 
 } 
-

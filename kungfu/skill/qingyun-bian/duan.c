@@ -7,8 +7,8 @@ inherit F_SSERVER;
  
 int perform(object me, object target) 
 { 
-        int str, dex, skill, power; 
-        string weapon; 
+        int str/*, dex, skill*/, power; 
+//      string weapon; 
  
         if( !target ) target = offensive_target(me); 
          
@@ -70,4 +70,3 @@ int perform(object me, object target)
  
         return 1; 
 } 
-

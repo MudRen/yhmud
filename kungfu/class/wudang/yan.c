@@ -101,7 +101,7 @@ void init()
 
 void greeting(object ob)
 {
-        int i;
+//      int i;
 
         if (! objectp(ob) || environment(ob) != environment())
                 return;

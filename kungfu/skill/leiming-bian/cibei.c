@@ -6,7 +6,7 @@ inherit F_SSERVER;
  
 int perform(object me, object target) 
 { 
-        string msg, dodge_skill; 
+        string msg/*, dodge_skill*/; 
         int extra, skill, at, df, i, lmt, damage, p; 
         object weapon; 
         extra = me->query_skill("leiming-bian",1); 
@@ -91,4 +91,3 @@ int perform(object me, object target)
        } 
         return 1; 
 } 
-

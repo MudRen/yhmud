@@ -863,7 +863,7 @@ int accept_object(object me, object ob)
 
 mixed ask_jiuyang()
 {
-        object ob;
+//      object ob;
         object me;
         me = this_player();
 

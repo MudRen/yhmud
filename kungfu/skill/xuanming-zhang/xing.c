@@ -14,7 +14,7 @@ int perform(object me, object target)
         int damage;
         string msg;
         int ap, dp;
-        int lvl, p;
+        int lvl/*, p*/;
 		
 		float improve;
 		int lvls, m, n;

@@ -149,7 +149,7 @@ mapping query_action(object me, object weapon)
 
 int practice_skill(object me)
 {
-	object weapon;
+//	object weapon;
 	int cost;
 	cost = me->query_skill("huoyan-dao", 1) / 5 + 60;
 

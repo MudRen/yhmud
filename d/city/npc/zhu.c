@@ -103,7 +103,7 @@ string ask_buy()
 string ask_job()
 {
         object me;
-        object *obs;
+//      object *obs;
 
         me = this_player();
         if (me->query_temp("job/copy"))

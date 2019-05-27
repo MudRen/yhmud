@@ -66,7 +66,7 @@ void init()
 
 int do_halt()
 {
-        object me;
+        // object me;
 
         if (this_player() == query_temp("catch_ob"))
         {

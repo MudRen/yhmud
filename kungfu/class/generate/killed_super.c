@@ -36,7 +36,7 @@ void create()
 //独立于玩家气精内 by 大曾
 void set_from_me(object me)
 {
-        int exp;
+//      int exp;
         mapping my;
 		int s, f, x, y, z;
 

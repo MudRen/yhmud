@@ -86,7 +86,7 @@ int valid_enable(string usage) { return usage=="strike" || usage=="parry"; }
  
 int valid_learn(object me)  
 { 
-        object weapon; 
+//      object weapon; 
         if (me->query_temp("weapon") || me->query_temp("secondary_weapon"))  
                 return notify_fail("Á·¡¸ÎÕÊ¯ÕÆ¡¹±ØÐë¿ÕÊÖ¡£\n");  
         if (me->query_skill("sanhua-zhang", 1) < 80 && me->query_skill("banruo-zhang", 1) < 80) 
@@ -133,4 +133,3 @@ string perform_action_file(string action)
 { 
         return __DIR__"woshi-zhang/" + action;  
 } 
-
