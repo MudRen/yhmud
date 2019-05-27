@@ -68,14 +68,18 @@ int main(string arg)
 
     msg += HIW "┗━━━━━━━━━━━━━━━━━━━━━━━━┛\n" NOR;
     msg += HIG + NATURE_D->game_time() + "记。\n" NOR;
-    msg += WHT "英雄壁下面有一行小字刻着：" + me->query("name") + "，目前评价：" +
-           get_score(me) + "\n" NOR;
+    msg += WHT "英雄壁下面有一行小字刻着：" + me->query("name") + "，目前评价 " +
+           get_score(me);
     if (index)
     {
-        msg += WHT "，排行第" + chinese_number(index) + "。\n" NOR;
+        msg += "，排行第" + chinese_number(index) + "。\n" NOR;
+    }
+    else
+    {
+        msg += "。\n" NOR;
     }
 
-    msg += 
+    msg +=
     write(msg);
     me->set_temp("last_view", time());
     return 1;
@@ -105,7 +109,7 @@ int get_score(object ob)
         skills = ob->query_skills();
 
         if (! sizeof(skills))
-                return 1; 
+                return 1;
 
         ski  = keys(skills);
         for(i = 0; i < sizeof(ski); i++)
