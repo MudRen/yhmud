@@ -74,7 +74,7 @@ mixed query_story_message(int step)
         return 0;
 
     msg = story[step];
-    if (stringp(msg))
+    if (stringp(msg) && char_name)
     {
         msg = replace_string(msg, "$N", char_name);
         msg = replace_string(msg, "$ID", char_id);
