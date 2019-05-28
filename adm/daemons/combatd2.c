@@ -1,8 +1,8 @@
 // combatd.c
 // Update by Doing for HELL
 
-#pragma optimize
-//#pragma save_binary
+// #pragma optimize
+// #pragma save_binary
 
 #include <ansi.h>
 #include <skill.h>
@@ -258,7 +258,7 @@ int valid_power(int combat_exp)
 // skill. This value is used for A/(A+B) probability use.
 varargs int skill_power(object ob, string skill, int usage, int delta)
 {
-        int status, level, power;
+        int /*status,*/ level, power;
         mapping dbase;
         mapping temp;
         mapping fight;
@@ -336,7 +336,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 
 	int delta;
         int ap, dp, pp;
-        int damage, damage_bonus, defense_factor;
+        int damage, damage_bonus/*, defense_factor*/;
         int wounded;
 
 	object weapon2;	// weapon of victim
@@ -346,8 +346,8 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 	string damage_info;
 	mapping fight;
 
-	object env_me;
-	object env_v;
+//	object env_me;
+//	object env_v;
 
         if (environment(me)->query("no_fight"))
         {
@@ -863,7 +863,7 @@ varargs string do_damage(object me, object target, mixed type,
         int armor;
         int wound;
         int jiali;
-        int bonus;
+//      int bonus;
         mixed foo;
         string msg;
         string skill;
@@ -1072,12 +1072,12 @@ varargs string do_damage(object me, object target, mixed type,
 //
 void fight(object me, object victim)
 {
-        object ob;
+//      object ob;
         object weapon;
         string askill;
         int    double_attack;
         mapping prepare;
-        string result;
+//      string result;
 
         if (! living(me)) return;
 

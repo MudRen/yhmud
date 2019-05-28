@@ -54,7 +54,7 @@ void logon(object ob)
 	object *usr;
 	int i, wiz_cnt, ppl_cnt, login_cnt;
         int iplimit;
-        int user_num;
+//      int user_num;
 
 	if (BAN_D->is_banned(query_ip_number(ob)) == 1)
         {
@@ -277,7 +277,7 @@ private void reset_ad_password(string pass, object ob)
 
 private void confirm_reset_ad_password(string pass, object ob)
 {
-	mapping my;
+//	mapping my;
 	string old_pass;
 
 	write("\n");
@@ -574,7 +574,7 @@ private void new_ad_password(string pass, object ob)
 
 private void confirm_ad_password(string pass, object ob)
 {
-	mapping my;
+//	mapping my;
 	string old_pass;
 
 	write("\n");
@@ -622,7 +622,7 @@ private void new_password(string pass, object ob)
 
 private void confirm_password(string pass, object ob)
 {
-	mapping my;
+//	mapping my;
 	string old_pass;
 
 	write("\n");
@@ -715,7 +715,7 @@ object make_body(object ob)
 {
 	string err;
 	object user;
-	int n;
+//	int n;
 
         if (! is_root(previous_object()))
         {
@@ -769,7 +769,7 @@ private void init_new_player(object user)
 		
 varargs void enter_world(object ob, object user, int silent)
 {
-	object cloth, shoe, room, login_ob;
+	object cloth, shoe/*, room*/, login_ob;
 	string startroom;
 	string ipname;
        // int new_mail_n;
@@ -1174,4 +1174,3 @@ int howmuch_money(object ob)
 	total=total+total2;
 	return total;
 }
-
