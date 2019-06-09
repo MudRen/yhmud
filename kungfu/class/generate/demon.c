@@ -142,9 +142,9 @@ void die(object killer)
 
     lvl = NPC_D->check_level(this_object());
     exp = 15 + random(10) + lvl;
-    pot = 9 + random(5) + lvl;
-    weiwang = 8 + random(6) + lvl / 2;
-    score = 9 + random(6) + lvl / 2;
+    pot = 10 + random(5) + lvl;
+    weiwang = 5 + random(5) + lvl / 2;
+    score = 5 + random(5) + lvl / 2;
 
     if (objectp(killer))
     {
@@ -186,4 +186,16 @@ int accept_kill(object ob)
 void random_move()
 {
     NPC_D->random_move(this_object());
+}
+
+void init()
+{
+    object me;
+
+    ::init();
+    if (!interactive(me = this_player()))
+        return;
+
+    remove_call_out("kill_ob");
+    call_out("kill_ob", 0, me);
 }
