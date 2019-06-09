@@ -1,4 +1,3 @@
-
 inherit F_DBASE;
 
 #include <ansi.h>
@@ -155,7 +154,7 @@ int do_return(object ob, object me, string arg)
 {
     string target, item;
     object who, pay;
-    int count, exp, pot, tihui, gx;
+    int count, exp, pot/*, tihui*/, gx;
     //Ôö¼ÓÔÄÀú½±Àø 2016-12-21
     int score;
     int kar;

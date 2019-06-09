@@ -805,8 +805,8 @@ mixed weapon10lv_hit_ob(object me, object victim, object weapon, int damage_bonu
 // 9¼¶±øÆ÷¹¥»÷¶ÔÊÖ
 mixed weapon_hit_ob(object me, object victim, object weapon, int damage_bonus)
 {
-        int ap;
-        int dp;
+//      int ap;
+//      int dp;
         int damage;
 
         if (random(2)) return;
