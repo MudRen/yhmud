@@ -16,10 +16,10 @@ void create()
     set("gender", random(5) ? "男性" : "女性");
     set_name("心魔", ({"xin mo", "mo", "daemon"}));
     // set("age", 20 + random(40));
-    set("long", "");
+    set("long", "这是你的心魔。\n");
     set("attitude", "aggressive");
-    set("chat_chance", 30);
-    // set("chat_msg", ({ (: random_move :) }));
+    set("chat_chance", 1); // 1/120 的机率
+    set("chat_msg", ({ (: random_move :) }));
     set("chat_chance_combat", 120);
     set("scale", 100);
     set("no_get", 1);
@@ -27,18 +27,17 @@ void create()
     set_temp("apply/armor", 100);
     set_temp("apply/damage", 15);
     set_temp("born_time", time());
-    set_temp("dest_time", 1200 + time());
 
     add_money("silver", 1 + random(10));
     setup();
     if (clonep()) keep_heart_beat();
 }
 
-void set_from_me(object me)
+void set_from_me(object me, int scale)
 {
     mapping my;
     int s, f, x, y, z;
-
+    // debug_message("scale = " + scale);
     NPC_D->init_npc_skill(this_object(), NPC_D->get_exp(me));
     my = query_entire_dbase();
     s = this_object()->query_con() + this_object()->query_str();

@@ -1,4 +1,3 @@
-
 //子虚道人
 
 #include <ansi.h>
@@ -17,8 +16,8 @@ void create()
     seteuid(getuid());
     set_name("子虚道人", ({"zixu daoren", "zixu", "daoren"}));
     set("long", @LONG
-此人身着道袍，须发皆白，一副仙风道骨的气派。这便是武林中号称「子虚乌有」二道仙中
-的子虚道人。传说此人早已得道成仙，可通神界。
+此人身着道袍，须发皆白，一副仙风道骨的气派，这便是武林中号称「子虚乌有」
+二道仙中的子虚道人，传说此人早已得道成仙，可通神界。
 LONG);
     set("nickname", HIW "仙风道骨" NOR);
     set("title", HIC "子虚观观主" NOR);
@@ -92,13 +91,13 @@ int ask_maze()
     object me, maze;
     me = this_player();
 
-    maze = new(MAZE, 0, 0, getoid(me));
-    me->move(maze);
-
     message_vision(HIG "$N盯着$n看了看，说道：“修武之人，也需修心，若不谨慎，魔由心生！\n"
                         "贫道送你入心魔幻境，斩杀心魔，历练自我吧。”\n" NOR
                         CYN "$N念念有词，转瞬间$n消失在大家眼前。\n" NOR,
                     this_object(), me);
+
+    maze = new(MAZE, 0, 0, getoid(me));
+    me->move(maze);
 
     return 1;
 }
