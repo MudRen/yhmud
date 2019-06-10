@@ -3,7 +3,7 @@
 
 #define DIAN "「" HIR "神指点穴" NOR "」"
 
-string final(object me, object target, int damage);
+string final(object me, object target);
 
 inherit F_SSERVER;
 
@@ -20,7 +20,7 @@ int perform(object me, object target)
 
         if (! target || ! me->is_fighting(target))
                 return notify_fail(DIAN "只能对战斗中的对手使用。\n");
- 
+
         if (me->query_temp("weapon") || me->query_temp("secondary_weapon"))
                 return notify_fail(DIAN "只能空手施展。\n");
 
@@ -58,7 +58,7 @@ int perform(object me, object target)
 
         ap = me->query_skill("finger");
         dp = target->query_skill("parry");
-		
+
 	if (ap / 2 + random(ap) > dp)
         {
 /*		msg += HIR "结果$p" HIR "被$P" HIR "逼得招"

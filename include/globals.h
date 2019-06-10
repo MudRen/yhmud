@@ -1,15 +1,15 @@
 // globals.h
 // this file will be automatically included by the driver
 
-// #pragma save_binary
-
-//mudos use this
-//#define STATIC_FUNC_TAG static
-//#define STATIC_VAR_TAG  static
-
-//fluffos use this
+#ifndef __SENSIBLE_MODIFIERS__
+// mudos use this
+#define STATIC_FUNC_TAG static
+#define STATIC_VAR_TAG  static
+#else
+// fluffos use this
 #define STATIC_FUNC_TAG private
 #define STATIC_VAR_TAG  nosave
+#endif
 
 // Important directories
 #define BACKUP_DIR      "/backup/"
@@ -198,7 +198,7 @@
 
 // Profiling switches
 //
-// If you changed any of these defines, you'll need reboot to make it 
+// If you changed any of these defines, you'll need reboot to make it
 // in effect.
 
 // Install information

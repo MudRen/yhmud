@@ -9,7 +9,7 @@ inherit NPC;
 
 int do_answer();
 int do_list();
-int do_duihuan();
+int do_duihuan(string);
 
 mapping convert_list = ([
 	1:			({"/clone/fam/gift/str3", 1000, 0}),
@@ -41,7 +41,7 @@ void create()
 	set("long", "一切都是浮云。\n");
 	set_skill("unarmed", 50);
 	set_skill("dodge", 50);
-	set_skill("higgling", 500);	
+	set_skill("higgling", 500);
 	set_temp("apply/damage", 15);
 
 	set("combat_exp", 800000);
@@ -52,7 +52,7 @@ void create()
                 "贡献" : (: do_answer :),
                 "门派贡献" : (: do_answer :),
         ]));
-	
+
 	setup();
 	set_max_encumbrance(100000000);
 }
@@ -111,7 +111,7 @@ int do_duihuan(string arg)
 		if (n > sizeof(convert_list))
                 return notify_fail(CYN "浮云微笑道：输入（list）"
 		                           "看清编号再来吧。\n" NOR);
-		
+
 		me = this_player();
 		gx = convert_list[n][1] * count;
 
@@ -125,7 +125,7 @@ int do_duihuan(string arg)
 		}
 
 		me->add("gongxian", -gx);
-        
+
         write(CYN "浮云拿出一些" + name + CYN "给你，"
 		                            "笑眯眯的说：欢迎下次光临。\n" NOR);
         return 1;

@@ -7,5 +7,7 @@
 /tmp
 /version
 .vscode
+*.log
 *DUMP
 desktop.ini
+swapfile*

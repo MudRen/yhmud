@@ -3,7 +3,7 @@
 
 #define DING "「" HIC "定昆仑" NOR "」"
 
-string final(object me, object target, int damage);
+string final(object me, object target);
 
 inherit F_SSERVER;
 
@@ -66,7 +66,7 @@ int perform(object me, object target)
 				msg += COMBAT_D->do_damage(me, target, REMOTE_ATTACK, damage, 0, (: final, me, target, 0 :));
                 me->start_busy(2);
                 me->add("neili", -200);
-				
+
         } else
         {
                 msg += CYN "可是$p" CYN "看破了$P" CYN

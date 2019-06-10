@@ -79,7 +79,6 @@ int main(string arg)
         msg += "¡£\n" NOR;
     }
 
-    msg +=
     write(msg);
     me->set_temp("last_view", time());
     return 1;
