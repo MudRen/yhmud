@@ -273,7 +273,7 @@ void user_dump(int type)
         }
         else if (query_skill("idle-force", 1) < 500)
         {
-            improve_skill("idle-force", 100);
+            improve_skill("idle-force", 10);
         }
         break;
     default:
