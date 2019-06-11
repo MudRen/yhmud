@@ -971,8 +971,7 @@ varargs void enter_world(object ob, object user, int silent)
             startroom = user->query_prison();
         else if (user->is_ghost())
             startroom = DEATH_ROOM;
-        else if (!stringp(startroom = user->query("startroom")) ||
-                 file_size(startroom + ".c") < 0)
+        else if (!stringp(startroom = user->query("startroom")))
             startroom = START_ROOM;
 
         if (!catch (load_object(startroom)))
