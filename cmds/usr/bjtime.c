@@ -7,7 +7,7 @@ inherit F_CLEAN_UP;
 int main( object me, string arg )
 {
 	int day, day1, day2, month, *date;
-	write( sprintf( "现在的时间是北京时间 " + ctime( time() + 8 * 60 * 60 ) + "。\n" ) );
+	write( sprintf( "现在的时间是北京时间 " + ctime( time() ) + "。\n" ) );
 	date	= localtime( time() + 8 * 60 * 60 );
 	month	= date[4] + 1;
 	day		= date[3];
